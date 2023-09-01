@@ -55,17 +55,6 @@ return {
                 -- hsb = {hue = 1.0, saturation = 1.0, brightness = 0.95}}},  
   keys = keys,
  
-    ssh_domains = {
-    { name = 'office.pc',
-    remote_address = '130.209.66.140',
-    username = 'ctorney',
-    },
-    { name = 'euclid.35',
-      remote_address = 'euclid-35.maths.gla.ac.uk',
-      username = 'ctorney',
-    },
-    
-  },
   
 }
 
