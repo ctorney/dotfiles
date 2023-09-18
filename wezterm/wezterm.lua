@@ -24,12 +24,13 @@ inactive_pane_hsb = {
 
 keys = {
 		{
-			key = "d",
+			key = "e",
 			mods = "CTRL",
 			action = act.CloseCurrentPane({ confirm = false }),
 		},
 	}
 
+                        
 
 return {
   unix_domains = {
@@ -41,7 +42,8 @@ return {
   color_scheme = 'Everforest Dark (Gogh)',
   cursor_blink_ease_in = 'Constant',
   cursor_blink_ease_out = 'Constant',
-  colors = {cursor_bg = "#A7C080", cursor_fg = "#1E2326"},
+  -- colors = {cursor_bg = "#A7C080", cursor_fg = "#1E2326"},
+  colors = {cursor_bg = "#D3C6AA", cursor_fg = "#1E2326"},
   font = wezterm.font('Hack Nerd Font'),
   font_size = 11,
   line_height = 1.0,
@@ -49,7 +51,9 @@ return {
   exit_behavior = "Close",
   hide_tab_bar_if_only_one_tab = true,
   enable_tab_bar = false,
-  background = {{source = {File = '/home/ctorney/Pictures/Wallpapers/winter.jpeg'} , 
+  -- default_prog = { 'tmux' },
+
+  background = {{source = {File = '/home/ctorney/Pictures/Wallpapers/hills2.jpg'} , 
                 hsb = {hue = 1.0, saturation = 1.0, brightness = 0.05}}},  
   -- background = {{source = {Color = 'white'} , 
                 -- hsb = {hue = 1.0, saturation = 1.0, brightness = 0.95}}},  
