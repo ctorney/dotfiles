@@ -2,5 +2,6 @@
 dotfiles
 
 ```
-cp -r --symbolic-link dotfiles/* ~/.config
+cd ~/.config
+cp -r --symbolic-link /path/to/dotfiles/* .
 ```
