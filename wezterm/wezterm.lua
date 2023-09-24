@@ -49,7 +49,7 @@ return {
   line_height = 1.0,
   adjust_window_size_when_changing_font_size = false,
   exit_behavior = "Close",
-  hide_tab_bar_if_only_one_tab = true,
+  hide_tab_bar_if_only_one_tab = false,
   enable_tab_bar = false,
   -- default_prog = { 'tmux' },
 
@@ -58,6 +58,7 @@ return {
   -- background = {{source = {Color = 'white'} , 
                 -- hsb = {hue = 1.0, saturation = 1.0, brightness = 0.95}}},  
   keys = keys,
+
  
   
 }
