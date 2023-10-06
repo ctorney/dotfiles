@@ -1,0 +1,134 @@
+##!/usr/bin/bash
+
+# use nullglob in case there are no matching files
+shopt -u nullglob
+
+prev_mod_time=0
+# create a variable to hold the number of images
+num_pages=1
+page_counter=0
+
+tput civis
+
+
+
+
+
+getwindowsize() {
+  # return the width and height of the pane if tmux is running
+  # if not in tmux return 0,0
+  if [ -n "$TMUX" ]; then
+    w=$(tmux display-message -p '#{pane_width}')  
+    wc=$(tmux display-message -p '#{window_cell_width}')
+    h=$(tmux display-message -p '#{pane_height}') 
+    hc=$(tmux display-message -p '#{window_cell_height}')
+    w=$((w*wc))
+    h=$(((h)*hc))
+  else    
+    w=0
+    h=0
+  fi   
+  
+
+  # If the width is 0, then we're not in tmux, so get the size of the terminal
+  if [ $w -eq 0 ]; then
+    # tput cols returns the width of the terminal
+    w=$(tput cols)
+    # tput lines returns the height of the terminal
+    h=$(tput lines)
+  fi
+
+  return
+}
+
+
+display_pdf() {
+  if [ $h -eq 0 ]; then 
+    convert -background white -alpha remove "$filename" sixel:-
+  else
+    # Get the dimensions of the pdf
+    # pdfinfo "${pdfs[0]}" | grep size | awk '{print $3}' | read iw
+    # pdfinfo "${pdfs[0]}" | grep size | awk '{print $5}' | read ih
+    # Calculate the new dimensions as 95% of the terminal dimensions
+    nw=$((w * 80 / 100))
+    nh=$((nw * 141 / 100))
+
+# Check and adjust if the new height exceeds the terminal height
+    if ((nh > h * 80 / 100)); then
+      nh=$((h * 80 / 100))
+      nw=$((nh * 100 / 141))
+    fi
+
+
+    num_lines=$(( ($h - $nh) / 2 / $hc ))
+    indent=$(( ($w - $nw) / 2 / $wc ))
+
+    # convert -background white -alpha remove main.pdf[0] sixel:-
+    # convert -background white -alpha remove "$filename"[$((page_counter))] -resize ${nw}x${nh} sixel:-
+    convert -density 150 -trim "$filename"[$((page_counter))] -quality 100 -flatten -sharpen 0x1.0 -brightness-contrast -50x0 -resize ${nw}x${nh} sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
+    # convert   -verbose    -density 150      -trim "$filename"[$((page_counter))]             -quality 100      -flatten          -sharpen 0x1.0     main.png
+  fi
+}
+
+getwindowsize
+echo "Press q to quit, n for next page, p for previous page"
+sleep 2
+clear
+
+while true; do
+  read -rsn1 -t 1 input
+  if [ "$input" = "q" ]; then
+    break
+  fi
+
+
+  pdfs=($( ls -t *.pdf ))
+
+  # continue if no pdfs are found
+  if [ ${#pdfs[@]} -eq 0 ]; then
+    continue
+  fi
+
+
+  # print out the filename and the modified time of the most recent pdf
+
+
+  # store the modified time of the most recent pdf as an integer
+  
+
+  mod_time=$(stat -c %Y "${pdfs[0]}")
+  # if the modified time has changed, then convert the pdf to png
+
+  if (( mod_time != last_mod_time )); then
+    clear
+    echo -n "File: ${pdfs[0]}"; echo -n "  Last modified: "; stat -c %y "${pdfs[0]}"; echo
+    filename="${pdfs[0]}"
+    num_pages=$(pdfinfo "$filename" | grep Pages | awk '{print $2}')
+    # if the current page is greater than the num_pages - 1 set it to be num_pages - 1
+    if (( page_counter > num_pages - 1 )); then
+      page_counter=$((num_pages - 1))
+    fi
+    last_mod_time=$mod_time
+    display_pdf
+  fi
+  if [ "$input" = "p" ]; then
+    clear
+    echo -n "File: ${pdfs[0]}"; echo -n "  Last modified: "; stat -c %y "${pdfs[0]}"; echo
+    if (( page_counter > 0 )); then
+      page_counter=$((page_counter - 1))
+    fi
+    getwindowsize
+    display_pdf
+  fi
+  if [ "$input" = "n" ]; then
+    clear
+    echo -n "File: ${pdfs[0]}"; echo -n "  Last modified: "; stat -c %y "${pdfs[0]}"; echo
+    if (( page_counter < num_pages - 1 )); then
+      page_counter=$((page_counter + 1))
+    fi
+    getwindowsize
+    display_pdf
+  fi
+done
+tput cnorm
+echo
