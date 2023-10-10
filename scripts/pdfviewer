@@ -65,7 +65,7 @@ display_pdf() {
 
     # convert -background white -alpha remove main.pdf[0] sixel:-
     # convert -background white -alpha remove "$filename"[$((page_counter))] -resize ${nw}x${nh} sixel:-
-    convert -density 150 -trim "$filename"[$((page_counter))] -quality 100 -flatten -sharpen 0x1.0 -brightness-contrast -50x0 -resize ${nw}x${nh} sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
+    convert -density 150 -trim "$filename"[$((page_counter))] -quality 100 -flatten -sharpen 0x1.0 -brightness-contrast -5x0 -resize ${nw}x${nh} -negate sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
     # convert   -verbose    -density 150      -trim "$filename"[$((page_counter))]             -quality 100      -flatten          -sharpen 0x1.0     main.png
   fi
 }

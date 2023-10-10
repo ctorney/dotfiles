@@ -36,6 +36,14 @@ return {
   unix_domains = {
     { name = 'unix' },
   },
+  ssh_domains = {
+    { name = 'euclid.35',
+    remote_address = 'euclid-35.maths.gla.ac.uk',
+    username = 'ctorney',
+  },
+},
+
+    
   enable_csi_u_key_encoding = true,
   window_decorations = "RESIZE", 
   -- color_scheme = 'Hardcore',
