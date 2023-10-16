@@ -1,4 +1,9 @@
 X-Mailer: aerc {{version}}
 
+
 On {{dateFormat (.OriginalDate | toLocal) "Mon Jan 2, 2006 at 3:04 PM MST"}}, {{(index .OriginalFrom 0).Name}} wrote:
-{{quote .OriginalText | exec `elinks -dump`}}
+{{if eq .OriginalMIMEType "text/html"}}}
+{{quote .OriginalText|exec `elinks -dump`}}
+{{else}}
+{{quote .OriginalText}}
+{{end}}

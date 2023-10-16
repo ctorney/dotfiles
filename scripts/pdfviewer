@@ -65,7 +65,7 @@ display_pdf() {
 
     # convert -background white -alpha remove main.pdf[0] sixel:-
     # convert -background white -alpha remove "$filename"[$((page_counter))] -resize ${nw}x${nh} sixel:-
-    convert -density 150 -trim "$filename"[$((page_counter))] -quality 100 -flatten -sharpen 0x1.0 -brightness-contrast -5x0 -resize ${nw}x${nh} -negate sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
+    convert -density 150 -trim "$filename"[$((page_counter))] -quality 100 -flatten -sharpen 0x1.0 -brightness-contrast -50x0 -resize ${nw}x${nh} sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
     # convert   -verbose    -density 150      -trim "$filename"[$((page_counter))]             -quality 100      -flatten          -sharpen 0x1.0     main.png
   fi
 }
@@ -100,6 +100,7 @@ while true; do
   # if the modified time has changed, then convert the pdf to png
 
   if (( mod_time != last_mod_time )); then
+    sleep 2;
     clear
     echo -n "File: ${pdfs[0]}"; echo -n "  Last modified: "; stat -c %y "${pdfs[0]}"; echo
     filename="${pdfs[0]}"
@@ -116,18 +117,18 @@ while true; do
     echo -n "File: ${pdfs[0]}"; echo -n "  Last modified: "; stat -c %y "${pdfs[0]}"; echo
     if (( page_counter > 0 )); then
       page_counter=$((page_counter - 1))
+      getwindowsize
+      display_pdf
     fi
-    getwindowsize
-    display_pdf
   fi
   if [ "$input" = "n" ]; then
     clear
     echo -n "File: ${pdfs[0]}"; echo -n "  Last modified: "; stat -c %y "${pdfs[0]}"; echo
     if (( page_counter < num_pages - 1 )); then
       page_counter=$((page_counter + 1))
+      getwindowsize
+      display_pdf
     fi
-    getwindowsize
-    display_pdf
   fi
 done
 tput cnorm

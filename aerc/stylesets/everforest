@@ -1,6 +1,12 @@
 *.default=true
 *.normal=true
 
+selector_focused.reverse=true
+selector_chooser.bold=true
+completion_pill.reverse=true
+*.selected.reverse=toggle
+
+
 default.fg=#d3c6aa
 
 error.fg=#e67e80

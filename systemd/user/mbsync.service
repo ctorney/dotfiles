@@ -1,0 +1,11 @@
+
+[Unit]
+Description=Mailbox synchronization service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'mbsync -c $HOME/.config/mbsync/mbsync.conf -a'
+ExecStartPost=/bin/sh -c 'NOTMUCH_CONFIG=$HOME/.config/notmuch/notmuch.conf notmuch new'
+
+[Install]
+WantedBy=default.target
