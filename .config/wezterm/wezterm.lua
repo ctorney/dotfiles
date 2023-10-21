@@ -61,10 +61,10 @@ return {
   enable_tab_bar = false,
   -- default_prog = { 'tmux' },
 
-  background = {{source = {File = '/home/ctorney/Pictures/Wallpapers/hills2.jpg'} , 
+  background = {{source = {File = wezterm.home_dir .. '/.config/wezterm/wallpaper.jpg'} , 
                 hsb = {hue = 1.0, saturation = 1.0, brightness = 0.05}}},  
-  -- background = {{source = {Color = 'white'} , 
-                -- hsb = {hue = 1.0, saturation = 1.0, brightness = 0.95}}},  
+
+
   keys = keys,
 
  
