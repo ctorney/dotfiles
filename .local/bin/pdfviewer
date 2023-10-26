@@ -46,10 +46,7 @@ display_pdf() {
   if [ $h -eq 0 ]; then 
     convert -background white -alpha remove "$filename" sixel:-
   else
-    # Get the dimensions of the pdf
-    # pdfinfo "${pdfs[0]}" | grep size | awk '{print $3}' | read iw
-    # pdfinfo "${pdfs[0]}" | grep size | awk '{print $5}' | read ih
-    # Calculate the new dimensions as 95% of the terminal dimensions
+    # Get the dimensions of the pdf (assuming A4 and a 1.41 ratio)
     nw=$((w * 80 / 100))
     nh=$((nw * 141 / 100))
 
@@ -63,10 +60,9 @@ display_pdf() {
     num_lines=$(( ($h - $nh) / 2 / $hc ))
     indent=$(( ($w - $nw) / 2 / $wc ))
 
-    # convert -background white -alpha remove main.pdf[0] sixel:-
-    # convert -background white -alpha remove "$filename"[$((page_counter))] -resize ${nw}x${nh} sixel:-
-    convert -density 150 -trim "$filename"[$((page_counter))] -quality 100 -flatten -sharpen 0x1.0 -brightness-contrast -50x0 -resize ${nw}x${nh} sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
-    # convert   -verbose    -density 150      -trim "$filename"[$((page_counter))]             -quality 100      -flatten          -sharpen 0x1.0     main.png
+    convert -density 150 -trim "$filename"[$((page_counter))] -quality 100 -flatten -sharpen 0x1.0 -resize ${nw}x${nh} \
+              +level-colors 'rgb(211,198,170)','rgb(26,24,28)' sixel:- \
+              | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
   fi
 }
 
@@ -104,6 +100,12 @@ while true; do
     clear
     echo -n "File: ${pdfs[0]}"; echo -n "  Last modified: "; stat -c %y "${pdfs[0]}"; echo
     filename="${pdfs[0]}"
+    # check if the file is a valid pdf
+    if ! pdfinfo "$filename" &> /dev/null; then
+      echo "compiling $filename.."
+      continue
+    fi
+
     num_pages=$(pdfinfo "$filename" | grep Pages | awk '{print $2}')
     # if the current page is greater than the num_pages - 1 set it to be num_pages - 1
     if (( page_counter > num_pages - 1 )); then
