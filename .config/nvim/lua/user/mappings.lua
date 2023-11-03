@@ -24,7 +24,7 @@ return {
     -- add a key mapping for HopWord with the prefix "Hop"
     ["<leader>h"] = { name = "", desc = "Hop" },
     ["<leader>hw"] = {"<cmd>HopWord<cr>", desc = "Hop to word"},
-    ["hh"] = {"<cmd>HopWord<cr>", desc = "Hop to word"},
+    -- ["hh"] = {"<cmd>HopWord<cr>", desc = "Hop to word"},
     ["<leader>hl"] = {"<cmd>HopLine<cr>", desc = "Hop to line"},
     ["<leader>hc"] = {"<cmd>HopChar1<cr>", desc = "Hop to character"},
     ["<leader>hC"] = {"<cmd>HopChar2<cr>", desc = "Hop to double character"},
