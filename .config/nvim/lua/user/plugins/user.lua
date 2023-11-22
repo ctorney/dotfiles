@@ -102,8 +102,8 @@ return {
         chat_user_prefix = "🗨",
 	      chat_assistant_prefix = "🤖",
 	      chat_confirm_delete = false,
-	    	chat_model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
-     		command_model = { model = "gpt-3.5-turbo", temperature = 1.1, top_p = 1 },
+	    	chat_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
+     		command_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
 	      chat_custom_instructions = "When providing code just give the code and don't explain it.\n"
 	              .. "Only provide the raw code without markdown markers.\n",
         hooks = {
@@ -123,17 +123,38 @@ return {
                   .. "as further instruction for the email response. \n"
                   .. "Return only the text of the email. \n"
                   .. "Try not to repeat text from the email chain in your response. \n"
-                  .. "Be concise but friendly and sign off with first name only. \n\n"
+                  .. "Start the email with Hi and the first name of the recipient and end with Best wishes, Colin. \n"
+                  .. "Compose the response in a terse and very concise style and sign off with first name only. \n\n"
                   .. "```{{selection}}\n```\n\n"
             params.range = 2
             params.line1 = 1
             params.line2 = 100
-            local chat_model = { model = "text-davinci-003", temperature = 0.7, top_p = 1 }
+            local chat_model = { model = "gpt-4", temperature = 0.7, top_p = 1 }
             gp.Prompt(params, gp.Target.prepend, nil, gp.config.command_model,
               template, gp.config.chat_system_prompt)
           end,
         }
       })
+    end,
+  },
+
+
+  {
+    "ggandor/leap.nvim",
+    enabled = true,
+    keys = {
+      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+    },
+    config = function(_, opts)
+      local leap = require("leap")
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
+      leap.add_default_mappings(true)
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
     end,
   },
 
