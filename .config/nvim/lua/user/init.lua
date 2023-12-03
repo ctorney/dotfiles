@@ -118,6 +118,12 @@ return {
       desc = "Disable Tabline for EML",
     })
 
+    -- fix https://github.com/neovim/neovim/issues/21856
+    vim.api.nvim_create_autocmd({ "VimLeave" }, {
+    callback = function()
+        vim.fn.jobstart("", { detach = true })
+    end,
+    })
 
     vim.api.nvim_create_autocmd("BufEnter", {
       callback = function()
