@@ -1,0 +1,27 @@
+[general]
+accounts = outlook365
+pythonfile = ~/.config/offlineimap/offlineimap.py
+
+[Account outlook365]
+localrepository = outlook365-local
+remoterepository = outlook365-remote
+maxsyncaccounts = 1
+
+[Repository outlook365-local]
+type = Maildir
+localfolders = ~/mail/outlook365
+
+[Repository outlook365-remote]
+type = IMAP
+auth_mechanisms = XOAUTH2
+oauth2_access_token_eval = get_token("colin.torney@glasgow.ac.uk")
+remoteuser = colin.torney@glasgow.ac.uk
+remotehost = outlook.office365.com
+remoteport = 993
+ssl = yes
+realdelete = no
+sync_deletes = yes
+ipv6 = False
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+# only backup the folders listed here
+folderfilter = lambda folder: folder in ['INBOX', 'Drafts', 'Archive', 'Deleted Items', 'Sent Items' ]

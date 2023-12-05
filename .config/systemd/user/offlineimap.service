@@ -4,7 +4,7 @@ Description=Mailbox synchronization service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'mbsync -c $HOME/.config/mbsync/mbsync.conf -a'
+ExecStart=/bin/sh -c 'offlineimap'
 ExecStartPost=/bin/sh -c 'NOTMUCH_CONFIG=$HOME/.config/notmuch/notmuch.conf notmuch new'
 
 [Install]
