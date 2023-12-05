@@ -73,6 +73,9 @@ display_image() {
       nh=$(echo "$ih" | bc)
     fi
 
+    # make sure nh and nw are integers
+    nh=${nh%.*}
+    nw=${nw%.*}
     num_lines=$(( ($h - $nh) / 2 / $hc ))
     indent=$(( ($w - $nw) / 2 / $wc ))
     convert "${images[$show_counter]}" -bordercolor gray -border 2x2 -resize ${nw}x${nh} sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'

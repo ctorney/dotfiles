@@ -25,3 +25,4 @@ ipv6 = False
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 # only backup the folders listed here
 folderfilter = lambda folder: folder in ['INBOX', 'Drafts', 'Archive', 'Deleted Items', 'Sent Items' ]
+# copy_ignore_eval = lambda foldername: {'Archive': [20562,24695,25947,28435,28601,28636,28833,23659,23418,23677]}.get(foldername)

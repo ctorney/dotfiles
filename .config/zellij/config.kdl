@@ -22,10 +22,17 @@ keybinds clear-defaults=true {
         bind ">" { Resize "Increase"; }
         bind "<" { Resize "Decrease"; }
         bind "Tab" { GoToNextTab; }
+        bind "h" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "l" { GoToNextTab; SwitchToMode "Normal"; }
         bind "t" { SwitchToMode "Tab"; }
         bind "n" { NewTab; SwitchToMode "Normal"; }
         bind "q" { CloseTab; SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "e" { NewTab {
+                        name "Email"
+                        layout "layouts/email.kdl"
+                        }; SwitchToMode "Normal"; }
+
         bind "s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
@@ -39,6 +46,13 @@ keybinds clear-defaults=true {
             direction "Right"
             close_on_exit true
         }; SwitchToMode "Normal"; }
+
+        // bind p to ipython with a custom startup command
+        bind "v" { Run "pdfviewer" {
+            direction "Right"
+            close_on_exit true
+        }; SwitchToMode "Normal"; }
+
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "f" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "d" { Detach; }

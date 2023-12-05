@@ -1,4 +1,4 @@
-##!/usr/bin/bash
+#!/usr/bin/bash
 
 # use nullglob in case there are no matching files
 shopt -u nullglob
@@ -36,6 +36,10 @@ getwindowsize() {
     w=$(tput cols)
     # tput lines returns the height of the terminal
     h=$(tput lines)
+    wc=9
+    hc=18
+    w=$((w*wc))
+    h=$(((h)*hc))
   fi
 
   return
@@ -57,6 +61,7 @@ display_pdf() {
     fi
 
 
+    echo "nw: $nw nh: $nh"
     num_lines=$(( ($h - $nh) / 2 / $hc ))
     indent=$(( ($w - $nw) / 2 / $wc ))
 

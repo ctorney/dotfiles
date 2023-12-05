@@ -1,21 +1,7 @@
 
 layout {
-    tab focus=true name="Terminal" {
         pane
          pane size=1 borderless=true {
         plugin location="zellij:compact-bar"
-    }
-    }
-    tab name="Editor" {
-        pane
-         pane size=1 borderless=true {
-        plugin location="zellij:compact-bar"
-    }
-    }
-    tab name="Email" {
-        pane command="aerc" start_suspended=true
-        pane size=1 borderless=true {
-        plugin location="zellij:compact-bar"
-    }
     }
 }
