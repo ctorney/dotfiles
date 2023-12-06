@@ -22,6 +22,7 @@ keybinds clear-defaults=true {
         bind ">" { Resize "Increase"; }
         bind "<" { Resize "Decrease"; }
         bind "Tab" { GoToNextTab; }
+        bind "c" { Clear; SwitchToMode "Normal"; }
         bind "h" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "l" { GoToNextTab; SwitchToMode "Normal"; }
         bind "t" { SwitchToMode "Tab"; }
@@ -30,7 +31,7 @@ keybinds clear-defaults=true {
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "e" { NewTab {
                         name "Email"
-                        layout "layouts/email.kdl"
+                        layout "/home/ctorney/.config/zellij/layouts/email.kdl"
                         }; SwitchToMode "Normal"; }
 
         bind "s" {
@@ -114,7 +115,7 @@ simplified_ui false
 //   - true (default)
 //   - false
 //
-pane_frames false
+pane_frames true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
