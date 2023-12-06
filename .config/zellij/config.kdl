@@ -34,6 +34,11 @@ keybinds clear-defaults=true {
                         layout "/home/ctorney/.config/zellij/layouts/email.kdl"
                         }; SwitchToMode "Normal"; }
 
+        bind "p" { NewTab {
+                        name "Python"
+                        layout "/home/ctorney/.config/zellij/layouts/python.kdl"
+                        }; SwitchToMode "Normal"; }
+
         bind "s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
@@ -41,18 +46,6 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal"
         }
-
-        // bind p to ipython with a custom startup command
-        bind "p" { Run "ipython" "-i" "-c" "import matplotlib;matplotlib.use('module://matplotlib-backend-sixel');matplotlib.rc('figure', figsize=(5, 4));from qbstyles import mpl_style;mpl_style('dark')" {
-            direction "Right"
-            close_on_exit true
-        }; SwitchToMode "Normal"; }
-
-        // bind p to ipython with a custom startup command
-        bind "v" { Run "pdfviewer" {
-            direction "Right"
-            close_on_exit true
-        }; SwitchToMode "Normal"; }
 
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "f" { ToggleFloatingPanes; SwitchToMode "Normal"; }

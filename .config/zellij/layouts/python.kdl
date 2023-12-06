@@ -1,0 +1,14 @@
+
+layout {
+    pane split_direction="vertical"  {
+        pane command="nvim" size="60%" close_on_exit=true
+        pane command="ipython" size="40%" close_on_exit=true {
+            args "-i" "-c" "import matplotlib;matplotlib.use('module://matplotlib-backend-sixel');matplotlib.rc('figure', figsize=(5, 4));from qbstyles import mpl_style;mpl_style('dark')"
+        }
+
+        
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:compact-bar"
+    }
+}
