@@ -8,6 +8,7 @@ keybinds clear-defaults=true {
         bind "Alt l" { MoveFocusOrTab "Right"; }
         bind "Alt j" { MoveFocus "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt g" { SwitchToMode "Locked"; }
 
     }
     tmux {
@@ -34,12 +35,17 @@ keybinds clear-defaults=true {
                         layout "/home/ctorney/.config/zellij/layouts/email.kdl"
                         }; SwitchToMode "Normal"; }
 
+        bind "s" { NewTab {
+                        name "SSH"
+                        layout "/home/ctorney/.config/zellij/layouts/ssh.kdl"
+                        }; SwitchToMode "Normal"; }
+
         bind "p" { NewTab {
                         name "Python"
                         layout "/home/ctorney/.config/zellij/layouts/python.kdl"
                         }; SwitchToMode "Normal"; }
 
-        bind "s" {
+        bind "m" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
                 move_to_focused_tab true
@@ -80,6 +86,9 @@ keybinds clear-defaults=true {
     renametab {
         bind "Enter" { SwitchToMode "Normal"; }
         bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
+    }
+    locked {
+        bind "Alt g" { SwitchToMode "Normal"; }
     }
 }
 
