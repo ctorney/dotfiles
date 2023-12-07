@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -n "$ZELLIJ" ]; then
+  zellij action toggle-pane-frames
+
+  zellij action switch-mode locked
+  /usr/bin/ssh -o ConnectTimeout=5 $@ ; sleep 2; 
+  zellij action switch-mode normal
+  zellij action toggle-pane-frames
+
+else  
+  /usr/bin/ssh $@
+fi
