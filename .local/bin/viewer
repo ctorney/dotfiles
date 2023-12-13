@@ -1,4 +1,4 @@
-##!/usr/bin/bash
+#!/usr/bin/bash
 
 # use nullglob in case there are no matching files
 shopt -u nullglob
@@ -15,28 +15,15 @@ if find "$HOME/.cache/matplotlib/" -mindepth 1 -maxdepth 1 -name "*.png" -print 
 fi
 
 getwindowsize() {
-  # return the width and height of the pane if tmux is running
-  # if not in tmux return 0,0
-  if [ -n "$TMUX" ]; then
-    w=$(tmux display-message -p '#{pane_width}')  
-    wc=$(tmux display-message -p '#{window_cell_width}')
-    h=$(tmux display-message -p '#{pane_height}') 
-    hc=$(tmux display-message -p '#{window_cell_height}')
-    w=$((w*wc))
-    h=$(((h)*hc))
-  else    
-    w=0
-    h=0
-  fi   
-  
 
-  # If the width is 0, then we're not in tmux, so get the size of the terminal
-  if [ $w -eq 0 ]; then
     # tput cols returns the width of the terminal
     w=$(tput cols)
     # tput lines returns the height of the terminal
     h=$(tput lines)
-  fi
+    wc=9
+    hc=18
+    w=$((w*wc))
+    h=$(((h)*hc))
 
   return
 }
@@ -47,53 +34,62 @@ display_image() {
   if [ $num_images -eq 0 ]; then
     return
   fi
-  clear
+  reset
+  tput civis
   if [ $h -eq 0 ]; then 
     convert "${images[$show_counter]}" sixel:-
   else
+    if ! [[ -z "$ZELLIJ" ]]; then
+      zellij action rename-pane "${images[$show_counter]}"
+    fi
     #get width and height of image
     iw=$(identify -format "%w" "${images[$show_counter]}")
     ih=$(identify -format "%h" "${images[$show_counter]}")
     # Calculate the new dimensions as 90% of the terminal dimensions
-    nw=$((w * 90 / 100))
-    nh=$((h * 90 / 100))
+    maxw=$((w * 90 / 100))
+    maxh=$((h - (13*18) ))
 
-    # Check if the image needs to be resized
-    if (( iw > nw || ih > nh )); then
-      ratio=$(awk "BEGIN {print $iw/$ih}")
-      if (( iw > ih )); then
-        nw=$(awk "BEGIN {print $nh*$ratio}")
-      else
-        nh=$(awk "BEGIN {print $nw/$ratio}")
-      fi
-      
+    # calculate the scale factor to use for resizing so that the image has the same aspect ratio
+    # and the nw is less than w*90/100 and nh is less than h-13*18
+
+    if ((iw/maxw > ih/maxh)); then
+      scale_factor=$(awk "BEGIN {print $maxw/$iw}")
     else
-      # Image is already smaller than 90% of the terminal, no need to resize
-      nw=$(echo "$iw" | bc)
-      nh=$(echo "$ih" | bc)
+      scale_factor=$(awk "BEGIN {print $maxh/$ih}")
     fi
+
+    # set scale factor to be a maximum of 1
+    if (( $(echo "$scale_factor > 1" | bc -l) )); then
+      scale_factor=1
+    fi
+    nw=$(awk "BEGIN {print $iw*$scale_factor}")
+    nh=$(awk "BEGIN {print $ih*$scale_factor}")
 
     # make sure nh and nw are integers
     nh=${nh%.*}
     nw=${nw%.*}
     num_lines=$(( ($h - $nh) / 2 / $hc ))
+    if [ $num_lines -lt 0 ]; then
+      num_lines=0
+    fi
     indent=$(( ($w - $nw) / 2 / $wc ))
+    # convert "${images[$show_counter]}" sixel:-
     convert "${images[$show_counter]}" -bordercolor gray -border 2x2 -resize ${nw}x${nh} sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
+
+    printf "Press q to quit, n for next image, p for previous image, cc to clear cache"
   fi
 }
 
 getwindowsize
 echo "Press q to quit, n for next image, p for previous image, cc to clear cache"
-sleep 2
-clear
 
 while true; do
   read -rsn1 -t 1 input
   if [ "$input" = "q" ]; then
+    reset
     break
   fi
   
-  # if find $HOME/.cache/matplotlib/ -mindepth 1 -maxdepth 1 -name *.png | read; then
   if find "$HOME/.cache/matplotlib/" -mindepth 1 -maxdepth 1 -name "*.png" -print -quit | grep -q .; then
     images=($( ls -t $HOME/.cache/matplotlib/*.png ))
     # print out the image file names
@@ -122,7 +118,7 @@ while true; do
       read -rsn1 -t 1 input
       if [ "$input" = "c" ]; then
         rm $HOME/.cache/matplotlib/*.png
-        clear
+        reset
         num_images=-1
         show_counter=0
       fi

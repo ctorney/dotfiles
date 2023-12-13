@@ -44,6 +44,8 @@ return {
 },
 
     
+  scrollback_lines = 0,
+  front_end = "OpenGL",
   enable_csi_u_key_encoding = true,
   window_decorations = "RESIZE", 
   -- color_scheme = 'Hardcore',

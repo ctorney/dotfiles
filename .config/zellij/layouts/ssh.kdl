@@ -1,4 +1,4 @@
 
 layout {
-        pane name="SSH" borderless=true
+        pane name="SSH" borderless=true 
 }
