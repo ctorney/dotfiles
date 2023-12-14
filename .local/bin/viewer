@@ -76,7 +76,7 @@ display_image() {
     # convert "${images[$show_counter]}" sixel:-
     convert "${images[$show_counter]}" -bordercolor gray -border 2x2 -resize ${nw}x${nh} sixel:- | awk -v indent=$indent -v num_lines=$num_lines 'BEGIN { for (i=1; i<=num_lines; i++) printf("\n"); printf("%*s", indent, " "); } { print; }'
 
-    printf "Press q to quit, n for next image, p for previous image, cc to clear cache"
+    # printf "Press q to quit, n for next image, p for previous image, cc to clear cache"
   fi
 }
 

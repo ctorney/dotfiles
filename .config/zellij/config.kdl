@@ -40,7 +40,7 @@ keybinds clear-defaults=true {
         bind "p" { NewTab {
                         name "Python"
                         layout "/home/ctorney/.config/zellij/layouts/python.kdl"
-                        }; SwitchToMode "Normal"; }
+                        }; ToggleFloatingPanes; SwitchToMode "Normal"; }
 
         bind "m" {
             LaunchOrFocusPlugin "zellij:session-manager" {
