@@ -32,17 +32,13 @@ keybinds clear-defaults=true {
                         layout "/home/ctorney/.config/zellij/layouts/email.kdl"
                         }; SwitchToMode "Normal"; }
 
-        bind "s" { NewTab {
-                        name "SSH"
-                        layout "/home/ctorney/.config/zellij/layouts/ssh.kdl"
-                        }; SwitchToMode "Normal"; }
 
         bind "p" { NewTab {
                         name "Python"
                         layout "/home/ctorney/.config/zellij/layouts/python.kdl"
                         }; ToggleFloatingPanes; SwitchToMode "Normal"; }
 
-        bind "m" {
+        bind "s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
                 move_to_focused_tab true

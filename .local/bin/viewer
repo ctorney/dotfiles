@@ -39,9 +39,6 @@ display_image() {
   if [ $h -eq 0 ]; then 
     convert "${images[$show_counter]}" sixel:-
   else
-    if ! [[ -z "$ZELLIJ" ]]; then
-      zellij action rename-pane "${images[$show_counter]}"
-    fi
     #get width and height of image
     iw=$(identify -format "%w" "${images[$show_counter]}")
     ih=$(identify -format "%h" "${images[$show_counter]}")

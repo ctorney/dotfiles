@@ -1,12 +1,7 @@
 #!/bin/bash
 
 if [ -n "$ZELLIJ" ]; then
-  ssh_command=" /usr/bin/ssh -o ConnectTimeout=5 $@ ; sleep 2; zellij action switch-mode normal; exit"
-  zellij action new-tab -n "SSH" -l ~/.config/zellij/layouts/ssh.kdl
-  sleep 0.5;
-  zellij action switch-mode locked
-  zellij action write-chars "$ssh_command"
-  zellij action write 10
+  wezterm cli spawn --new-window -- /usr/bin/ssh $@
   
 else  
   /usr/bin/ssh $@
