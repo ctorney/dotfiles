@@ -36,7 +36,7 @@ keybinds clear-defaults=true {
         bind "p" { NewTab {
                         name "Python"
                         layout "/home/ctorney/.config/zellij/layouts/python.kdl"
-                        }; ToggleFloatingPanes; SwitchToMode "Normal"; }
+                        }; SwitchToMode "Normal"; }
 
         bind "s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
@@ -96,11 +96,12 @@ plugins {
 
 session_serialization false
 simplified_ui false
-ui {
-    pane_frames {
-        hide_session_name true
-    }
-}
+
+//ui {
+//    pane_frames {
+//        hide_session_name true
+//    }
+//}
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
