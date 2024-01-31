@@ -33,6 +33,10 @@ keybinds clear-defaults=true {
                         }; SwitchToMode "Normal"; }
 
 
+        bind "a" { NewTab {
+                        name "Arduino"
+                        layout "/home/ctorney/.config/zellij/layouts/arduino.kdl"
+                        }; SwitchToMode "Normal"; }
         bind "p" { NewTab {
                         name "Python"
                         layout "/home/ctorney/.config/zellij/layouts/python.kdl"

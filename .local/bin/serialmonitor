@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import termios
+import contextlib
+import json
+import serial
+import threading
+import time
+
+
+file = sys.stdin
+old_attrs = termios.tcgetattr(file.fileno())
+new_attrs = old_attrs[:]
+new_attrs[3] = new_attrs[3] & ~(termios.ECHO | termios.ICANON)
+termios.tcsetattr(file.fileno(), termios.TCSADRAIN, new_attrs)
+
+
+class ListenOnKeyboard(threading.Thread):
+    def run(self):
+        try:
+            while True:
+                ch = sys.stdin.read(1)
+                if ord(ch) == 113:
+                    break
+                if not ch or ch == chr(4):
+                    break
+        except (KeyboardInterrupt, EOFError):
+            pass 
+        termios.tcsetattr(file.fileno(), termios.TCSADRAIN, old_attrs)
+        os._exit(1)
+
+
+cmd = "arduino-cli board list --format json"
+
+kb_listen = ListenOnKeyboard()
+kb_listen.start()
+
+print("Arduino Serial Monitor", end="\n", flush=True)
+print("Press 'q' to quit", end="\n", flush=True)
+print_flag = True
+while True:
+    output = json.loads(os.popen(cmd).read())
+    if len(output) > 0:
+        output = output[0]['port']
+        port = output['address']
+        print("Connecting to port: ",  port, end="\n", flush=True)
+        print_flag = True
+
+
+        
+
+        baud = 9600
+
+        try: 
+            ser = serial.Serial(port, baud)
+
+            while ser.isOpen():
+                try:
+                    ser_in = ser.readline().decode('utf-8').strip('\n')
+                    print(ser_in)
+                except UnicodeDecodeError:
+                    pass
+        except KeyboardInterrupt:
+            print("Keyboard Interrupt")
+            termios.tcsetattr(file.fileno(), termios.TCSADRAIN, old_attrs)
+            os._exit(1)
+        except:
+            pass
+
+        print("Error: Could not connect to port: " + port)
+    time.sleep(5)
+    if print_flag:
+        print("Waiting to connect...")
+        print_flag = False
