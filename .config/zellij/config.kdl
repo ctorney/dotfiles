@@ -29,17 +29,17 @@ keybinds clear-defaults=true {
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "e" { NewTab {
                         name "Email"
-                        layout "layouts/email.kdl"
+                        layout "/home/ctorney/.config/zellij/layouts/email.kdl"
                         }; SwitchToMode "Normal"; }
 
 
         bind "a" { NewTab {
                         name "Arduino"
-                        layout "layouts/arduino.kdl"
+                        layout "/home/ctorney/.config/zellij/layouts/arduino.kdl"
                         }; SwitchToMode "Normal"; }
         bind "p" { NewTab {
                         name "Python"
-                        layout "layouts/python.kdl"
+                        layout "/home/ctorney/.config/zellij/layouts/python.kdl"
                         }; SwitchToMode "Normal"; }
 
         bind "s" {
