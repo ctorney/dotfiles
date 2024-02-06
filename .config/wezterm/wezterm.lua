@@ -14,6 +14,7 @@ wezterm.on('gui-startup', function()
  local tab, pane, window = mux.spawn_window({})
   -- pane:split { direction = 'Top' }
   window:gui_window():maximize()
+
 end)
 
 inactive_pane_hsb = {
