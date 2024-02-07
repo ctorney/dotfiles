@@ -24,10 +24,45 @@ return {
           desc = "Find Config Files",
         },
         { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
-        { "<leader>ff", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
         { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
         { "<leader>fs", "<cmd>Telescope aerial<cr>", desc = "Symbols (aerial)" },
         { "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find" },
+        {
+          "<leader>fg",
+          function()
+            local cwd = vim.fn.getcwd()
+            local is_inside_git
+            vim.fn.system("git rev-parse --is-inside-work-tree")
+            is_inside_git = vim.v.shell_error == 0
+            if is_inside_git then
+              local git_dir =
+                vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
+              git_dir = string.gsub(git_dir, "\n", "") -- remove newline character from git_dir
+              local opts = {
+                cwd = git_dir,
+              }
+              require("telescope.builtin").live_grep(opts)
+            else
+              require("telescope.builtin").live_grep()
+            end
+          end,
+          desc = "Live grep project",
+        },
+        {
+          "<leader>ff",
+          function()
+            local cwd = vim.fn.getcwd()
+            local is_inside_git
+            vim.fn.system("git rev-parse --is-inside-work-tree")
+            is_inside_git = vim.v.shell_error == 0
+            if is_inside_git then
+              require("telescope.builtin").git_files()
+            else
+              require("telescope.builtin").find_files()
+            end
+          end,
+          desc = "Find Files",
+        },
         {
           "<leader>fc",
           function()
@@ -55,6 +90,12 @@ return {
         layout_config = { prompt_position = "top" },
         sorting_strategy = "ascending",
         winblend = 0,
+        mappings = {
+          i = {
+            ["<esc>"] = require("telescope.actions").close,
+            ["q"] = require("telescope.actions").close,
+          },
+        },
       },
     },
     extensions = {
