@@ -37,15 +37,17 @@ return {
   { "folke/trouble.nvim", enabled = false },
   -- { "L3MON4D3/LuaSnip", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
+  { "lewis6991/gitsigns.nvim", enabled = false },
+  { "mfussenegger/nvim-lint", enable = false },
   {
     "neovim/nvim-lspconfig",
     opts = {
       -- options for vim.diagnostic.config()
       --   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
       diagnostics = {
-        virtual_text = { true, severity = { min = vim.diagnostic.severity.ERROR } },
+        virtual_text = { false, severity = { min = vim.diagnostic.severity.ERROR } },
         underline = false,
-        signs = { true, severity = { min = vim.diagnostic.severity.ERROR } },
+        signs = { false, severity = { min = vim.diagnostic.severity.ERROR } },
         update_in_insert = false,
       },
     },

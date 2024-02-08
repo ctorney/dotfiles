@@ -4,3 +4,4 @@
 vim.g.everforest_transparent_background = 2
 vim.g.everforest_background = "hard"
 vim.opt.cursorcolumn = true
+vim.opt.signcolumn = "no" -- Always show the signcolumn, otherwise it would shift the text each time
