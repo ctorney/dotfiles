@@ -34,8 +34,15 @@ return {
     },
   },
   { "echasnovski/mini.pairs", enabled = false },
+  {
+    "echasnovski/mini.indentscope",
+    opts = {
+      draw = { animation = require("mini.indentscope").gen_animation.none() },
+    },
+  },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "folke/trouble.nvim", enabled = false },
+  { "nvim-treesitter/nvim-treesitter-context", enabled = false },
   -- { "L3MON4D3/LuaSnip", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
   { "lewis6991/gitsigns.nvim", enabled = false },
