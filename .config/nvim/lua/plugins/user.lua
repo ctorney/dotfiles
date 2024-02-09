@@ -34,6 +34,7 @@ return {
     },
   },
   { "echasnovski/mini.pairs", enabled = false },
+  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "folke/trouble.nvim", enabled = false },
   -- { "L3MON4D3/LuaSnip", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
@@ -70,5 +71,30 @@ return {
 
       return opts
     end,
+  },
+  -- add more treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "arduino",
+        "bash",
+        "c",
+        "cpp",
+        "html",
+        "javascript",
+        "latex",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+    },
   },
 }
