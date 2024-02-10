@@ -46,7 +46,7 @@ return {
   -- { "L3MON4D3/LuaSnip", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
   { "lewis6991/gitsigns.nvim", enabled = false },
-  { "mfussenegger/nvim-lint", enable = false },
+  { "mfussenegger/nvim-lint", enabled = false },
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -58,8 +58,16 @@ return {
         signs = { false, severity = { min = vim.diagnostic.severity.ERROR } },
         update_in_insert = false,
       },
+      servers = {
+        -- pyright will be automatically installed with mason and loaded with lspconfig
+      },
+      inlay_hints = {
+        enabled = false,
+      },
     },
+    enabled = true,
   },
+
   {
     "nvimdev/dashboard-nvim",
     opts = function(_, opts)
@@ -79,6 +87,30 @@ return {
       return opts
     end,
   },
+
+  {
+    "lervag/vimtex",
+    ft = { "tex" },
+    config = function()
+      vim.g.vimtex_view_general_viewer = "sioyek"
+      vim.g.vimtex_view_enabled = 1
+      vim.g.vimtex_quickfix_open_on_warning = 0
+      -- set line wrapping on
+      vim.g.wrap =
+        true, vim.cmd([[
+      nmap <Up> gk
+      nmap <Down> gj
+      imap <Up> <C-o>gk
+      imap <Down> <C-o>gj
+      vmap <Up> gk
+      vmap <Down> gj
+      nmap <leader>vc :VimtexCompile<CR>
+      nmap <leader>vv :VimtexView<CR>
+      nmap <leader>vt :VimtexTocToggle<CR>
+      ]])
+    end,
+  },
+
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
@@ -102,6 +134,18 @@ return {
         "vim",
         "yaml",
       },
+    },
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
     },
   },
 }

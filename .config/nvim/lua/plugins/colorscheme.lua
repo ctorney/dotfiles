@@ -1,8 +1,7 @@
 return {
-  -- add gruvbox
-  { "sainnhe/everforest" },
-
-  -- Configure LazyVim to load gruvbox
+  {
+    "sainnhe/everforest",
+  },
   {
     "LazyVim/LazyVim",
     opts = {

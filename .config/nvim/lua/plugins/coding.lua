@@ -32,17 +32,34 @@ return {
     end,
   },
   {
+    "zbirenbaum/copilot-cmp",
+    dependencies = "copilot.lua",
+    opts = {},
+    config = function(_, opts)
+      local copilot_cmp = require("copilot_cmp")
+      copilot_cmp.setup(opts)
+      -- attach cmp source whenever copilot attaches
+      -- fixes lazy-loading issues with the copilot cmp source
+      require("lazyvim.util").lsp.on_attach(function(client)
+        if client.name == "copilot" then
+          copilot_cmp._on_insert_enter({})
+        end
+      end)
+    end,
+  },
+  {
     "echasnovski/mini.comment",
-    event = "BufRead",
-    keymap = {
-      { comment_line = "<leader>/" },
-      { toggle = "<leader>/" },
-      { visual = "<leader>/", mode = "v" },
+    opts = {
+      mappings = {
+        comment = "gc",
+        comment_visual = "<leader>/",
+        textobject = "gc",
+        comment_line = "<leader>/",
+      },
     },
   },
   {
     "hrsh7th/nvim-cmp",
-    ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local has_words_before = function()
         unpack = unpack or table.unpack
@@ -53,6 +70,11 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
+      table.insert(opts.sources, 1, {
+        name = "copilot",
+        group_index = 1,
+        priority = 100,
+      })
       opts.completion = {
         autocomplete = false,
       }
@@ -95,6 +117,7 @@ return {
       vim.g.slime_dont_ask_default = 1
       vim.g.slime_bracketed_paste = 1
       vim.g.slime_no_mappings = 1
+      vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>", { desc = "Send current line" })
     end,
   },
 

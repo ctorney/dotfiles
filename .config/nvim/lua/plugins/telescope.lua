@@ -35,8 +35,8 @@ return {
         { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
         { "<leader>fs", "<cmd>Telescope aerial<cr>", desc = "Symbols (aerial)" },
         { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo list" },
-        { "<leader>fE", "<cmd>Telescope file_browser<cr>", desc = "File browser (root)" },
-        { "<leader>fF", "<cmd>Telescope find_files<cr>", desc = "Find files (root)" },
+        { "<leader>fE", "<cmd>Telescope file_browser path=~<cr>", desc = "File browser (root)" },
+        -- { "<leader>fF", "<cmd>Telescope find_files<cr>", desc = "Find files (root)" },
         {
           "<leader>fe",
           "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
@@ -72,12 +72,22 @@ return {
             vim.fn.system("git rev-parse --is-inside-work-tree")
             is_inside_git = vim.v.shell_error == 0
             if is_inside_git then
-              require("telescope.builtin").git_files()
+              require("telescope.builtin").git_files({ hidden = true })
             else
-              require("telescope.builtin").find_files()
+              require("telescope.builtin").find_files({ hidden = true })
             end
           end,
           desc = "Find Files",
+        },
+        {
+          "<leader>fF",
+          function()
+            require("telescope.builtin").find_files({
+              cwd = "~",
+              hidden = true,
+            })
+          end,
+          desc = "Find files (root)",
         },
         {
           "<leader>fc",

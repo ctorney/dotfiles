@@ -5,7 +5,7 @@ return {
   opts = function(_, opts)
     local Util = require("lazyvim.util")
     local colors = {
-      [""] = Util.ui.fg("Special"),
+      [""] = Util.ui.fg("Normal"),
       ["Normal"] = Util.ui.fg("Special"),
       ["Warning"] = Util.ui.fg("DiagnosticError"),
       ["InProgress"] = Util.ui.fg("DiagnosticWarn"),
@@ -14,7 +14,7 @@ return {
       function()
         local icon = require("lazyvim.config").icons.kinds.Copilot
         local status = require("copilot.api").status.data
-        return icon .. (status.status or "")
+        return icon .. (status.message or "")
       end,
       cond = function()
         if not package.loaded["copilot"] then
