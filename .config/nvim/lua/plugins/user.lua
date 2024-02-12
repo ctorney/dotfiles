@@ -28,6 +28,7 @@ return {
   },
   {
     "rcarriga/nvim-notify",
+    enabled = false,
     opts = {
       -- other stuff
       background_colour = "#000000",
@@ -41,6 +42,61 @@ return {
     },
   },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  {
+    "kdheepak/lazygit.nvim",
+    event = "BufRead",
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>gg",
+        "<cmd>LazyGitCurrentFile<CR>",
+        { desc = "Lazygit (current file)", noremap = true, silent = true }
+      )
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>gG",
+        "<cmd>LazyGit<CR>",
+        { desc = "Lazygit (cwd)", noremap = true, silent = true }
+      )
+    end,
+    --   -- your custom options here
+    --   -- vim.keymap.set("n", "<leader>gg", function()
+    --   --   print("A lua func")
+    --   -- end, { noremap = true, expr = true })
+    --   vim.keymap.set("n", "<leader>gg", function()
+    --     local git_dir = nil
+    --     local is_inside_git
+    --     vim.fn.system("git rev-parse --is-inside-work-tree")
+    --     is_inside_git = vim.v.shell_error == 0
+    --     if is_inside_git then
+    --       git_dir = vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
+    --       git_dir = string.gsub(git_dir, "\n", "") -- remove newline character from git_dir
+    --     end
+    --     require("lazygit").lazygit()
+    --   end, { desc = "Lazygit", noremap = true, expr = true })
+    -- end,
+    -- opts = {
+    --   keys = {
+    --     "<leader>gg",
+    --     function()
+    --       local git_dir = nil
+    --       local is_inside_git
+    --       vim.fn.system("git rev-parse --is-inside-work-tree")
+    --       is_inside_git = vim.v.shell_error == 0
+    --       if is_inside_git then
+    --         git_dir = vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
+    --         git_dir = string.gsub(git_dir, "\n", "") -- remove newline character from git_dir
+    --       end
+    --       require("lazygit").lazygit(git_dir)
+    --     end,
+    --     desc = "Lazy git in current buffer directory",
+    --   },
+    -- },
+  },
   { "folke/trouble.nvim", enabled = false },
   { "nvim-treesitter/nvim-treesitter-context", enabled = false },
   -- { "L3MON4D3/LuaSnip", enabled = false },
@@ -134,18 +190,6 @@ return {
         "vim",
         "yaml",
       },
-    },
-  },
-  {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup()
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
     },
   },
 }

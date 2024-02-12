@@ -17,3 +17,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   group = general,
   desc = "Disable New Line Comment",
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+  end,
+})
