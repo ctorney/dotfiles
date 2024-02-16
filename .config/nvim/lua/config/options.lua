@@ -10,3 +10,4 @@ vim.opt.pumblend = 10 -- float transparency
 vim.opt.textwidth = 0
 vim.opt.wrap = true
 vim.opt.linebreak = true
+vim.b.autoformat = false
