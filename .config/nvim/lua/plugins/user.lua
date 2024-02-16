@@ -28,11 +28,18 @@ return {
   },
   {
     "rcarriga/nvim-notify",
-    enabled = false,
+    enabled = true,
     opts = {
       -- other stuff
       background_colour = "#000000",
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    config = function()
+      vim.g.autoformat = false
+    end,
   },
   { "echasnovski/mini.pairs", enabled = false },
   {
