@@ -7,3 +7,6 @@ vim.g.everforest_background = "hard"
 vim.opt.cursorcolumn = true
 vim.opt.signcolumn = "no" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.pumblend = 10 -- float transparency
+vim.opt.textwidth = 0
+vim.opt.wrap = true
+vim.opt.linebreak = true
