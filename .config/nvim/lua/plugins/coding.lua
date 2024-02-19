@@ -6,6 +6,9 @@ return {
     event = "BufRead",
     config = function()
       require("copilot").setup({
+        filetypes = {
+          markdown = true,
+        },
         suggestion = {
           enabled = true,
           auto_trigger = true,
@@ -108,7 +111,7 @@ return {
   {
     "jpalardy/vim-slime",
     lazy = false,
-    ft = { "python", "lua", "sh", "zsh", "bash", "ipython" },
+    ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
     config = function()
       -- vim.g.slime_target = "tmux"
       -- vim.g.slime_config = {socket_name="default", target_pane="{right}"}
@@ -124,7 +127,7 @@ return {
   {
     "klafyvel/vim-slime-cells",
     requires = { { "jpalardy/vim-slime", opt = true } },
-    ft = { "python", "ipython" },
+    ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
     config = function()
       -- vim.g.slime_target = "tmux"
       -- vim.g.slime_default_config = {socket_name="default", target_pane="{right}"}
@@ -148,4 +151,16 @@ return {
         ]])
     end,
   },
+  
+  {
+	"robitx/gp.nvim",
+	config = function()
+		require("gp").setup()
+
+		-- or setup with your own config (see Install > Configuration in Readme)
+		-- require("gp").setup(config)
+
+        	-- shortcuts might be setup here (see Usage > Shortcuts in Readme)
+	end,
+}
 }

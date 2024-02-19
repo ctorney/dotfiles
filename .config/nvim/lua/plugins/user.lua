@@ -43,6 +43,12 @@ return {
   },
   { "echasnovski/mini.pairs", enabled = false },
   {
+    "akinsho/bufferline.nvim",
+    -- opts will be merged with the parent spec
+    opts = { options = {indicator = {style = 'none'}, separator_style = "thin", show_tab_indicators = false } },
+  },
+
+  {
     "echasnovski/mini.indentscope",
     opts = {
       draw = { animation = require("mini.indentscope").gen_animation.none() },

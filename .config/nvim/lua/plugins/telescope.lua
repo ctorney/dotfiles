@@ -3,6 +3,13 @@ local action_state = require("telescope.actions.state")
 
 return {
   {
+  "arsham/arshlib.nvim",
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "nvim-lua/plenary.nvim",
+  }
+},
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -108,6 +115,149 @@ return {
           end,
           desc = "Goto Symbol",
         },
+        {
+          "<leader>fm",
+          function()
+            require('telescope').extensions.bookmarks.list()
+
+            -- local marks = require("marks")
+            -- local buffers = marks.bookmark_state['groups'][0]['marks']
+            -- local results = {}
+            -- for _, bufid in ipairs(buffers) do
+            --   local marks = buffers[value]
+            --   for _, line in ipairs(marks) do
+            --     table.insert(results, marks[line])
+            --   end
+            -- end
+
+            -- for index, value in ipairs(results) do
+            --   print(index, value)
+            -- end
+            -- local marks = bookmarks:all_to_list()
+    --         print(vim.inspect(bookmarks))
+    --         require("arshlib")
+    --         local opts = {}
+    --         local results = {}
+    --       opts.path_display = {"smart"}
+    --         -- basic telescope configuration
+    --         local conf = require("telescope.config").values
+    --         local bookmarks = require("marks").bookmark_state
+    --         print(vim.inspect(bookmarks))
+    --         print(bookmarks)
+    --         local entry_display = require("telescope.pickers.entry_display")
+    --         local file_paths = {}
+    --         local harpoon_files = require("harpoon"):list()
+    --         local marks = vim.api.nvim_exec2("marks", {output=true})
+    --         -- Pop off the header.
+    -- table.remove(marks, 1)
+    --
+    -- for i = #marks - 1, 3, -1 do
+    --     local mark, line, col, filename = marks[i]:match(
+    --         [[([%w<>%."'%^%]%[]+)%s+(%d+)%s+(%d+)%s+(.*)]])
+    --     table.insert(
+    --         results,
+    --         {
+    --             mark = mark,
+    --             lnum = tonumber(line),
+    --             col = tonumber(col),
+    --             text = filename,
+    --         }
+    --     )
+    -- end
+    --
+    -- local all_builtin = _t({"<", ">", "[", "]", ".", "^", '"', "'"})
+    -- local builtin_marks = _t(require("marks").mark_state.builtin_marks)
+    --
+    -- results =
+    --     vim.tbl_filter(function(line)
+    --         if all_builtin:contains(line.mark) and not builtin_marks:contains(line.mark) then
+    --             return false
+    --         end
+    --         return true
+    --     end, results) --[[@as table]]
+    --
+    -- local displayer =
+    --     entry_display.create({
+    --         separator = "▏",
+    --         items = {
+    --             {width = 3},
+    --             {width = 4},
+    --             {width = 3},
+    --             {remaining = true},
+    --         },
+    --     })
+    --
+    -- local make_display = function(entry)
+    --     local filename = tutils.transform_path(opts, entry.filename)
+    --     return displayer{
+    --         {entry.mark, "WarningMsg"},
+    --         {entry.lnum, "SpellCap"},
+    --         {entry.col, "Comment"},
+    --         {filename, "ErrorMsg"},
+    --     }
+    -- end
+    --
+    --       require("telescope.pickers")
+    --         .new({}, {
+    --     prompt_title = "Marks",
+    --     finder =  require("telescope.finders").new_table({
+    --         results = marks,
+    --         entry_maker = function(e)
+    --             -- local bufnr, _, _, _ = unpack(fn.getpos(("'"):format(e.mark)))
+    --             -- This, for whatever reason doesn't return the correct filename
+    --             -- local filename = api.nvim_buf_get_name(bufnr)
+    --
+    --             local filename = fn.expand(e.text)
+    --             -- If the path doesn't exist, it means it's the current file
+    --             if filename == "" or not uv.fs_access(filename, "R") then
+    --                 filename = api.nvim_buf_get_name(0)
+    --             end
+    --
+    --             return {
+    --                 value = e,
+    --                 ordinal = e.mark,
+    --                 display = make_display,
+    --                 mark = e.mark,
+    --                 lnum = e.lnum,
+    --                 col = e.col,
+    --                 start = e.col,
+    --                 text = e.text,
+    --                 filename = filename,
+    --             }
+    --         end,
+    --     }),
+    --     previewer = conf.grep_previewer(opts),
+    --     sorter = conf.generic_sorter(opts),
+    --     push_cursor_on_edit = true,
+    -- }):find()
+          end,
+          desc = "List bookmarks"
+        },
+        {
+          "<leader>fh",
+          function()
+            -- basic telescope configuration
+            local conf = require("telescope.config").values
+            local file_paths = {}
+            local harpoon_files = require("harpoon"):list()
+            for _, item in ipairs(harpoon_files.items) do
+              table.insert(file_paths, item.value)
+            end
+
+          require("telescope.pickers")
+            .new({}, {
+              prompt_title = "Harpoon",
+              finder = require("telescope.finders").new_table({
+                results = file_paths,
+              }),
+              previewer = conf.file_previewer({}),
+              sorter = conf.generic_sorter({}),
+           })
+          :find()
+          end, 
+          desc = "Harpoon list"
+        },
+
       }
     end,
     opts = {
