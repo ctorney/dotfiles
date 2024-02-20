@@ -3,13 +3,6 @@ local action_state = require("telescope.actions.state")
 
 return {
   {
-  "arsham/arshlib.nvim",
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    "nvim-lua/plenary.nvim",
-  }
-},
-  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
