@@ -155,7 +155,79 @@ return {
   {
 	"robitx/gp.nvim",
 	config = function()
-		require("gp").setup()
+		require("gp").setup(
+{
+        chat_user_prefix = "🗨",
+	      chat_assistant_prefix = "🤖",
+	      chat_confirm_delete = false,
+	      style_highlight = "None",
+	      style_popup_border = "rounded",
+        style_popup_keep_buf = true,
+	      style_popup_left_margin = 1,
+	      style_popup_title = " ChatGPT 4 ",
+        -- chat_prompt_buf_type = true,
+	      style_popup_winhighlight = "Normal:Normal,FloatBorder:Normal,FloatTitle:Normal,WinBar:Normal",
+	      toggle_target = "popup",
+	      agents = {
+          -- Disable ChatGPT 3.5
+          {
+            name = "ChatGPT3-5",
+            chat = false,  -- just name would suffice
+            command = false,   -- just name would suffice
+          },
+          {
+            name = "ChatGPT4",
+            chat = true,
+            command = true,
+            -- string with model name or table with model name and parameters
+            model = { model = "gpt-4-1106-preview", temperature = 1.1, top_p = 1 },
+            -- system prompt (use this to specify the persona/role of the AI)
+            system_prompt = "You are a general AI assistant.\n\n"
+              .. "The user provided the additional info about how they would like you to respond:\n\n"
+              .. "- If you're unsure don't guess and say you don't know instead.\n"
+              .. "- Ask question if you need clarification to provide better answer.\n"
+              .. "- Think deeply and carefully from first principles step by step.\n"
+              .. "- Make your response clear and brief.\n"
+              .. "- Do not give advice unless it has been requested.\n"
+              .. "- If asked for code only provide the code and don't provide any explanation.\n"
+          },
+    },
+	    	-- chat_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
+     		-- command_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
+	      -- chat_custom_instructions = "When providing code just give the code and don't explain it.\n"
+	              -- .. "Only provide the raw code without markdown markers.\n",
+        -- hooks = {
+        --   Explain = function(gp, params)
+        --     local template = "I have the following code from {{filename}}:\n\n"
+        --     .. "```{{filetype}}\n{{selection}}\n```\n\n"
+        --     .. "Please respond by explaining the code above."
+        --     gp.Prompt(params, gp.Target.popup, nil, gp.config.command_model,
+        --       template, gp.config.chat_system_prompt)
+        --   end,
+        --   Email = function(gp, params)
+        --     local template = "The text below is from an email chain with the most recent message at the top.\n"
+        --           .. "The text of all previous messages start with the > character. \n"
+        --           .. "Write an email response to the chain as though you were Colin Torney, "
+        --           .. "a Professor of Applied Mathematics. \n\n"
+        --           .. "If there is any text at the start that does not begin with > use this text "
+        --           .. "as further instruction for the email response. \n"
+        --           .. "Return only the text of the email. \n"
+        --           .. "Try not to repeat text from the email chain in your response. \n"
+        --           .. "Start the email with Hi and the first name of the recipient and end with Best wishes, Colin. \n"
+        --           .. "Compose the response in a terse and very concise style and sign off with first name only. \n\n"
+        --           .. "```{{selection}}\n```\n\n"
+        --     params.range = 2
+        --     params.line1 = 1
+        --     params.line2 = 100
+        --     local chat_model = { model = "gpt-4", temperature = 0.7, top_p = 1 }
+        --     gp.Prompt(params, gp.Target.prepend, nil, gp.config.command_model,
+        --       template, gp.config.chat_system_prompt)
+        --   end,
+        -- }
+      }
+
+      )
+      -- vim.keymap.set({"n"}, "gt", "<cmd>GpChatToggle<cr>", {noremap = true, silent = true, nowait = true, desc = "GPT4 Toggle Chat"})
 
 		-- or setup with your own config (see Install > Configuration in Readme)
 		-- require("gp").setup(config)
