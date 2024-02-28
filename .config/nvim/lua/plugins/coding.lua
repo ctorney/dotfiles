@@ -227,7 +227,7 @@ return {
       }
 
       )
-      -- vim.keymap.set({"n"}, "gt", "<cmd>GpChatToggle<cr>", {noremap = true, silent = true, nowait = true, desc = "GPT4 Toggle Chat"})
+      vim.keymap.set({"n"}, "gt", "<cmd>GpChatToggle<cr>", {noremap = true, silent = true, nowait = true, desc = "GPT4 Toggle Chat"})
 
 		-- or setup with your own config (see Install > Configuration in Readme)
 		-- require("gp").setup(config)

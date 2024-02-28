@@ -209,7 +209,7 @@ return {
     "nvim-telescope/telescope.nvim",
   },
   keys = {
-    { "gt", "<cmd>ChatGPT<cr>", mode = "n", desc = "Toggle ChatGPT popup" },
+    -- { "gt", "<cmd>ChatGPT<cr>", mode = "n", desc = "Toggle ChatGPT popup" },
     { "gT", "<cmd>ChatGPTEditWithInstruction<CR>", desc = "ChatGPT edit with instruction", mode = { "n", "v" } },
   },
 }
