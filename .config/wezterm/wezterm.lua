@@ -37,6 +37,9 @@ return {
 		{ name = "euclid.35", remote_address = "euclid-35.maths.gla.ac.uk", username = "ctorney" },
 	},
 
+	-- turn off the bell
+	audible_bell = "Disabled",
+
 	warn_about_missing_glyphs = false,
 	scrollback_lines = 0,
 	front_end = "OpenGL",
