@@ -111,7 +111,7 @@ return {
         {
           "<leader>fm",
           function()
-            require('telescope').extensions.bookmarks.list()
+            require('telescope').extensions.marks_nvim.bookmarks_list_all()
 
             -- local marks = require("marks")
             -- local buffers = marks.bookmark_state['groups'][0]['marks']

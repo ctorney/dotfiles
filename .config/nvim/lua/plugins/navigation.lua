@@ -42,7 +42,6 @@ return {
       require("marks").setup({
         bookmark_0 = {
           sign = "▶",
-          -- sign = "▷▶",
           annotate = false,
         },
       })
