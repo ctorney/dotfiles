@@ -1,17 +1,17 @@
 [general]
-accounts = outlook365
+accounts = outlook
 pythonfile = ~/.config/offlineimap/offlineimap.py
 
-[Account outlook365]
-localrepository = outlook365-local
-remoterepository = outlook365-remote
+[Account outlook]
+localrepository = outlook-local
+remoterepository = outlook-remote
 maxsyncaccounts = 1
 
-[Repository outlook365-local]
+[Repository outlook-local]
 type = Maildir
-localfolders = ~/mail/outlook365
+localfolders = ~/mail/outlook
 
-[Repository outlook365-remote]
+[Repository outlook-remote]
 type = IMAP
 auth_mechanisms = XOAUTH2
 oauth2_access_token_eval = get_token("colin.torney@glasgow.ac.uk")

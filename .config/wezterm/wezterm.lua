@@ -42,7 +42,8 @@ return {
 
 	warn_about_missing_glyphs = false,
 	scrollback_lines = 0,
-	front_end = "OpenGL",
+  enable_wayland = true,
+	front_end = "WebGpu",
 	enable_csi_u_key_encoding = true,
 	window_decorations = "RESIZE",
 	-- color_scheme = 'Hardcore',
