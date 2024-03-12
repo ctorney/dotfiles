@@ -6,11 +6,9 @@ configuration {
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
   terminal: "wezterm-gui";
-	/*---------- SSH settings ----------*/
-	ssh-client: "/usr/bin/ssh";
-	ssh-command: "{terminal} start -- {ssh-client} {host} [-p {port}]";
-	parse-hosts: true;
-	parse-known-hosts: true;
+
+  me-select-entry: "MousePrimary";
+  me-accept-entry: "!MousePrimary";
 }
 
 /*****----- Global Properties -----*****/
