@@ -101,11 +101,11 @@ plugins {
 session_serialization false
 simplified_ui false
 
-//ui {
-//    pane_frames {
-//        hide_session_name true
-//    }
-//}
+ui {
+    pane_frames {
+        hide_session_name true
+    }
+}
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -174,7 +174,7 @@ scroll_buffer_size 1000
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-// copy_command "wl-copy"                    // wayland
+copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 
 // Choose the destination for copied text

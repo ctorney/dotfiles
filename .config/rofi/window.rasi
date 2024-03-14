@@ -1,8 +1,8 @@
 
 configuration {
 	modi:                       "window";
-  show-icons:                 false;
-	window-format:              "{w} · {c} · {t}";
+  show-icons:                 true;
+	window-format:              "{t}";
 
   me-select-entry: "MousePrimary";
   me-accept-entry: "!MousePrimary";
@@ -82,13 +82,13 @@ custombox {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       3;
+    lines:                       10;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
     reverse:                     false;
-    fixed-height:                true;
+    fixed-height:                false;
     fixed-columns:               true;
     
     spacing:                     5px;

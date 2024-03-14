@@ -3,7 +3,7 @@
   "position": "top",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": [ "clock" ],
-    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "battery", "custom/power"],
+    "modules-right": ["tray", "network","pulseaudio", "battery", "custom/power"],
 
 "custom/right-arrow-light": {
 		"format": "",
@@ -17,13 +17,22 @@
 "hyprland/window": {
     "format": "{title}",
     "max-length": 500,
-    "on-click": "rofi -show window ",
+    "on-click": "rofi -show window -config ~/.config/rofi/window.rasi",
     "rewrite": {
         "": "Desktop"
       }
   },
 "hyprland/workspaces": {
-     "format": "{icon}",
+     "format":" {icon} ",
+"format-icons": {
+"1": "",
+"2": "",
+"3": "",
+"4": "",
+"5": "",
+"6": "",
+"7": "",
+},
      "on-scroll-up": "hyprctl dispatch workspace e+1",
      "on-scroll-down": "hyprctl dispatch workspace e-1",
      "on-click": "activate"
@@ -32,11 +41,11 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "",
+        "tooltip-format-wifi": "{essid} {signalStrength}%",
         "format-ethernet": "{ifname} ",
         "format-disconnected": "", 
-        "max-length": 50,
-        "on-click": "kitty -e 'nmtui'"
+        "max-length": 50
     },
     "tray": {
         "icon-size": 15,
@@ -70,7 +79,8 @@
 
 
     "pulseaudio": {
-        "format": "{volume}% {icon} ",
+        "format": "{icon}",
+        "tooltip-format": "{volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": "0% {icon} ",

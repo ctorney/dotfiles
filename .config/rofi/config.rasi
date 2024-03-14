@@ -19,12 +19,13 @@ configuration {
   display-window:             " Windows";
 	display-ssh:                " SSH";
   display-power-menu:         " Power";
+  display-key-menu:         " Power";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
   terminal: "wezterm";
 	/*---------- SSH settings ----------*/
 	ssh-client: "/usr/bin/ssh";
-	ssh-command: "{terminal} start -- {ssh-client} {host} [-p {port}]";
+	ssh-command: "{terminal} start --class "ssh"  --always-new-process -- {ssh-client} {host} [-p {port}]";
 	parse-hosts: true;
 	parse-known-hosts: true;
   run-shell-command: "{terminal} start -- {cmd}";
@@ -45,7 +46,7 @@ configuration {
 @import                          "shared/fonts.rasi"
 
 * {
-    border-colour:               var(active);
+    border-colour:               var(selected);
     handle-colour:               var(selected);
     background-colour:           var(background);
     foreground-colour:           var(foreground);
