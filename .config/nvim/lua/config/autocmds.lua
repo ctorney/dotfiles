@@ -5,6 +5,21 @@
 -- vim.api.nvim_create_autocmd("BufRead", "BufNewFile", true, function()
 --   vim.cmd('setlocal formatoptions-=cro')
 -- end)
+function ipython() 
+  local cmdstring = [[wezterm cli spawn --new-window -- ipython -i -c 'import matplotlib;matplotlib.use("module://matplotlib-backend-sixel");matplotlib.rc("figure", figsize=(5, 4));from qbstyles import mpl_style;mpl_style("dark")' ]]
+  local handle = io.popen(cmdstring)
+  ipython_pane = (handle:read("*a"):gsub("^%s*(.-)%s*$", "%1"))
+  -- create a vim function for setting the slime config so that it points to the correct pane
+  vim.api.nvim_exec([[
+  function! SlimeOverrideConfig()
+  let b:slime_config = {}
+  let b:slime_config["pane_id"] = ]] .. ipython_pane .. [[ 
+  endfunction]], false)
+  -- set the slime config
+  vim.api.nvim_exec([[:SlimeConfig]], false)  
+  return
+end
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = "*.ino",
   command = "set filetype=c",
@@ -33,3 +48,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.linebreak = true
   end,
 })
+
+vim.api.nvim_create_user_command('Ipython', ipython, {bang = true, nargs = '?'})

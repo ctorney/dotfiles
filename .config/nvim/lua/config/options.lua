@@ -4,8 +4,9 @@
 vim.g.everforest_transparent_background = 2
 vim.g.everforest_float_style = "dim"
 vim.g.everforest_background = "hard"
-vim.opt.cursorcolumn = true
+vim.opt.cursorcolumn = false
 vim.opt.signcolumn = "number" -- Always show the signcolumn, otherwise it would shift the text each time
+vim.opt.relativenumber = false
 vim.opt.pumblend = 10 -- float transparency
 vim.opt.textwidth = 0
 vim.opt.wrap = true
