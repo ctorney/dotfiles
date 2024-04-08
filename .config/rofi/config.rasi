@@ -19,13 +19,13 @@ configuration {
   display-window:             " Windows";
 	display-ssh:                " SSH";
   display-power-menu:         " Power";
-  display-key-menu:         " Power";
+  display-key-menu:           "Keys";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
   terminal: "wezterm";
 	/*---------- SSH settings ----------*/
-	ssh-client: "/usr/bin/ssh";
-	ssh-command: "{terminal} start --class "ssh"  --always-new-process -- {ssh-client} {host} [-p {port}]";
+	ssh-client: "ssh";
+	ssh-command: "{terminal} connect --class 'SSH' SSHMUX:{host}";
 	parse-hosts: true;
 	parse-known-hosts: true;
   run-shell-command: "{terminal} start -- {cmd}";
@@ -57,7 +57,7 @@ configuration {
     urgent-foreground:           var(foreground);
     active-background:           var(background);
     active-foreground:           var(foreground);
-    selected-normal-background:  var(selected);
+    selected-normal-background:  var(background-alt);
     selected-normal-foreground:  var(foreground-alt);
     selected-urgent-background:  var(selected);
     selected-urgent-foreground:  var(foreground-alt);
@@ -202,8 +202,8 @@ listview {
     spacing:                     5px;
     margin:                      0px;
     padding:                     10px;
-    border:                      2px 2px 2px 0px;
-    border-radius:               0px 8px 8px 0px;
+    border:                      2px 2px 2px 2px;
+    border-radius:               8px 8px 8px 8px;
     border-color:                @border-colour;
     background-color:            transparent;
     text-color:                  @foreground-colour;
@@ -282,7 +282,7 @@ element-text {
 
 /*****----- Mode Switcher -----*****/
 mode-switcher{
-    enabled:                     true;
+    enabled:                     false;
     expand:                      false;
     orientation:                 vertical;
     spacing:                     0px;

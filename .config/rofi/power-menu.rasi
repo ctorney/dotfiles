@@ -27,7 +27,7 @@ configuration {
     urgent-foreground:           var(foreground);
     active-background:           var(background);
     active-foreground:           var(foreground);
-    selected-normal-background:  var(selected);
+    selected-normal-background:  var(background-alt);
     selected-normal-foreground:  var(foreground-alt);
     selected-urgent-background:  var(selected);
     selected-urgent-foreground:  var(foreground-alt);
@@ -48,7 +48,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       700px;
+    width:                       300px;
     x-offset:                    0px;
     y-offset:                    0px;
 

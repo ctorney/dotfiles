@@ -31,11 +31,11 @@ configuration {
     active-background:           var(background);
     active-foreground:           var(foreground);
     selected-normal-background:  var(selected);
-    selected-normal-foreground:  var(foreground-alt);
+    selected-normal-foreground:  var(foreground);
     selected-urgent-background:  var(selected);
-    selected-urgent-foreground:  var(foreground-alt);
+    selected-urgent-foreground:  var(foreground);
     selected-active-background:  var(selected);
-    selected-active-foreground:  var(foreground-alt);
+    selected-active-foreground:  var(foreground);
     alternate-normal-background: var(background);
     alternate-normal-foreground: var(foreground);
     alternate-urgent-background: var(urgent);
