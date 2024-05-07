@@ -2,19 +2,11 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 local act = wezterm.action
 
--- -- this is called by the mux server when it starts up.
--- -- It makes a window split top/bottom
--- wezterm.on("mux-startup", function()
--- 	local tab, pane, window = mux.spawn_window({})
--- 	-- window:maximize()
--- 	window:mux_window():maximize()
--- end)
-
--- wezterm.on("gui-startup", function()
--- 	local tab, pane, window = mux.spawn_window({})
--- 	-- pane:split { direction = 'Top' }
--- 	window:gui_window():maximize()
--- end)
+wezterm.on("gui-startup", function()
+	local tab, pane, window = mux.spawn_window({})
+	-- pane:split { direction = 'Top' }
+	window:gui_window():maximize()
+end)
 -- The filled in variant of the < symbol
 
 -- This function returns the suggested title for a tab.
@@ -197,21 +189,16 @@ mouse_bindings = {
 }
 
 return {
-	unix_domains = {
-		{ name = "unix" },
-	},
   leader = { key = "a", mods = "CTRL" },
   window_background_opacity = 0.90,
-	-- turn off the bell
-	audible_bell = "Disabled",
+  audible_bell = "Disabled",
 
 	warn_about_missing_glyphs = false,
 	scrollback_lines = 1000,
-  enable_wayland = true,
+  enable_wayland = false,
 	-- front_end = "WebGpu",
 	enable_csi_u_key_encoding = true,
-	window_decorations = "NONE",
-  -- color_scheme = 'Dracula',
+	window_decorations = "RESIZE|TITLE",
 
 	color_scheme = "Everforest Dark (Gogh)",
 	cursor_blink_ease_in = "Constant",
@@ -219,7 +206,12 @@ return {
 	-- colors = {cursor_bg = "#A7C080", cursor_fg = "#1E2326"},
 	colors = { cursor_bg = "#D3C6AA", cursor_fg = "#1E2326" , background = "01010A"},
 	font = wezterm.font("Hack Nerd Font"),
-	font_size = 11,
+
+  -- font = wezterm.font_with_fallback({
+         -- "Hack",
+         -- "Symbols Nerd Font Mono"
+   -- }),
+	font_size = 14,
 	line_height = 1.0,
 	adjust_window_size_when_changing_font_size = false,
 	exit_behavior = "Close",
