@@ -198,7 +198,7 @@ return {
   enable_wayland = false,
 	-- front_end = "WebGpu",
 	enable_csi_u_key_encoding = true,
-	window_decorations = "RESIZE|TITLE",
+	window_decorations = "RESIZE",
 
 	color_scheme = "Everforest Dark (Gogh)",
 	cursor_blink_ease_in = "Constant",
