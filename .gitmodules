@@ -1,0 +1,12 @@
+[submodule ".config/zsh/plugins/zsh-ask"]
+	path = .config/zsh/plugins/zsh-ask
+	url = https://github.com/Licheam/zsh-ask.git
+[submodule ".config/zsh/plugins/zsh-ai-commands"]
+	path = .config/zsh/plugins/zsh-ai-commands
+	url = https://github.com/muePatrick/zsh-ai-commands.git
+[submodule ".config/zsh/plugins/zsh-syntax-highlighting"]
+	path = .config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".config/zsh/plugins/powerlevel10k"]
+	path = .config/zsh/plugins/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
