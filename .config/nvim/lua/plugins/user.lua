@@ -47,6 +47,33 @@ return {
     -- opts will be merged with the parent spec
     opts = { options = { indicator = { style = "none" }, separator_style = "thin", show_tab_indicators = false } },
   },
+  {
+    "numtostr/FTerm.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require("FTerm").setup({
+        dimensions = { height = 0.8, width = 0.8 },
+        border = "rounded",
+      })
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>tt",
+        "<cmd>lua require('FTerm').toggle()<CR>",
+        { noremap = true, silent = true }
+      )
+    end,
+  },
+
+  {
+  "roobert/search-replace.nvim",
+  config = function()
+    require("search-replace").setup({
+      -- optionally override defaults
+      default_replace_single_buffer_options = "gcI",
+      default_replace_multi_buffer_options = "egcI",
+    })
+  end,
+},
 
   {
     "echasnovski/mini.indentscope",

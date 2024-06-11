@@ -149,6 +149,8 @@ return {
         imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
         nmap <leader>cv <Plug>Slimeconfig
         nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
+        nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
+        nmap <leader>ss <Plug>SlimeCellsSend
         nmap <leader>cj <Plug>SlimeCellsNext
         nmap <leader>ck <Plug>SlimeCellsPrev
         ]])
