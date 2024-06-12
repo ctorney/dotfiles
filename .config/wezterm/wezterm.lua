@@ -9,72 +9,72 @@ wezterm.on("gui-startup", function()
 end)
 -- The filled in variant of the < symbol
 
--- This function returns the suggested title for a tab.
--- It prefers the title that was set via `tab:set_title()`
--- or `wezterm cli set-tab-title`, but falls back to the
--- title of the active pane in that tab.
-function tab_title(tab_info)
-  local title = tab_info.tab_title
-  -- if the tab title is explicitly set, take that
-  -- Otherwise, use the title from the active pane
-  -- in that tab
-  -- get the name of the process running in the active pane
-  local process_name = tab_info.active_pane.foreground_process_name
-  -- split the process name by / and get the last element
-  process_name = process_name:match("([^/]+)$")
-  -- if the process name is empty, use the title of the active pane
-  if process_name == "" then
-    return tab_info.active_pane.title
-  end
-
-  return " " .. process_name .. " - " .. tab_info.active_pane.title
-  --return " " .. process_name .. " "
-end
-
-wezterm.on(
-  'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
-    local edge_background = 'rgba(0,0,0,0.9)'
-    local edge_foreground = '#3c4841'
-    local background = 'rgba(0,0,0,0.9)'
-    local foreground = '#9da9a0'
-    local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_forwardslash_separator
-    local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_forwardslash_separator
-
-    if tab.is_active then
-    foreground = '#e67e80'
-      background = 'rgba(0,0,0,0.9)'
-      edge_foreground = '#d3c6aa'
-SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
-SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
-    elseif hover then
-      background = '#000000'
-      foreground = '#ffffff'
-      edge_foreground = '#a7c080'
-SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
-SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
-    end
-
-
-    local title = tab_title(tab)
-
-    -- ensure that the titles fit in the available space,
-    -- and that we have room for the edges.
-    -- title = wezterm.truncate_right(title, max_width - 2)
-
-    return {
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = edge_foreground } },
-      { Text = "|" },
-      { Background = { Color = background } },
-      { Foreground = { Color = foreground } },
-      { Text = title },
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = edge_foreground } },
-      { Text = " " },
-    }
-  end
-)
+-- -- This function returns the suggested title for a tab.
+-- -- It prefers the title that was set via `tab:set_title()`
+-- -- or `wezterm cli set-tab-title`, but falls back to the
+-- -- title of the active pane in that tab.
+-- function tab_title(tab_info)
+--   local title = tab_info.tab_title
+--   -- if the tab title is explicitly set, take that
+--   -- Otherwise, use the title from the active pane
+--   -- in that tab
+--   -- get the name of the process running in the active pane
+--   local process_name = tab_info.active_pane.foreground_process_name
+--   -- split the process name by / and get the last element
+--   process_name = process_name:match("([^/]+)$")
+--   -- if the process name is empty, use the title of the active pane
+--   if process_name == "" then
+--     return tab_info.active_pane.title
+--   end
+--
+--   return " " .. process_name .. " - " .. tab_info.active_pane.title
+--   --return " " .. process_name .. " "
+-- end
+--
+-- wezterm.on(
+--   'format-tab-title',
+--   function(tab, tabs, panes, config, hover, max_width)
+--     local edge_background = 'rgba(0,0,0,0.9)'
+--     local edge_foreground = '#3c4841'
+--     local background = 'rgba(0,0,0,0.9)'
+--     local foreground = '#9da9a0'
+--     local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_forwardslash_separator
+--     local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_forwardslash_separator
+--
+--     if tab.is_active then
+--     foreground = '#e67e80'
+--       background = 'rgba(0,0,0,0.9)'
+--       edge_foreground = '#d3c6aa'
+-- SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
+-- SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
+--     elseif hover then
+--       background = '#000000'
+--       foreground = '#ffffff'
+--       edge_foreground = '#a7c080'
+-- SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
+-- SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
+--     end
+--
+--
+--     local title = tab_title(tab)
+--
+--     -- ensure that the titles fit in the available space,
+--     -- and that we have room for the edges.
+--     -- title = wezterm.truncate_right(title, max_width - 2)
+--
+--     return {
+--       { Background = { Color = edge_background } },
+--       { Foreground = { Color = edge_foreground } },
+--       { Text = "|" },
+--       { Background = { Color = background } },
+--       { Foreground = { Color = foreground } },
+--       { Text = title },
+--       { Background = { Color = edge_background } },
+--       { Foreground = { Color = edge_foreground } },
+--       { Text = " " },
+--     }
+--   end
+-- )
 
 
 inactive_pane_hsb = {
@@ -104,22 +104,22 @@ keys = {
   },
   {
     key = "l",
-    mods = "ALT",
+    mods = "CTRL",
     action = act.ActivatePaneDirection "Right",
   },
   {
     key = "h",
-    mods = "ALT",
+    mods = "CTRL",
     action = act.ActivatePaneDirection "Left",
   },
   {
     key = "j",
-    mods = "ALT",
+    mods = "CTRL",
     action = act.ActivatePaneDirection "Down",
   },
   {
     key = "k",
-    mods = "ALT",
+    mods = "CTRL",
     action = act.ActivatePaneDirection "Up",
   },
   {
@@ -196,11 +196,13 @@ return {
 	warn_about_missing_glyphs = false,
 	scrollback_lines = 1000,
   enable_wayland = false,
-	-- front_end = "WebGpu",
+	front_end = "WebGpu",
 	enable_csi_u_key_encoding = true,
 	window_decorations = "RESIZE",
 
 	color_scheme = "Everforest Dark (Gogh)",
+	-- color_scheme = "flexoki-dark",
+  -- color_scheme = 'Neon (terminal.sexy)',
 	cursor_blink_ease_in = "Constant",
 	cursor_blink_ease_out = "Constant",
 	-- colors = {cursor_bg = "#A7C080", cursor_fg = "#1E2326"},
@@ -221,8 +223,8 @@ return {
   tab_bar_at_bottom = false,
   window_padding = {
     left = 10,
-    right = 0,
-    top = 5,
+    right = 5,
+    top = 10,
     bottom = 0,
   },
   disable_default_key_bindings = false,

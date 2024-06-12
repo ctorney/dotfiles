@@ -44,6 +44,7 @@ source $PLUGIN_PATH/powerlevel10k/powerlevel10k.zsh-theme
 source $PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $PLUGIN_PATH/zsh-ask/zsh-ask.zsh
 source $PLUGIN_PATH/zsh-ai-commands/zsh-ai-commands.zsh
+source $PLUGIN_PATH/zsh-window-title/zsh-window-title.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
