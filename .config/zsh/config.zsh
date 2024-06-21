@@ -4,6 +4,10 @@ export CLICOLOR=true
 export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
 export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
+export MPLBACKEND=module://matplotlib-backend-wezterm
+export MPLBACKEND_TRANSPARENT=1
+
+
 PLUGIN_PATH=$HOME/.config/zsh/plugins
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -63,6 +67,6 @@ unset __conda_setup
 
 conda activate tf
 
-bindkey -v
+# bindkey -v
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $HOME/.config/zsh/.p10k.zsh ]] || source $HOME/.config/zsh/.p10k.zsh

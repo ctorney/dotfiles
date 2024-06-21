@@ -1,12 +1,20 @@
 #!/bin/bash
 
 update() {
-  WIDTH="dynamic"
+
   if [ "$SELECTED" = "true" ]; then
-    WIDTH="0"
+    sketchybar --set $NAME background.color=0xffa7c080 icon.color=0xcc01010A background.border_color=0xffa7c080
+  else
+
+      apps=$(yabai -m query --windows --space $SID | jq -r ".[].app")
+      if [ "$apps" != "" ]; then
+        sketchybar --set $NAME background.color=0xcc01010A icon.color=0xffd3c6aa background.border_color=0xffd3c6aa
+      else
+        sketchybar --set $NAME background.color=0xcc01010A icon.color=0xff414b50 background.border_color=0xff414b50
+      fi
+
   fi
 
-  sketchybar --animate tanh 20 --set $NAME icon.highlight=$SELECTED label.width=$WIDTH
 }
 
 mouse_clicked() {

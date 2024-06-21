@@ -15,7 +15,7 @@
 # global settings
 yabai -m config                                 \
     external_bar                 all:0:0       \
-    menubar_opacity              0.0            \
+    menubar_opacity              1.0            \
     mouse_follows_focus          on            \
     focus_follows_mouse          on             \
     display_arrangement_order    default        \
@@ -30,10 +30,10 @@ yabai -m config                                 \
     normal_window_opacity        0.90           \
     window_opacity               off            \
     insert_feedback_color        0xffd75f5f     \
-    split_ratio                  0.65           \
+    split_ratio                  0.618           \
     split_type                   auto           \
     auto_balance                 off            \
-    top_padding                  0             \
+    top_padding                  12             \
     bottom_padding               12             \
     left_padding                 14             \
     right_padding                14             \
@@ -46,29 +46,33 @@ yabai -m config                                 \
 
 
 
-NOTCH_UUID="37D8832A-2D66-02CA-B9F7-8F30A301B230"
-
-
-NORMAL_BAR=18
-NOTCH_BAR=0
-NOTCH_OFFSET=$((NOTCH_BAR-NORMAL_BAR))
-
-# Make the default space top padding equal to whatever your "normal" bar spacing is supposed to be
-yabai -m config top_padding $NORMAL_BAR
-# If the notched display is added, set external_bar to "main:$NOTCH_OFFSET:0". This will decrease the padding on the main (notched) screen
-yabai -m signal --add event=display_added action="if [[ \"\$(yabai -m query --displays | jq \".[] | select(.id == \$YABAI_DISPLAY_ID) | .uuid\")\" =~ \"$NOTCH_UUID\" ]]; then yabai -m config external_bar \"main:$NOTCH_OFFSET:0\"; fi"
-# If the notched display is removed, set external_bar to off so the main screen (which is now not notched) no longer has a padding decrease
-yabai -m signal --add event=display_removed action="if [[ ! \"\$(yabai -m query --displays | jq '.[].uuid')\" =~ \"$NOTCH_UUID\" ]]; then yabai -m config external_bar off:0:0; fi"
-# Apply those effects at startup
-if [[ "$(yabai -m query --displays | jq '.[].uuid')" =~ "$NOTCH_UUID" ]]; then yabai -m config external_bar "main:$NOTCH_OFFSET:0"; else yabai -m config external_bar off:0:0; fi
+# NOTCH_UUID="37D8832A-2D66-02CA-B9F7-8F30A301B230"
+# NORMAL_BAR=12
+# NOTCH_BAR=0
+# NOTCH_OFFSET=$((NOTCH_BAR-NORMAL_BAR))
+# # Make the default space top padding equal to whatever your "normal" bar spacing is supposed to be
+# yabai -m config top_padding $NORMAL_BAR
+# # If the notched display is added, set external_bar to "main:$NOTCH_OFFSET:0". This will decrease the padding on the main (notched) screen
+# yabai -m signal --add event=display_added action="if [[ \"\$(yabai -m query --displays | jq \".[] | select(.id == \$YABAI_DISPLAY_ID) | .uuid\")\" =~ \"$NOTCH_UUID\" ]]; then yabai -m config external_bar \"main:$NOTCH_OFFSET:0\"; fi"
+# # If the notched display is removed, set external_bar to off so the main screen (which is now not notched) no longer has a padding decrease
+# yabai -m signal --add event=display_removed action="if [[ ! \"\$(yabai -m query --displays | jq '.[].uuid')\" =~ \"$NOTCH_UUID\" ]]; then yabai -m config external_bar off:0:0; fi"
+# # Apply those effects at startup
+# if [[ "$(yabai -m query --displays | jq '.[].uuid')" =~ "$NOTCH_UUID" ]]; then yabai -m config external_bar "main:$NOTCH_OFFSET:0"; else yabai -m config external_bar off:0:0; fi
 
 
 
-# S K E T C H Y B A R  E V E N T S
-yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
-yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
-yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+# # S K E T C H Y B A R  E V E N T S
+# yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+# yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+# yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+# yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+
+
+yabai -m space 4 --label outlook
+yabai -m space 5 --label microsoft
+yabai -m rule --add app="^Microsoft Outlook$" space=outlook
+yabai -m rule --add app="^Microsoft Word$" space=microsoft
+yabai -m rule --add app="^Microsoft Excel$" space=microsoft
 
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off

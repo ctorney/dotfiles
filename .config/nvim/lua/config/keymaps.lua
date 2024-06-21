@@ -12,3 +12,8 @@ vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape" })
 vim.keymap.set("n", '<leader><CR>', "i<Enter><Esc>", {desc = "Add line break"} )
 vim.keymap.set("n", "<C-/>", "<cmd>lua require('FTerm').toggle()<CR>", { desc = "Toggle FTerm" })
 vim.keymap.set("t", "<C-/>", "<cmd>lua require('FTerm').toggle()<CR>", { desc = "Toggle FTerm" })
+vim.keymap.set('n', '<C-h>', "<cmd>lua require('smart-splits').move_cursor_left()<cr>")
+vim.keymap.set('n', '<C-j>', "<cmd>lua require('smart-splits').move_cursor_down()<cr>")
+vim.keymap.set('n', '<C-k>', "<cmd>lua require('smart-splits').move_cursor_up()<cr>")
+vim.keymap.set('n', '<C-l>', "<cmd>lua require('smart-splits').move_cursor_right()<cr>")
+

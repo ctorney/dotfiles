@@ -63,17 +63,23 @@ return {
       )
     end,
   },
-
   {
-  "roobert/search-replace.nvim",
-  config = function()
-    require("search-replace").setup({
-      -- optionally override defaults
-      default_replace_single_buffer_options = "gcI",
-      default_replace_multi_buffer_options = "egcI",
-    })
-  end,
-},
+    "mrjones2014/smart-splits.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require("smart-splits").setup({ at_edge = "stop" })
+    end,
+  },
+  {
+    "roobert/search-replace.nvim",
+    config = function()
+      require("search-replace").setup({
+        -- optionally override defaults
+        default_replace_single_buffer_options = "gcI",
+        default_replace_multi_buffer_options = "egcI",
+      })
+    end,
+  },
 
   {
     "echasnovski/mini.indentscope",
@@ -137,7 +143,7 @@ return {
     --   },
     -- },
   },
-  { "folke/trouble.nvim", enabled = false },
+  { "folke/trouble.nvim", enabled = true },
   { "nvim-treesitter/nvim-treesitter-context", enabled = false },
   -- { "L3MON4D3/LuaSnip", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
@@ -192,26 +198,26 @@ return {
       vim.g.vimtex_view_enabled = 1
       vim.g.vimtex_quickfix_open_on_warning = 0
       vim.g.vimtex_compiler_method = "latexmk"
-      vim.g.vimtex_compiler_latexmk_engines = { 
-            pdflatex = '-pdf',
-            lualatex = '-lualatex',
-            xelatex = '-xelatex',
-            context = '-pdf',
-            platex = '-pdfdvi',
-            uplatex = '-pdfdvi',
-            ['_'] = '-xelatex'
+      vim.g.vimtex_compiler_latexmk_engines = {
+        pdflatex = "-pdf",
+        lualatex = "-lualatex",
+        xelatex = "-xelatex",
+        context = "-pdf",
+        platex = "-pdfdvi",
+        uplatex = "-pdfdvi",
+        ["_"] = "-xelatex",
       }
       --     '_', '-xelatex' -- '_'                = '-xelatex'
       -- }
-      vim.g.vimtex_compiler_latexmk = { 
-         executable = 'latexmk',
-         options = { 
-           '-xelatex',
-           '-file-line-error',
-           '-synctex=1',
-           '-interaction=nonstopmode',
+      vim.g.vimtex_compiler_latexmk = {
+        executable = "latexmk",
+        options = {
+          "-xelatex",
+          "-file-line-error",
+          "-synctex=1",
+          "-interaction=nonstopmode",
         },
-        }
+      }
       -- set line wrapping on
       vim.g.wrap =
         true, vim.cmd([[
