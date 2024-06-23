@@ -111,10 +111,6 @@ end)
 -- )
 
 
-inactive_pane_hsb = {
-	saturation = 0.8,
-	brightness = 0.7,
-}
 
 local set_environment_variables = {
   PATH = wezterm.home_dir .. '/.cargo/bin:' .. os.getenv('PATH')
@@ -259,6 +255,10 @@ return {
          -- "Hack",
          -- "Symbols Nerd Font Mono"
    -- }),
+inactive_pane_hsb = {
+	saturation = 1.0,
+	brightness = 1.0,
+},
 	font_size = 14,
 	line_height = 1.0,
 	adjust_window_size_when_changing_font_size = false,
