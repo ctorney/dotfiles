@@ -20,7 +20,14 @@ function ipython2()
   vim.api.nvim_exec([[:SlimeConfig]], false)  
   return
 end
-function ipython() 
+
+function ipython()
+  local cmdstring = [[tmux split-window -h -l 30% -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")']]
+  local handle = io.popen(cmdstring)
+  return
+end
+
+function ipython3() 
   local cmdstring = [[wezterm cli split-pane --right --percent 30 -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")' ]]
   -- local handle = io.popen(cmdstring)
   -- ipython_pane = (handle:read("*a"):gsub("^%s*(.-)%s*$", "%1"))

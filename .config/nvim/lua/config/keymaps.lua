@@ -17,3 +17,33 @@ vim.keymap.set('n', '<C-j>', "<cmd>lua require('smart-splits').move_cursor_down(
 vim.keymap.set('n', '<C-k>', "<cmd>lua require('smart-splits').move_cursor_up()<cr>")
 vim.keymap.set('n', '<C-l>', "<cmd>lua require('smart-splits').move_cursor_right()<cr>")
 
+
+local fterm = require("FTerm")
+
+local ask = fterm:new({
+    ft = 'fterm_ask', -- You can also override the default filetype, if you want
+    cmd = "source ~/.zshrc && ask -cm",
+    dimensions = {
+        height = 0.9,
+        width = 0.9
+    }
+})
+
+-- Use this to toggle gitui in a floating terminal
+vim.keymap.set('n', '<C-q>', function()
+    ask:toggle()
+end)
+local btop = fterm:new({
+    ft = 'fterm_btop', -- You can also override the default filetype, if you want
+    cmd = "btop",
+    dimensions = {
+        height = 0.9,
+        width = 0.9
+    }
+})
+
+-- Use this to toggle gitui in a floating terminal
+vim.keymap.set('n', '<C-t>', function()
+    btop:toggle()
+end)
+

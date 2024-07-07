@@ -68,11 +68,9 @@ yabai -m config                                 \
 # yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
 
-yabai -m space 4 --label outlook
-yabai -m space 5 --label microsoft
-yabai -m rule --add app="^Microsoft Outlook$" space=outlook
-yabai -m rule --add app="^Microsoft Word$" space=microsoft
-yabai -m rule --add app="^Microsoft Excel$" space=microsoft
+# yabai -m rule --add app="^Microsoft Outlook$" space=outlook
+# yabai -m rule --add app="^Microsoft Word$" space=microsoft
+# yabai -m rule --add app="^Microsoft Excel$" space=microsoft
 
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off

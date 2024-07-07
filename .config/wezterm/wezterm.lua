@@ -311,5 +311,6 @@ inactive_pane_hsb = {
 	-- },
 
 	keys = keys,
+  macos_window_background_blur = 30
   -- mouse_bindings = mouse_bindings,
 }
