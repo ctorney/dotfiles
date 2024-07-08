@@ -22,7 +22,7 @@ function ipython2()
 end
 
 function ipython()
-  local cmdstring = [[tmux split-window -h -l 30% -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")']]
+  local cmdstring = [[tmux split-window -h -p 30 -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")']]
   local handle = io.popen(cmdstring)
   return
 end

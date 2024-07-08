@@ -7,7 +7,7 @@ export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 # export MPLBACKEND=module://matplotlib-backend-wezterm
 export MPLBACKEND=module://itermplot
 export MPLBACKEND_TRANSPARENT=1
-export ITERM_LINES=20
+export ITERMPLOT_LINES=20
 
 
 PLUGIN_PATH=$HOME/.config/zsh/plugins
@@ -23,7 +23,7 @@ alias vi="nvim"
 alias ll="k -h"
 alias c="clear"
 
-# . "$HOME/.atuin/bin/env"
+. "$HOME/.atuin/bin/env"
 export PATH=/opt/nvim-linux64/bin:~/.local/bin:$PATH
 
 eval "$(zoxide init zsh --cmd cd)"
@@ -46,3 +46,11 @@ function tsh {
   ssh $1 -t "tmux -CC new-session -A -s main"
 }
 
+# check if we're in a tmux session
+if [ -n "$TMUX" ]; then
+  # if we are, set the terminal title to the session name
+  printf "\033k$TMUX\033\\"
+  tmux setenv -g MPLBACKEND $MPLBACKEND
+  tmux setenv -g MPLBACKEND_TRANSPARENT $MPLBACKEND_TRANSPARENT
+  tmux setenv -g ITERMPLOT_LINES $ITERMPLOT_LINES
+fi
