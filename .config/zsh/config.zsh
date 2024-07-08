@@ -7,6 +7,7 @@ export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 # export MPLBACKEND=module://matplotlib-backend-wezterm
 export MPLBACKEND=module://itermplot
 export MPLBACKEND_TRANSPARENT=1
+export ITERM_LINES=20
 
 
 PLUGIN_PATH=$HOME/.config/zsh/plugins
