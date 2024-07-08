@@ -23,7 +23,15 @@ alias vi="nvim"
 alias ll="k -h"
 alias c="clear"
 
-. "$HOME/.atuin/bin/env"
+case ":${PATH}:" in
+    *:"$HOME/.atuin/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed binary needs to be overridden
+        export PATH="$HOME/.atuin/bin:$PATH"
+        ;;
+esac
+
 export PATH=/opt/nvim-linux64/bin:~/.local/bin:$PATH
 
 eval "$(zoxide init zsh --cmd cd)"
