@@ -1,6 +1,8 @@
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
+export XDG_CONFIG_HOME=$HOME/.config
+
 export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
 export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
@@ -62,3 +64,5 @@ if [ -n "$TMUX" ]; then
   tmux setenv -g MPLBACKEND_TRANSPARENT $MPLBACKEND_TRANSPARENT
   tmux setenv -g ITERMPLOT_LINES $ITERMPLOT_LINES
 fi
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line

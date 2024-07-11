@@ -113,15 +113,17 @@ return {
     lazy = false,
     ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
     config = function()
-      vim.g.slime_target = "tmux"
-      vim.g.slime_config = {socket_name="default", target_pane="{right}"}
-      -- vim.g.slime_target = "wezterm"
-      -- vim.g.slime_config = { pane_direction = "right" } --, relative_move_back="left"}
-      -- vim.g.slime_default_config = {pane_direction =  "right"}
+      -- vim.g.slime_target = "tmux"
+      -- vim.g.slime_config = {socket_name="default", target_pane="{right}"}
+      
+      vim.g.slime_target = "wezterm"
+      vim.g.slime_config = { pane_direction = "right" } --, relative_move_back="left"}
+      vim.g.slime_default_config = {pane_direction =  "right"}
+      
       vim.g.slime_dont_ask_default = 1
       vim.g.slime_bracketed_paste = 1
       vim.g.slime_no_mappings = 1
-      vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>", { desc = "Send current line" })
+      vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
     end,
   },
 
@@ -130,13 +132,16 @@ return {
     requires = { { "jpalardy/vim-slime", opt = true } },
     ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
     config = function()
-      vim.g.slime_target = "tmux"
-      vim.g.slime_default_config = {socket_name="default", target_pane="{right}"}
-      -- vim.g.slime_target = "wezterm"
+      -- vim.g.slime_target = "tmux"
+      -- vim.g.slime_default_config = {socket_name="default", target_pane="{right}"}
+
       vim.g.slime_cell_delimiter = "^\\s*##"
-      -- vim.g.slime_default_config = { session_id = "current", relative_pane = "right", relative_move_back = "left" }
-      -- vim.g.slime_config = { pane_direction = "right" } --, relative_move_back="left"}
-      -- vim.g.slime_default_config = {pane_direction =  "right"}
+
+      vim.g.slime_target = "wezterm"
+      vim.g.slime_config = { pane_direction = "right" } 
+      vim.g.slime_default_config = {pane_direction =  "right"}
+      
+
       vim.g.slime_dont_ask_default = 1
       vim.g.slime_bracketed_paste = 1
       vim.g.slime_no_mappings = 1

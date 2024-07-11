@@ -36,12 +36,13 @@ local function split_nav(resize_or_move, key)
     end),
   }
 end
-wezterm.on("gui-startup", function()
-	local tab, pane, window = mux.spawn_window({})
-	-- pane:split { direction = 'Top' }
-	window:gui_window():maximize()
-end)
--- The filled in variant of the < symbol
+
+-- wezterm.on("gui-startup", function()
+-- 	local tab, pane, window = mux.spawn_window({})
+-- 	-- pane:split { direction = 'Top' }
+-- 	window:gui_window():maximize()
+-- end)
+-- -- The filled in variant of the < symbol
 
 -- -- This function returns the suggested title for a tab.
 -- -- It prefers the title that was set via `tab:set_title()`

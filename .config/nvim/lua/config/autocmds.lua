@@ -21,13 +21,13 @@ function ipython2()
   return
 end
 
-function ipython()
+function ipython3()
   local cmdstring = [[tmux split-window -h -p 30 -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")']]
   local handle = io.popen(cmdstring)
   return
 end
 
-function ipython3() 
+function ipython() 
   local cmdstring = [[wezterm cli split-pane --right --percent 30 -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")' ]]
   -- local handle = io.popen(cmdstring)
   -- ipython_pane = (handle:read("*a"):gsub("^%s*(.-)%s*$", "%1"))
@@ -40,7 +40,9 @@ function ipython3()
   -- set the slime config
   -- vim.api.nvim_exec([[:SlimeConfig]], false)  
   -- return
+
   local handle = io.popen(cmdstring)
+
     ipython_pane = (handle:read("*a"):gsub("^%s*(.-)%s*$", "%1"))
     -- create a vim function for setting the slime config so that it points to the correct pane
     vim.api.nvim_exec([[
@@ -50,6 +52,7 @@ function ipython3()
       endfunction]], false)
       -- set the slime config
       vim.api.nvim_exec([[:SlimeConfig]], false)
+
   return
 end
 
