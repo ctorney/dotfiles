@@ -30,38 +30,50 @@ return {
     "rcarriga/nvim-notify",
     enabled = true,
     opts = {
-      -- other stuff
       background_colour = "#000000",
     },
   },
   {
     "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    config = function()
-      vim.g.autoformat = false
-    end,
+    opts = {
+      -- options for vim.diagnostic.config()
+      --   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
+      diagnostics = {
+        virtual_text = { false, severity = { min = vim.diagnostic.severity.ERROR } },
+        underline = false,
+        signs = { false, severity = { min = vim.diagnostic.severity.ERROR } },
+        update_in_insert = false,
+      },
+      servers = {
+        -- pyright will be automatically installed with mason and loaded with lspconfig
+      },
+      inlay_hints = {
+        enabled = false,
+      },
+    },
   },
   { "echasnovski/mini.pairs", enabled = false },
   {
     "akinsho/bufferline.nvim",
-    -- opts will be merged with the parent spec
     opts = { options = { indicator = { style = "none" }, separator_style = "thin", show_tab_indicators = false } },
   },
   {
     "numtostr/FTerm.nvim",
     event = "BufWinEnter",
-    config = function()
-      require("FTerm").setup({
-        dimensions = { height = 0.8, width = 0.8 },
-        border = "rounded",
-      })
-      vim.api.nvim_set_keymap(
-        "n",
-        "<leader>tt",
-        "<cmd>lua require('FTerm').toggle()<CR>",
-        { noremap = true, silent = true }
-      )
-    end,
+    opts = {
+      dimensions = { height = 0.8, width = 0.8 },
+      border = "rounded",
+    },
+    keys = {
+      {
+        "<C-/>",
+        function()
+          require("FTerm").toggle()
+        end,
+        mode = { "n", "x", "o", "t", "i" },
+        desc = "Toggle FTerm",
+      },
+    },
   },
   {
     "mrjones2014/smart-splits.nvim",
@@ -88,6 +100,23 @@ return {
     },
   },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "Notes",
+          path = "~/Obsidian",
+        },
+      },
+    },
+  },
   {
     "kdheepak/lazygit.nvim",
     event = "BufRead",
@@ -167,7 +196,7 @@ return {
         enabled = false,
       },
     },
-    enabled = true,
+    enabled = false,
   },
 
   {

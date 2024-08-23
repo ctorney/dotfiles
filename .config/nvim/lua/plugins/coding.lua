@@ -1,38 +1,33 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    event = "BufRead",
-    config = function()
-      require("copilot").setup({
-        filetypes = {
-          markdown = true,
+    opts = {
+      filetypes = {
+        markdown = true,
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<S-Right>",
+          accept_word = "<S-Down>",
+          accept_line = false,
+          next = "<S-Up>",
+          prev = "<C-S-Up>",
+          dismiss = "<C-c>",
         },
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          keymap = {
-            accept = "<S-Right>",
-            accept_word = "<M-Right>",
-            accept_line = false,
-            next = "<S-Down>",
-            prev = "<S-Up>",
-            dismiss = "<C-c>",
-          },
+      },
+      panel = {
+        enabled = true,
+        keymap = {
+          jump_prev = "[[",
+          jump_next = "]]",
+          accept = "<CR>",
+          refresh = "gr",
+          open = "<C-p>",
         },
-        panel = {
-          enabled = true,
-          keymap = {
-            jump_prev = "[[",
-            jump_next = "]]",
-            accept = "<CR>",
-            refresh = "gr",
-            open = "<C-p>",
-          },
-        },
-      })
-    end,
+      },
+    },
   },
   {
     "zbirenbaum/copilot-cmp",
@@ -115,11 +110,11 @@ return {
     config = function()
       -- vim.g.slime_target = "tmux"
       -- vim.g.slime_config = {socket_name="default", target_pane="{right}"}
-      
+
       vim.g.slime_target = "wezterm"
       vim.g.slime_config = { pane_direction = "right" } --, relative_move_back="left"}
-      vim.g.slime_default_config = {pane_direction =  "right"}
-      
+      vim.g.slime_default_config = { pane_direction = "right" }
+
       vim.g.slime_dont_ask_default = 1
       vim.g.slime_bracketed_paste = 1
       vim.g.slime_no_mappings = 1
@@ -138,9 +133,8 @@ return {
       vim.g.slime_cell_delimiter = "^\\s*##"
 
       vim.g.slime_target = "wezterm"
-      vim.g.slime_config = { pane_direction = "right" } 
-      vim.g.slime_default_config = {pane_direction =  "right"}
-      
+      vim.g.slime_config = { pane_direction = "right" }
+      vim.g.slime_default_config = { pane_direction = "right" }
 
       vim.g.slime_dont_ask_default = 1
       vim.g.slime_bracketed_paste = 1
@@ -161,29 +155,29 @@ return {
         ]])
     end,
   },
-  
+
   {
-	"robitx/gp.nvim",
-	config = function()
-		require("gp").setup(
-{
+    "robitx/gp.nvim",
+    config = function()
+      require("gp").setup({
         chat_user_prefix = "🗨",
-	      chat_assistant_prefix = "🤖",
-	      chat_confirm_delete = false,
-	      style_highlight = "None",
-	      style_popup_border = "rounded",
+        chat_assistant_prefix = "🤖",
+        chat_confirm_delete = false,
+        style_highlight = "None",
+        style_popup_border = "rounded",
         style_popup_keep_buf = true,
-	      style_popup_left_margin = 1,
-	      style_popup_title = " ChatGPT 4 ",
+        style_popup_left_margin = 1,
+        style_popup_title = " ChatGPT 4 ",
         -- chat_prompt_buf_type = true,
-	      style_popup_winhighlight = "Normal:Normal,FloatBorder:Normal,FloatTitle:Normal,WinBar:Normal",
-	      toggle_target = "popup",
-	      agents = {
+        style_popup_winhighlight = "Normal:Normal,FloatBorder:Normal,FloatTitle:Normal,WinBar:Normal",
+        toggle_target = "popup",
+        agents = {
           -- Disable ChatGPT 3.5
           {
             name = "ChatGPT3-5",
-            chat = false,  -- just name would suffice
-            command = false,   -- just name would suffice
+            disable = true,
+            chat = false, -- just name would suffice
+            command = false, -- just name would suffice
           },
           {
             name = "ChatGPT4",
@@ -199,13 +193,13 @@ return {
               .. "- Think deeply and carefully from first principles step by step.\n"
               .. "- Make your response clear and brief.\n"
               .. "- Do not give advice unless it has been requested.\n"
-              .. "- If asked for code only provide the code and don't provide any explanation.\n"
+              .. "- If asked for code only provide the code and don't provide any explanation.\n",
           },
-    },
-	    	-- chat_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
-     		-- command_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
-	      -- chat_custom_instructions = "When providing code just give the code and don't explain it.\n"
-	              -- .. "Only provide the raw code without markdown markers.\n",
+        },
+        -- chat_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
+        -- command_model = { model = "gpt-4", temperature = 1.1, top_p = 1 },
+        -- chat_custom_instructions = "When providing code just give the code and don't explain it.\n"
+        -- .. "Only provide the raw code without markdown markers.\n",
         -- hooks = {
         --   Explain = function(gp, params)
         --     local template = "I have the following code from {{filename}}:\n\n"
@@ -235,14 +229,18 @@ return {
         --   end,
         -- }
       }
-
+)
+      vim.keymap.set(
+        { "n" },
+        "gt",
+        "<cmd>GpChatToggle<cr>",
+        { noremap = true, silent = true, nowait = true, desc = "GPT4 Toggle Chat" }
       )
-      vim.keymap.set({"n"}, "gt", "<cmd>GpChatToggle<cr>", {noremap = true, silent = true, nowait = true, desc = "GPT4 Toggle Chat"})
 
-		-- or setup with your own config (see Install > Configuration in Readme)
-		-- require("gp").setup(config)
+      -- or setup with your own config (see Install > Configuration in Readme)
+      -- require("gp").setup(config)
 
-        	-- shortcuts might be setup here (see Usage > Shortcuts in Readme)
-	end,
-}
+      -- shortcuts might be setup here (see Usage > Shortcuts in Readme)
+    end,
+  },
 }
