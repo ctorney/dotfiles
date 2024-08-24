@@ -6,8 +6,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
 export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
-# export MPLBACKEND=module://matplotlib-backend-wezterm
-export MPLBACKEND=module://itermplot
+export MPLBACKEND=module://matplotlib-backend-wezterm
+# export MPLBACKEND=module://itermplot
 export MPLBACKEND_TRANSPARENT=1
 export ITERMPLOT_LINES=20
 
@@ -44,6 +44,7 @@ source $PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $PLUGIN_PATH/zsh-ask/zsh-ask.zsh
 source $PLUGIN_PATH/zsh-ai-commands/zsh-ai-commands.zsh
 source $PLUGIN_PATH/k/k.sh
+source <(fzf --zsh)
 
 
 conda activate tf

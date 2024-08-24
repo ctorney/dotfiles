@@ -243,9 +243,9 @@ return {
 	window_decorations = "RESIZE",
   use_ime = true,
 
-	color_scheme = "Everforest Dark (Gogh)",
+	-- color_scheme = "Everforest Dark (Gogh)",
 	-- color_scheme = "flexoki-dark",
-  -- color_scheme = 'Neon (terminal.sexy)',
+  color_scheme = 'Neon (terminal.sexy)',
 	cursor_blink_ease_in = "Constant",
 	cursor_blink_ease_out = "Constant",
 	-- colors = {cursor_bg = "#A7C080", cursor_fg = "#1E2326"},
@@ -269,10 +269,10 @@ inactive_pane_hsb = {
   use_fancy_tab_bar = true,
   tab_bar_at_bottom = false,
   window_padding = {
-    left = 10,
+    left = 20,
     right = 5,
-    top = 10,
-    bottom = 0,
+    top = 20,
+    bottom = 5,
   },
   disable_default_key_bindings = false,
   window_frame = {
@@ -312,6 +312,6 @@ inactive_pane_hsb = {
 	-- },
 
 	keys = keys,
-  macos_window_background_blur = 30
+  macos_window_background_blur = 10
   -- mouse_bindings = mouse_bindings,
 }
