@@ -150,8 +150,8 @@ return {
         nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
         nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
         nmap <leader>ss <Plug>SlimeCellsSend
-        nmap <leader>cj <Plug>SlimeCellsNext
-        nmap <leader>ck <Plug>SlimeCellsPrev
+        nmap <S-Down> <Plug>SlimeCellsNext
+        nmap <S-Up> <Plug>SlimeCellsPrev
         ]])
     end,
   },
@@ -228,8 +228,7 @@ return {
         --       template, gp.config.chat_system_prompt)
         --   end,
         -- }
-      }
-)
+      })
       vim.keymap.set(
         { "n" },
         "gt",

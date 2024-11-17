@@ -75,13 +75,13 @@ return {
       },
     },
   },
-  {
-    "mrjones2014/smart-splits.nvim",
-    event = "BufWinEnter",
-    config = function()
-      require("smart-splits").setup({ at_edge = "stop" })
-    end,
-  },
+  -- {
+  --   "mrjones2014/smart-splits.nvim",
+  --   event = "BufWinEnter",
+  --   config = function()
+  --     require("smart-splits").setup({ at_edge = "stop" })
+  --   end,
+  -- },
   {
     "roobert/search-replace.nvim",
     config = function()
