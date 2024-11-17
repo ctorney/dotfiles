@@ -7,7 +7,6 @@ export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
 export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
 export MPLBACKEND=module://matplotlib-backend-wezterm
-# export MPLBACKEND=module://itermplot
 export MPLBACKEND_TRANSPARENT=1
 export ITERMPLOT_LINES=20
 
@@ -24,6 +23,7 @@ fi
 alias vi="nvim"
 alias ll="k -h"
 alias c="clear"
+alias imgcat="wezterm imgcat"
 
 case ":${PATH}:" in
     *:"$HOME/.atuin/bin":*)
@@ -34,7 +34,7 @@ case ":${PATH}:" in
         ;;
 esac
 
-export PATH=/opt/nvim-linux64/bin:~/.local/bin:$PATH
+export PATH=/opt/nvim-linux64/bin:~/.local/bin:~/.local/go/bin:$PATH
 
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(atuin init zsh --disable-up-arrow)"
