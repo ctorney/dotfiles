@@ -39,11 +39,13 @@ export PATH=/opt/nvim-linux64/bin:~/.local/bin:~/.local/go/bin:$PATH
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(atuin init zsh --disable-up-arrow)"
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=245"
 source $PLUGIN_PATH/powerlevel10k/powerlevel10k.zsh-theme
 source $PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $PLUGIN_PATH/zsh-ask/zsh-ask.zsh
 source $PLUGIN_PATH/zsh-ai-commands/zsh-ai-commands.zsh
 source $PLUGIN_PATH/k/k.sh
+source $PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source <(fzf --zsh)
 
 
@@ -52,5 +54,6 @@ conda activate tf
 [[ ! -f $HOME/.config/zsh/.p10k.zsh ]] || source $HOME/.config/zsh/.p10k.zsh
 
 
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
+bindkey "^[[H"   beginning-of-line
+bindkey "^[[F"   end-of-line
+bindkey "^[[1;5C" forward-word
