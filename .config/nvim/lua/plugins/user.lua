@@ -186,9 +186,25 @@ return {
         "query",
         "regex",
         "tsx",
-        "typescript",
-        "vim",
         "yaml",
+      },
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      preset = "modern",
+      win = {
+        no_overlap = false,
+        height = { min = 4, max = 50 },
+        padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
+        title = true,
+        title_pos = "center",
+        zindex = 1000,
+        },
+      wo = {
+        winblend = 20, -- value between 0-100 0 for fully opaque and 100 for fully transparent
       },
     },
   },
