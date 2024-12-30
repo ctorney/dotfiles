@@ -191,6 +191,9 @@ return {
       auto_suggestions_provider = "copilot",
       auto_apply_diff_after_generation = true,
       -- add any opts here
+      windows = {
+        ask = { floating = false, border = "rounded" },
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",

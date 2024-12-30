@@ -8,6 +8,7 @@ export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
 export MPLBACKEND=module://matplotlib-backend-wezterm
 export MPLBACKEND_TRANSPARENT=1
+export MPLBACKEND_TIMG_OPTS="-pk"
 export ITERMPLOT_LINES=20
 
 

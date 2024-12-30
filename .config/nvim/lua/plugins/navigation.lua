@@ -4,6 +4,7 @@ return {
     branch = "feat-telescope-support-for-listing-marks",
     event = "BufRead",
     config = function()
+      require("telescope").load_extension('cmdline')
       require("telescope").load_extension("marks_nvim")
       require("marks").setup({
         bookmark_0 = {
@@ -28,12 +29,12 @@ return {
       vim.api.nvim_set_keymap("n", "<leader>mn", "<Plug>(Marks-next-bookmark0)", { desc = "Go to next mark" })
     end,
   },
-  {
-    "folke/which-key.nvim",
-    opts = {
-      spec = {
-        ["<leader>m"] = { name = "+marks" },
-      },
-    },
-  },
+  -- {
+  --   "folke/which-key.nvim",
+  --   opts = {
+  --     spec = {
+  --       ["<leader>m"] = { name = "+marks" },
+  --     },
+  --   },
+  -- },
 }

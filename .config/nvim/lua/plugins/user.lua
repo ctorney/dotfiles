@@ -23,6 +23,41 @@ return {
       vim.g.lsp_handlers_enabled = false
     end,
   },
+
+  -- {
+  --   "aaronik/treewalker.nvim",
+  --   opts = {
+  --     highlight = true, -- Whether to briefly highlight the node after jumping to it
+  --     highlight_duration = 250, -- How long should above highlight last (in ms)
+  --   },
+  --   keys = {
+  --     {
+  --       "<Down>",
+  --       "<cmd>Treewalker Down<CR>",
+  --       mode = { "n", "v" },
+  --       desc = "Treewalker Down",
+  --     },
+  --     {
+  --       "<Up>",
+  --       "<cmd>Treewalker Up<CR>",
+  --       mode = { "n", "v" },
+  --       desc = "Treewalker Up",
+  --     },
+  --     {
+  --       "<Left>",
+  --       "<cmd>Treewalker Left<CR>",
+  --       mode = { "n", "v" },
+  --       desc = "Treewalker Left",
+  --     },
+  --     {
+  --       "<Right>",
+  --       "<cmd>Treewalker Right<CR>",
+  --       mode = { "n", "v" },
+  --       desc = "Treewalker Right",
+  --     },
+  --   },
+  -- },
+
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -202,7 +237,7 @@ return {
         title = true,
         title_pos = "center",
         zindex = 1000,
-        },
+      },
       wo = {
         winblend = 20, -- value between 0-100 0 for fully opaque and 100 for fully transparent
       },

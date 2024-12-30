@@ -84,6 +84,11 @@ local set_environment_variables = {
 }
 
 keys = {
+ {
+      key = 'n',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.DisableDefaultAssignment,
+    },
 	{
 		key = "e",
 		mods = "CTRL",
@@ -188,7 +193,7 @@ mouse_bindings = {
 
 config = {
   leader = { key = "a", mods = "CTRL" },
-  window_background_opacity = 0.90,
+  window_background_opacity = 0.80,
   audible_bell = "Disabled",
 
 	warn_about_missing_glyphs = false,
@@ -206,7 +211,10 @@ config = {
 	cursor_blink_ease_out = "Constant",
 	-- colors = {cursor_bg = "#A7C080", cursor_fg = "#1E2326"},
 	colors = { cursor_bg = "#D3C6AA", cursor_fg = "#1E2326" , background = "01010A"},
-	font = wezterm.font("Hack Nerd Font"),
+	-- font = wezterm.font("Hack Nerd Font"),
+  font = wezterm.font("VictorMono Nerd Font"),
+  -- font = wezterm.font("BigBlueTerm437 Nerd Font"),
+	-- font = wezterm.font("Iosevka Nerd Font"),
 
   -- font = wezterm.font_with_fallback({
          -- "Hack",
@@ -228,7 +236,7 @@ inactive_pane_hsb = {
     left = 20,
     right = 5,
     top = 20,
-    bottom = 5,
+    bottom = 2,
   },
   disable_default_key_bindings = false,
   window_frame = {

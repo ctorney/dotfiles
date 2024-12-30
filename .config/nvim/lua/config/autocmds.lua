@@ -2,11 +2,12 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
-
-
-function ipython() 
+function ipython()
   local pane_id = os.getenv("WEZTERM_PANE")
-  local cmdstring = string.format([[wezterm cli split-pane --right --percent 30 -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")' && wezterm cli activate-pane --pane-id %s]], pane_id)
+  local cmdstring = string.format(
+    [[wezterm cli split-pane --right --percent 30 -- ipython -i -c 'from qbstyles import mpl_style;mpl_style("dark")' && wezterm cli activate-pane --pane-id %s]],
+    pane_id
+  )
   io.popen(cmdstring)
 end
 
@@ -39,4 +40,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_user_command('Ipython', ipython, {bang = true, nargs = '?'})
+vim.api.nvim_create_user_command("Ipython", ipython, { bang = true, nargs = "?" })
+
+vim.api.nvim_create_autocmd({ "VimEnter", "BufWinEnter", "BufEnter" }, {
+  callback = function()
+    vim.cmd("silent! !tmux set status off")
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
+  callback = function()
+    vim.cmd("silent! !tmux set status on")
+  end,
+})
