@@ -1,0 +1,2 @@
+savefig.transparent: True     # whether figures are saved with a transparent
+savefig.dpi: 200
