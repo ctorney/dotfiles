@@ -23,6 +23,7 @@ return {
       vim.g.lsp_handlers_enabled = false
     end,
   },
+  { "mrjones2014/smart-splits.nvim", lazy = false },
 
   -- {
   --   "aaronik/treewalker.nvim",

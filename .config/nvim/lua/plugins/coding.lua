@@ -124,37 +124,15 @@ return {
     lazy = false,
     ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
     config = function()
-      vim.g.slime_target = "wezterm"
-      vim.g.slime_default_config = { pane_direction = "right" }
-
+      vim.g.slime_target = "tmux"
+      -- vim.g.slime_config = { socket_name = "default", target_pane = "{right}" }
+      vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
       vim.g.slime_dont_ask_default = 1
       vim.g.slime_bracketed_paste = 1
       vim.g.slime_no_mappings = 1
+
       vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
 
-      vim.api.nvim_exec(
-        [[
-        function! SlimeOverrideSend(config, text)
-          let pane_id = slime#common#system("wezterm cli get-pane-direction %s", ["right"])
-          let pane_id = trim(pane_id)
-          if pane_id == ""
-            echom "No wezterm target pane found"
-            return
-          endif
-          let [bracketed_paste, text_to_paste, has_crlf] = slime#common#bracketed_paste(a:text)
-
-          if bracketed_paste
-            call slime#common#system("wezterm cli send-text --pane-id=%s", [pane_id], text_to_paste)
-          else
-            call slime#common#system("wezterm cli send-text --no-paste --pane-id=%s", [pane_id], text_to_paste)
-          endif
-          if has_crlf
-            call slime#common#system("wezterm cli send-text --no-paste --pane-id=%s", [pane_id], "\n")
-          end
-        endfunction
-      ]],
-        false
-      )
     end,
   },
 
