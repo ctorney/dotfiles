@@ -6,10 +6,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
 export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
-export MPLBACKEND=module://matplotlib-backend-wezterm
+export MPLBACKEND=module://matplotlib-backend-terminal
 export MPLBACKEND_TRANSPARENT=1
-export MPLBACKEND_TIMG_OPTS="-pk"
-export ITERMPLOT_LINES=20
+export MPLBACKEND_CHAFA_OPTS="-f kitty --passthrough tmux"
 
 
 PLUGIN_PATH=$HOME/.config/zsh/plugins
