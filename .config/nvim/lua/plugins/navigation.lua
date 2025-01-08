@@ -1,38 +1,4 @@
 return {
-
-  --   {
-  --   'tomasky/bookmarks.nvim',
-  --   -- after = "telescope.nvim",
-  --   event = "BufEnter",
-  --   config = function()
-  --      require('telescope').load_extension('bookmarks')
-  --       require('bookmarks').setup(
-  --         {
-  --           -- sign_priority = 8,  --set bookmark sign priority to cover other sign
-  --           save_file = vim.fn.expand "$HOME/.bookmarks", -- bookmarks save file path
-  --           keywords =  {
-  --             ["@t"] = "☑️ ", -- mark annotation startswith @t ,signs this icon as `Todo`
-  --             ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
-  --             ["@f"] = "⛏ ", -- mark annotation startswith @f ,signs this icon as `Fix`
-  --             ["@n"] = " ", -- mark annotation startswith @n ,signs this icon as `Note`
-  --           },
-  --           on_attach = function(bufnr)
-  --             local bm = require "bookmarks"
-  --             vim.api.nvim_set_keymap("n", "<leader>mm", "<cmd>lua require('bookmarks').bookmark_toggle()<CR>", { noremap = true, silent = true, desc = "Toggle bookmark at current line" })
-  --             vim.api.nvim_set_keymap("n", "<leader>mi", "<cmd>lua require('bookmarks').bookmark_ann()<CR>", { noremap = true, silent = true, desc = "Add or edit mark annotation at current line" })
-  --             vim.api.nvim_set_keymap("n", "<leader>mc", "<cmd>lua require('bookmarks').bookmark_clean()<CR>", { noremap = true, silent = true, desc = "Clean all marks in local buffer" })
-  --             vim.api.nvim_set_keymap("n", "<leader>mn", "<cmd>lua require('bookmarks').bookmark_next()<CR>", { noremap = true, silent = true, desc = "Jump to next mark in local buffer" })
-  --             vim.api.nvim_set_keymap("n", "<leader>mp", "<cmd>lua require('bookmarks').bookmark_prev()<CR>", { noremap = true, silent = true, desc = "Jump to previous mark in local buffer" })
-  --           end,
-  --
-  --           signs = {
-  --               add = { hl = "BookMarksAdd", text = "▶", numhl = "BookMarksAddNr", linehl = "BookMarksAddLn" },
-  --               ann = { hl = "BookMarksAnn", text = "▷", numhl = "BookMarksAnnNr", linehl = "BookMarksAnnLn" },
-  --           },
-  --         }
-  --       )
-  --     end,
-  -- },
   {
     "ValJed/marks.nvim",
     branch = "feat-telescope-support-for-listing-marks",

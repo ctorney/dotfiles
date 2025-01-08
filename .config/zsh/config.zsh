@@ -25,6 +25,8 @@ alias ll="k -h"
 alias c="clear"
 alias imgcat="wezterm imgcat"
 
+eval "$(/usr/libexec/path_helper)"    
+
 case ":${PATH}:" in
     *:"$HOME/.atuin/bin":*)
         ;;
