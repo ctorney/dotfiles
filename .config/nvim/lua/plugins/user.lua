@@ -131,6 +131,7 @@ return {
   { "rafamadriz/friendly-snippets", enabled = false },
   { "lewis6991/gitsigns.nvim", enabled = false },
   { "mfussenegger/nvim-lint", enabled = false },
+  { "folke/flash.nvim", enabled = true },
   {
     "folke/snacks.nvim",
     opts = {
@@ -165,7 +166,7 @@ return {
     "lervag/vimtex",
     ft = { "tex" },
     config = function()
-      vim.g.vimtex_view_general_viewer = "sioyek"
+      vim.g.vimtex_view_general_viewer = "open"
       vim.g.vimtex_view_enabled = 1
       vim.g.vimtex_quickfix_open_on_warning = 0
       vim.g.vimtex_compiler_method = "latexmk"
@@ -225,6 +226,11 @@ return {
         "yaml",
       },
     },
+  },
+  {
+    "christopher-francisco/tmux-status.nvim",
+    lazy = true,
+    opts = {},
   },
   {
     "folke/which-key.nvim",

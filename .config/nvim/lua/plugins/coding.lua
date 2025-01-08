@@ -132,7 +132,6 @@ return {
       vim.g.slime_no_mappings = 1
 
       vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
-
     end,
   },
 
@@ -165,7 +164,7 @@ return {
     lazy = true,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      provider = "copilot", -- Recommend using Claude
+      provider = "claude",
       auto_suggestions_provider = "copilot",
       auto_apply_diff_after_generation = true,
       -- add any opts here

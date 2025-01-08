@@ -1,8 +1,10 @@
 #!/bin/bash
 
-if [ -n "$ZELLIJ" ]; then
-  wezterm cli spawn --new-window -- /usr/bin/ssh $@
-  
-else  
-  /usr/bin/ssh $@
+if [ -n "$TMUX" ]; then
+  tmux detach
+  open --env TMUX="" --env SSH="$@" -a /Applications/Ghostty.app -n --args --initial-command='zsh' # ./start.command #--args -e /Users/colin.torney/.local/bin/start.sh
+  # /usr/bin/ssh "$@"
+  #|| open -a /Applications/Ghostty.app   ;
+else
+  /usr/bin/ssh "$@"
 fi
