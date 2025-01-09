@@ -15,7 +15,7 @@ if [ -n "$SSH" ]; then
 fi
 
 if [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s workspace
+  tmux new-session -A -s TMUX
 fi
 
 PLUGIN_PATH=$HOME/.config/zsh/plugins
