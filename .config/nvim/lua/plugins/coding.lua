@@ -1,6 +1,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    lazy = false,
     opts = {
       filetypes = {
         markdown = true,
@@ -159,9 +160,83 @@ return {
     end,
   },
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+  },
+  {
+    "echasnovski/mini.diff",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    opts = {},
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.diff",
+    },
+    config = true,
+    opts = {
+      display = {
+        chat = {
+          window = { layout = "float" },
+        },
+        diff = {
+          provider = "mini_diff",
+        },
+      },
+      strategies = {
+        chat = {
+          roles = {
+            user = "Human",
+          },
+          adapter = "anthropic",
+          keymaps = {
+            hide = {
+              modes = {
+                n = { "q", "<esc>" },
+              },
+              callback = function(chat)
+                chat.ui:hide()
+              end,
+              description = "Hide the chat buffer",
+            },
+          },
+        },
+        inline = {
+          adapter = "anthropic",
+          keymaps = {
+            accept_change = {
+              modes = {
+                n = "a",
+              },
+              index = 1,
+              callback = "keymaps.accept_change",
+              description = "Accept change",
+            },
+            reject_change = {
+              modes = {
+                n = "r",
+              },
+              index = 2,
+              callback = "keymaps.reject_change",
+              description = "Reject change",
+            },
+          },
+        },
+      },
+    },
+    keys = {
+      { "<leader>a", ":'<,'>CodeCompanion<cr>", desc = "Inline code companion", mode = { "v" }, silent = true },
+      { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
+      { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
+    },
+  },
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = true,
+    enabled = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
       provider = "claude",

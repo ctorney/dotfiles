@@ -1,8 +1,10 @@
 #!/bin/bash
 
 if [ -n "$TMUX" ]; then
-  tmux detach
-  open --env TMUX="" --env SSH="$@" -a /Applications/Ghostty.app -n --args --initial-command='zsh' # ./start.command #--args -e /Users/colin.torney/.local/bin/start.sh
+  cmm='/usr/bin/ssh -o ConnectTimeout=5 '"$@"' ; sleep 2; tmux attach'
+  tmux detach -E "${cmm}"
+  # tmux detach
+  # open --env TMUX="" --env SSH="$@" -a /Applications/Ghostty.app -n --args --initial-command='zsh' # ./start.command #--args -e /Users/colin.torney/.local/bin/start.sh
   # /usr/bin/ssh "$@"
   #|| open -a /Applications/Ghostty.app   ;
 else
