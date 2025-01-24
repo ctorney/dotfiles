@@ -1,0 +1,27 @@
+[general]
+accounts = outlook
+pythonfile = ~/.config/offlineimap/offlineimap.py
+
+[Account outlook]
+localrepository = outlook-local
+remoterepository = outlook-remote
+maxsyncaccounts = 1
+
+[Repository outlook-local]
+type = Maildir
+localfolders = ~/.mail/glasgow
+
+[Repository outlook-remote]
+type = IMAP
+auth_mechanisms = XOAUTH2
+oauth2_access_token_eval = get_token()
+remoteuser = colin.torney@glasgow.ac.uk
+remotehost = outlook.office365.com
+remoteport = 993
+ssl = yes
+ssl_version = tls1_2
+sslcacertfile = /opt/homebrew/etc/openssl@3/cert.pem
+realdelete = no
+sync_deletes = yes
+# only backup the folders listed here
+folderfilter = lambda folder: folder in ['INBOX', 'Drafts', 'Archive', 'Deleted Items', 'Sent Items' ]
