@@ -35,7 +35,6 @@ msglist_result.bold=true
 msglist_*.selected.bold=true
 msglist_*.selected.fg=#010101
 msglist_*.selected.bg=#a7c080
-msglist_unread.selected.bg=#7fbbb3
 
 dirlist_*.selected.bold=true
 dirlist_*.selected.bg=#a7c080

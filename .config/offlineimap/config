@@ -1,6 +1,6 @@
 [general]
 accounts = outlook
-pythonfile = ~/.config/offlineimap/offlineimap.py
+pythonfile = /Users/colin.torney/.config/offlineimap/offlineimap.py
 
 [Account outlook]
 localrepository = outlook-local
@@ -9,7 +9,7 @@ maxsyncaccounts = 1
 
 [Repository outlook-local]
 type = Maildir
-localfolders = ~/.mail/glasgow
+localfolders = /Users/colin.torney/.mail/glasgow
 
 [Repository outlook-remote]
 type = IMAP
