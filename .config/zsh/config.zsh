@@ -6,10 +6,11 @@ export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
 export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
-export MPLBACKEND=module://matplotlib-backend-terminal
 export MPLBACKEND_TRANSPARENT=1
 export MPLBACKEND_CHAFA_OPTS="-f kitty --passthrough tmux"
 
+conda activate tf
+export EDITOR=nvim
 
 if [ -z "$TMUX" ]; then
   exec tmux new-session -A -s TMUX
@@ -25,7 +26,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 alias vi="nvim"
-alias ll="k -h --no-vcs"
+alias ll="eza -l --icons"
+alias ls="eza --icons"
 alias c="clear"
 alias imgcat="wezterm imgcat"
 
@@ -73,7 +75,6 @@ export FZF_ALT_C_OPTS="
   --color header:italic
   --header ''"
 
-conda activate tf
 
 [[ ! -f $HOME/.config/zsh/.p10k.zsh ]] || source $HOME/.config/zsh/.p10k.zsh
 
@@ -81,3 +82,17 @@ bindkey "^[[H"   beginning-of-line
 bindkey "^[[F"   end-of-line
 bindkey "^[[1;5C" forward-word
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  if [ -n "$TMUX" ]; then
+    tmux set status off
+  fi
+	yazi "$@" --cwd-file="$tmp"
+  if [ -n "$TMUX" ]; then
+    tmux set status on
+  fi
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

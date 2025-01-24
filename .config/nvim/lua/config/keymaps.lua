@@ -30,3 +30,5 @@ vim.keymap.set("v", "<C-h>", "<cmd>lua require('smart-splits').move_cursor_left(
 vim.keymap.set("v", "<C-j>", "<cmd>lua require('smart-splits').move_cursor_down()<cr>")
 vim.keymap.set("v", "<C-k>", "<cmd>lua require('smart-splits').move_cursor_up()<cr>")
 vim.keymap.set("v", "<C-l>", "<cmd>lua require('smart-splits').move_cursor_right()<cr>")
+
+vim.keymap.del("n", "<c-_>", { noremap = true })

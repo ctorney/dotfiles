@@ -192,7 +192,7 @@ mouse_bindings = {
 
 
 config = {
-  leader = { key = "a", mods = "CTRL" },
+  leader = { key = "b", mods = "CTRL" },
   window_background_opacity = 0.80,
   audible_bell = "Disabled",
 

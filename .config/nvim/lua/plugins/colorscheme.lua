@@ -17,6 +17,7 @@ return {
           hl.MiniDiffOverDelete = { fg = palette.red, bg = palette.bg_dim }
           hl.MiniDiffOverChange = { fg = palette.blue, bg = palette.bg_dim }
           hl.DiffChange = { fg = palette.grey0, bg = palette.none }
+          -- hl.BlinkCmpSignatureHelpBorder = { fg = palette.grey0, bg = palette.red }
         end,
       })
     end,
