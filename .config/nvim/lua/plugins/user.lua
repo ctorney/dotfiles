@@ -59,13 +59,6 @@ return {
   --   },
   -- },
   -- { "folke/todo-comments.nvim", version = "*" },
-  {
-    "pimalaya/himalaya-vim",
-    config = function()
-      vim.g.himalaya_folder_picker = "telescope"
-      vim.g.himalaya_folder_picker_telescope_preview = 1
-    end,
-  },
 
   {
     "okuuva/auto-save.nvim",
@@ -245,11 +238,6 @@ return {
         "yaml",
       },
     },
-  },
-  {
-    "christopher-francisco/tmux-status.nvim",
-    lazy = true,
-    opts = {},
   },
   {
     "folke/which-key.nvim",
