@@ -25,11 +25,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-alias vi="nvim"
-alias ll="eza -l --icons"
-alias ls="eza --icons"
-alias c="clear"
-alias imgcat="wezterm imgcat"
 
 # eval "$(/usr/libexec/path_helper)"    
 
@@ -48,11 +43,50 @@ source $PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $PLUGIN_PATH/zsh-ask/zsh-ask.zsh
 source $PLUGIN_PATH/zsh-ai-commands/zsh-ai-commands.zsh
 source $PLUGIN_PATH/k/k.sh
+# source $PLUGIN_PATH/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source $PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
+autoload -U compinit; compinit
+source $PLUGIN_PATH/fzf-tab/fzf-tab.plugin.zsh
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+bindkey '^I' expand-or-complete
+bindkey '^I^I' fzf-tab-complete
+# bindkey              '^I' menu-select
+# bindkey "$terminfo[kcbt]" menu-select
+# bindkey -M menuselect              '^I'         menu-complete
+# bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
+# zstyle ':autocomplete:*' add-space 
+# zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
+# bindkey -M menuselect '^M' .accept-line
+# bindkey '^I^I' autosuggest-accept
+# # all Tab widgets
+# zstyle ':autocomplete:*complete*:*' insert-ambiguous no
+# # all history widgets
+# zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+# # ^S
+# zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+# bindkey '^R' .history-incremental-search-backward
+# bindkey '^S' .history-incremental-search-forward
+# () {
+#    local -a prefix=( '\e'{\[,O} )
+#    local -a up=( ${^prefix}A ) down=( ${^prefix}B )
+#    local key=
+#    for key in $up[@]; do
+#       bindkey "$key" up-line-or-history
+#    done
+#    for key in $down[@]; do
+#       bindkey "$key" down-line-or-history
+#    done
+# }
+
 source <(fzf --zsh)
 
+alias vi="nvim"
+alias ll="eza -l --icons"
+alias ls="eza --icons"
+alias c="clear"
+alias imgcat="wezterm imgcat"
 
-export FZF_DEFAULT_OPTS="--preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} --style=header,grid || cat {}) 2> /dev/null | head -300' --preview-window=right:50%:wrap --bind '?:toggle-preview' --bind 'ctrl-y:become([[ -f {} && -r {} ]] && nvim {} || echo \"Not a readable text file\")'
+export FZF_DEFAULT_OPTS="--tmux --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} --style=header,grid || cat {}) 2> /dev/null | head -300' --preview-window=right:50%:wrap --bind '?:toggle-preview' --bind 'ctrl-y:become([[ -f {} && -r {} ]] && nvim {} || echo \"Not a readable text file\")'
 --header ''"
 
 # Exclude those directories even if not listed in .gitignore, or if .gitignore is missing

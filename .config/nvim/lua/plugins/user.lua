@@ -123,7 +123,7 @@ return {
   {
     "epwalsh/obsidian.nvim",
     version = "*",
-    lazy = true,
+    lazy = false,
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -134,6 +134,24 @@ return {
           name = "Notes",
           path = "~/Obsidian",
         },
+      },
+    },
+  },
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>fe",
+        mode = { "n", "v" },
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+      },
+      {
+        -- Open in the current working directory
+        "<leader>fy",
+        "<cmd>Yazi ~<cr>",
+        desc = "Open the file manager in nvim's working directory",
       },
     },
   },

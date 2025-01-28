@@ -19,3 +19,12 @@
 [submodule ".config/tmux/tmux-power"]
 	path = .config/tmux/tmux-power
 	url = https://github.com/wfxr/tmux-power.git
+[submodule ".config/zsh/plugins/zsh-autocomplete"]
+	path = .config/zsh/plugins/zsh-autocomplete
+	url = https://github.com/marlonrichert/zsh-autocomplete.git
+[submodule ".config/zsh/plugins/fzf-tab-completion"]
+	path = .config/zsh/plugins/fzf-tab-completion
+	url = https://github.com/lincheney/fzf-tab-completion.git
+[submodule ".config/zsh/plugins/fzf-tab"]
+	path = .config/zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab

@@ -43,7 +43,7 @@ return {
         { "<leader>fE", "<cmd>Telescope file_browser path=~<cr>", desc = "File browser (root)" },
         -- { "<leader>fF", "<cmd>Telescope find_files<cr>", desc = "Find files (root)" },
         {
-          "<leader>fe",
+          "<leader>fx",
           "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
           desc = "File browser (current wd)",
         },
