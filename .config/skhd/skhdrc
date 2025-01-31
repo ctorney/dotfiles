@@ -22,6 +22,7 @@ shift + alt - x : yabai -m space --mirror x-axis
 
 # toggle window float
 alt - v : yabai -m window --toggle float --grid 4:4:1:1:2:2
+alt - c : sh ~/.config/skhd/scratchpad.sh
 
 
 # -- Modifying Window Size --

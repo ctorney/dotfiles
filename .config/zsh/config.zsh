@@ -25,6 +25,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+alias vi="nvim"
+alias ll="eza -l --icons=always"
+alias ls="eza --icons=always"
+alias c="clear"
+alias imgcat="wezterm imgcat"
 
 # eval "$(/usr/libexec/path_helper)"    
 
@@ -80,11 +85,6 @@ bindkey '^I^I' fzf-tab-complete
 
 source <(fzf --zsh)
 
-alias vi="nvim"
-alias ll="eza -l --icons"
-alias ls="eza --icons"
-alias c="clear"
-alias imgcat="wezterm imgcat"
 
 export FZF_DEFAULT_OPTS="--tmux --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} --style=header,grid || cat {}) 2> /dev/null | head -300' --preview-window=right:50%:wrap --bind '?:toggle-preview' --bind 'ctrl-y:become([[ -f {} && -r {} ]] && nvim {} || echo \"Not a readable text file\")'
 --header ''"
@@ -118,13 +118,7 @@ bindkey "^[[1;5C" forward-word
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  if [ -n "$TMUX" ]; then
-    tmux set status off
-  fi
 	yazi "$@" --cwd-file="$tmp"
-  if [ -n "$TMUX" ]; then
-    tmux set status on
-  fi
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		builtin cd -- "$cwd"
 	fi

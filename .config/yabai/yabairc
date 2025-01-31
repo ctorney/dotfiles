@@ -74,7 +74,7 @@ yabai -m config                                 \
 
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^AnyConnect$" manage=off
+yabai -m rule --add app="^Calendar$" scratchpad="Calendar" opacity=".95" grid="11:11:1:1:9:9"
 borders active_color=0xffd3c6aa inactive_color=0xff7a8478 width=5.0 &
 echo "yabai configuration loaded.."
