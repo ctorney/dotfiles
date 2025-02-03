@@ -12,6 +12,10 @@
 -- end
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "*.FCMacro",
+  command = "set filetype=python",
+})
+vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = "*.ino",
   command = "set filetype=c",
 })
