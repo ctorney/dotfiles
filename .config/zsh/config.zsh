@@ -25,11 +25,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-alias vi="nvim"
+# alias vi="nvim"
 alias ll="eza -l --icons=always"
 alias ls="eza --icons=always"
 alias c="clear"
-alias imgcat="wezterm imgcat"
+# alias imgcat="wezterm imgcat"
+alias vi='NVIM_APPNAME="nvim-kickstart" nvim'
 
 # eval "$(/usr/libexec/path_helper)"    
 
@@ -53,8 +54,13 @@ source $PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 autoload -U compinit; compinit
 source $PLUGIN_PATH/fzf-tab/fzf-tab.plugin.zsh
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-bindkey '^I' expand-or-complete
-bindkey '^I^I' fzf-tab-complete
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags   --color=bg+:#A7C080,fg+:#1e2326,gutter:-1,pointer:#A7C080,hl+:#1e2326
+
+# bindkey '^I' expand-or-complete
+# bindkey '^I' fzf-tab-complete
 # bindkey              '^I' menu-select
 # bindkey "$terminfo[kcbt]" menu-select
 # bindkey -M menuselect              '^I'         menu-complete
