@@ -17,12 +17,13 @@ return {
 			require("everforest").setup({
 				background = "hard",
 				transparent_background_level = 2,
-				float_style = "none",
+				float_style = "dim",
 				on_highlights = function(hl, palette)
 					hl.NormalFloat = { bg = palette.none }
 					hl.FloatBorder = { bg = palette.none }
 					hl.FloatTitle = { bg = palette.none }
 					hl.MiniDiffOverAdd = { fg = palette.blue, bg = palette.bg_dim }
+					hl.SnacksPickerDir = { fg = palette.fg }
 					hl.MiniDiffOverDelete = { fg = palette.red, bg = palette.bg_dim }
 					hl.MiniDiffOverChange = { fg = palette.blue, bg = palette.bg_dim }
 					hl.DiffChange = { fg = palette.grey0, bg = palette.none }
@@ -55,59 +56,59 @@ return {
 			vim.g.lsp_handlers_enabled = false
 		end,
 	},
--- 	{
--- 		"goolord/alpha-nvim",
--- 		event = "VimEnter",
--- 		config = function()
--- 			local alpha = require("alpha")
--- 			local dashboard = require("alpha.themes.dashboard")
---
--- 			-- Set header
--- 			dashboard.section.header.val = {
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"",
--- 				"                                                     ",
--- 				"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
--- 				"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
--- 				"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
--- 				"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
--- 				"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
--- 				"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
--- 				"                                                     ",
--- 			}
---
--- 			-- Set menu
--- 			dashboard.section.buttons.val = {
--- 				dashboard.button("n", "  > New file", ":ene <BAR> startinsert <CR>"),
--- 				dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
--- 				dashboard.button("c", "  > Config", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
--- 				dashboard.button("q", "  > Quit", ":qa<CR>"),
--- 			}
---
--- 			-- Send config to alpha
--- 			alpha.setup(dashboard.opts)
---
--- 			-- Disable folding on alpha buffer
--- 			vim.cmd([[
---     autocmd FileType alpha setlocal nofoldenable
--- ]])
--- 		end,
--- 	},
+	-- 	{
+	-- 		"goolord/alpha-nvim",
+	-- 		event = "VimEnter",
+	-- 		config = function()
+	-- 			local alpha = require("alpha")
+	-- 			local dashboard = require("alpha.themes.dashboard")
+	--
+	-- 			-- Set header
+	-- 			dashboard.section.header.val = {
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"",
+	-- 				"                                                     ",
+	-- 				"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+	-- 				"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+	-- 				"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+	-- 				"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+	-- 				"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+	-- 				"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+	-- 				"                                                     ",
+	-- 			}
+	--
+	-- 			-- Set menu
+	-- 			dashboard.section.buttons.val = {
+	-- 				dashboard.button("n", "  > New file", ":ene <BAR> startinsert <CR>"),
+	-- 				dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
+	-- 				dashboard.button("c", "  > Config", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+	-- 				dashboard.button("q", "  > Quit", ":qa<CR>"),
+	-- 			}
+	--
+	-- 			-- Send config to alpha
+	-- 			alpha.setup(dashboard.opts)
+	--
+	-- 			-- Disable folding on alpha buffer
+	-- 			vim.cmd([[
+	--     autocmd FileType alpha setlocal nofoldenable
+	-- ]])
+	-- 		end,
+	-- 	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
