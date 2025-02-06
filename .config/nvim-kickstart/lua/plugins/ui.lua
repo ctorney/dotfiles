@@ -56,6 +56,14 @@ return {
 			vim.g.lsp_handlers_enabled = false
 		end,
 	},
+	{
+		"sphamba/smear-cursor.nvim",
+		event = "VeryLazy",
+		opts = {
+			hide_target_hack = true,
+			cursor_color = "none",
+		},
+	},
 	-- 	{
 	-- 		"goolord/alpha-nvim",
 	-- 		event = "VimEnter",
