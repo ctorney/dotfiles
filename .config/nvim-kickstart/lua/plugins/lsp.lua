@@ -154,7 +154,7 @@ return -- LSP Plugins
 				end
 				vim.diagnostic.config({
 					signs = { text = diagnostic_signs },
-					virtual_text = { true, severity = { min = vim.diagnostic.severity.ERROR } },
+					virtual_text = false, --, severity = { min = vim.diagnostic.severity.ERROR } },
 					underline = false,
 				})
 			end

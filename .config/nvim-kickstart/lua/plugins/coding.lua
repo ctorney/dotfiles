@@ -114,7 +114,7 @@ return {
 		enabled = true,
 	},
 	{
-		"olimorris/codecompanion.nvim",
+		"colimorris/codecompanion.nvim",
 		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -177,6 +177,7 @@ return {
 		keys = {
 			{ "<leader>i", ":'<,'>CodeCompanion<cr>", desc = "Inline code companion", mode = { "v" }, silent = true },
 			{ "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
+			{ "gt", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
 			{ "<c-p>", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v", "i" } },
 			{ "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
 		},

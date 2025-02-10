@@ -120,4 +120,8 @@ return {
 			}
 		end,
 	},
+	{
+		"WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
+		Lazy = false,
+	},
 }
