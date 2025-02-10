@@ -4,9 +4,6 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
 		dashboard = { enabled = true },
 		indent = { enabled = true },
 		bufdelete = { enabled = true },
@@ -23,11 +20,8 @@ return {
 				},
 			},
 			win = {
-				-- input window
 				input = {
 					keys = {
-						-- to close the picker on ESC instead of going to normal mode,
-						-- add the following keymap to your config
 						["<Esc>"] = { "close", mode = { "n", "i" } },
 					},
 				},

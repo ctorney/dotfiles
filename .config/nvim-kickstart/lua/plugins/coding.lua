@@ -30,23 +30,6 @@ return {
 			},
 		},
 	},
-	-- lazy.nvim
-	-- {
-	--   "zbirenbaum/copilot-cmp",
-	--   dependencies = "copilot.lua",
-	--   opts = {},
-	--   config = function(_, opts)
-	--     local copilot_cmp = require("copilot_cmp")
-	--     copilot_cmp.setup(opts)
-	--     -- attach cmp source whenever copilot attaches
-	--     -- fixes lazy-loading issues with the copilot cmp source
-	--     require("lazyvim.util").lsp.on_attach(function(client)
-	--       if client.name == "copilot" then
-	--         copilot_cmp._on_insert_enter({})
-	--       end
-	--     end)
-	--   end,
-	-- },
 	{
 		"echasnovski/mini.comment",
 		opts = {
@@ -106,7 +89,7 @@ return {
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			source = {
-				attach = function(buf_id)
+				attach = function()
 					return false
 				end,
 			},
@@ -114,7 +97,7 @@ return {
 		enabled = true,
 	},
 	{
-		"colimorris/codecompanion.nvim",
+		"olimorris/codecompanion.nvim",
 		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -127,7 +110,7 @@ return {
 			display = {
 				chat = {
 					window = { layout = "float", title = " Code Companion " },
-					start_in_insert_mode = true, -- Open the chat buffer in insert mode?
+					start_in_insert_mode = true,
 				},
 				diff = {
 					provider = "mini_diff",

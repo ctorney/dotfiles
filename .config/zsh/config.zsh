@@ -9,6 +9,12 @@ export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 export MPLBACKEND_TRANSPARENT=1
 export MPLBACKEND_CHAFA_OPTS="-f kitty --passthrough tmux"
 
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt INC_APPEND_HISTORY
+
 conda activate tf
 export EDITOR=nvim
 
@@ -92,7 +98,7 @@ zstyle ':fzf-tab:*' fzf-flags   --color=bg+:#A7C080,fg+:#1e2326,gutter:-1,pointe
 source <(fzf --zsh)
 
 
-export FZF_DEFAULT_OPTS="--tmux --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} --style=header,grid || cat {}) 2> /dev/null | head -300' --preview-window=right:50%:wrap --bind '?:toggle-preview' --bind 'ctrl-y:become([[ -f {} && -r {} ]] && nvim {} || echo \"Not a readable text file\")'
+export FZF_DEFAULT_OPTS="--preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} --style=header,grid || cat {}) 2> /dev/null | head -300' --preview-window=right:50%:wrap --bind '?:toggle-preview' --bind 'ctrl-y:become([[ -f {} && -r {} ]] && nvim {} || echo \"Not a readable text file\")'
 --header ''"
 
 # Exclude those directories even if not listed in .gitignore, or if .gitignore is missing

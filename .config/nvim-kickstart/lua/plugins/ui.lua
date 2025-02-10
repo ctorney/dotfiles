@@ -23,7 +23,6 @@ return {
 					hl.FloatBorder = { bg = palette.none }
 					hl.FloatTitle = { bg = palette.none }
 					hl.MiniDiffOverAdd = { fg = palette.blue, bg = palette.bg_dim }
-					hl.SnacksPickerDir = { fg = palette.fg }
 					hl.MiniDiffOverDelete = { fg = palette.red, bg = palette.bg_dim }
 					hl.MiniDiffOverChange = { fg = palette.blue, bg = palette.bg_dim }
 					hl.DiffChange = { fg = palette.grey0, bg = palette.none }
@@ -38,7 +37,6 @@ return {
 		dependencies = { "MunifTanjim/nui.nvim" },
 		opts = {
 			lsp = {
-				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 					["vim.lsp.util.stylize_markdown"] = true,
@@ -46,10 +44,10 @@ return {
 				},
 			},
 			presets = {
-				bottom_search = false, -- use a classic bottom cmdline for search
-				command_palette = false, -- position the cmdline and popupmenu together
-				long_message_to_split = false, -- long messages will be sent to a split
-				lsp_doc_border = false, -- add a border to hover docs and signature help
+				bottom_search = false,
+				command_palette = false,
+				long_message_to_split = false,
+				lsp_doc_border = false,
 			},
 		},
 		init = function()
@@ -64,59 +62,6 @@ return {
 			cursor_color = "none",
 		},
 	},
-	-- 	{
-	-- 		"goolord/alpha-nvim",
-	-- 		event = "VimEnter",
-	-- 		config = function()
-	-- 			local alpha = require("alpha")
-	-- 			local dashboard = require("alpha.themes.dashboard")
-	--
-	-- 			-- Set header
-	-- 			dashboard.section.header.val = {
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"",
-	-- 				"                                                     ",
-	-- 				"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-	-- 				"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-	-- 				"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-	-- 				"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-	-- 				"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-	-- 				"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-	-- 				"                                                     ",
-	-- 			}
-	--
-	-- 			-- Set menu
-	-- 			dashboard.section.buttons.val = {
-	-- 				dashboard.button("n", "  > New file", ":ene <BAR> startinsert <CR>"),
-	-- 				dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
-	-- 				dashboard.button("c", "  > Config", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-	-- 				dashboard.button("q", "  > Quit", ":qa<CR>"),
-	-- 			}
-	--
-	-- 			-- Send config to alpha
-	-- 			alpha.setup(dashboard.opts)
-	--
-	-- 			-- Disable folding on alpha buffer
-	-- 			vim.cmd([[
-	--     autocmd FileType alpha setlocal nofoldenable
-	-- ]])
-	-- 		end,
-	-- 	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",

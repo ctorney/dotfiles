@@ -12,6 +12,7 @@
 # sudo yabai --load-sa
 #
 
+
 # global settings
 yabai -m config                                 \
     external_bar                 all:0:0       \
@@ -33,17 +34,25 @@ yabai -m config                                 \
     split_ratio                  0.618           \
     split_type                   auto           \
     auto_balance                 off            \
-    top_padding                  2              \
     bottom_padding               10             \
-    left_padding                 2             \
-    right_padding                2             \
-    window_gap                   4             \
     layout                       bsp            \
     mouse_modifier               fn             \
     mouse_action1                move           \
     mouse_action2                resize         \
     mouse_drop_action            swap
 
+# check if we're on a 5k display
+if [[ "$(yabai -m query --displays | jq '.[].frame.width')" -gt 5120 ]]; then
+    yabai -m config top_padding                  2              \
+    left_padding                 2             \
+    right_padding                2             \
+    window_gap                   4             
+else
+    yabai -m config top_padding                  4              \
+    left_padding                 4             \
+    right_padding                4             \
+    window_gap                   8             
+fi
 
 
 # NOTCH_UUID="37D8832A-2D66-02CA-B9F7-8F30A301B230"
