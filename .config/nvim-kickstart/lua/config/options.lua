@@ -67,8 +67,8 @@ vim.opt.fillchars = {
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+
+vim.opt.inccommand = "nosplit"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -139,3 +139,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+vim.g.python3_host_prog = "/opt/miniconda3/envs/tf/bin/python"

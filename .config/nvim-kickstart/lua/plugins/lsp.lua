@@ -181,12 +181,7 @@ return -- LSP Plugins
 				pyright = {
 					settings = {
 						python = {
-							diagnostics = {
-								-- virtual_text = { true, severity = { min = vim.diagnostic.severity.ERROR } },
-								-- underline = false,
-								-- 			signs = { true, severity = { min = vim.diagnostic.severity.WARN } },
-								-- 			update_in_insert = false,
-							},
+							pythonPath = "/opt/miniconda3/envs/tf/bin/python",
 						},
 					},
 				},

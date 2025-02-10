@@ -104,7 +104,13 @@ return {
 	{
 		"echasnovski/mini.diff",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-		opts = {},
+		opts = {
+			source = {
+				attach = function(buf_id)
+					return false
+				end,
+			},
+		},
 		enabled = true,
 	},
 	{
@@ -114,13 +120,14 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"echasnovski/mini.diff",
-			"saghen/blink.nvim",
+			-- "saghen/blink.nvim",
 		},
 		config = true,
 		opts = {
 			display = {
 				chat = {
-					window = { layout = "float" },
+					window = { layout = "float", title = " Code Companion " },
+					start_in_insert_mode = true, -- Open the chat buffer in insert mode?
 				},
 				diff = {
 					provider = "mini_diff",

@@ -4,7 +4,7 @@ return {
 	version = "*",
 	opts = function(_, opts)
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-			default = { "lsp", "path", "buffer", "codecompanion" },
+			default = { "lsp", "path", "buffer" }, -- "codecompanion" },
 			providers = {
 				lsp = {
 					name = "lsp",

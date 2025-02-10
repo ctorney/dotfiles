@@ -9,38 +9,33 @@ return {
 		-- refer to the configuration section below
 		dashboard = { enabled = true },
 		indent = { enabled = true },
+		bufdelete = { enabled = true },
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
 		statuscolumn = { enabled = true },
-		picker = {
-			enabled = true,
-			sources = {
-				explorer = {
-					layout = { preset = "default", preview = true },
-				},
-			},
-			win = {
-				-- input window
-				input = {
-					keys = {
-						-- to close the picker on ESC instead of going to normal mode,
-						-- add the following keymap to your config
-						["<Esc>"] = { "close", mode = { "n", "i" } },
-					},
-				},
-			},
-		},
+		-- picker = {
+		-- 	enabled = true,
+		-- 	sources = {
+		-- 		explorer = {
+		-- 			layout = { preset = "default", preview = true },
+		-- 			auto_close = true,
+		-- 		},
+		-- 	},
+		-- 	win = {
+		-- 		-- input window
+		-- 		input = {
+		-- 			keys = {
+		-- 				-- to close the picker on ESC instead of going to normal mode,
+		-- 				-- add the following keymap to your config
+		-- 				["<Esc>"] = { "close", mode = { "n", "i" } },
+		-- 			},
+		-- 		},
+		-- 	},
+		-- },
 	},
 	keys = {
 		-- Top Pickers & Explorer
-		{
-			"<leader><space>",
-			function()
-				Snacks.picker.smart()
-			end,
-			desc = "Smart Find Files",
-		},
 		{
 			"<leader>fg",
 			function()
@@ -124,7 +119,7 @@ return {
 		{
 			"<leader>fy",
 			function()
-				Snacks.picker.cliphist()
+				Snacks.picker.registers()
 			end,
 			desc = "Clipboard History",
 		},
