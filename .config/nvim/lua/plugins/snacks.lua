@@ -19,14 +19,21 @@ return {
 					layout = { preset = "default", preview = true },
 					auto_close = true,
 					focus = "input",
+					win = {
+						input = {
+							keys = {
+								["<Esc>"] = { "close", mode = { "n", "i" } },
+								["<Left>"] = { "explorer_up", mode = { "n", "i" } },
+								["<Right>"] = { "explorer_focus", mode = { "n", "i" } },
+							},
+						},
+					},
 				},
 			},
 			win = {
 				input = {
 					keys = {
 						["<Esc>"] = { "close", mode = { "n", "i" } },
-						[".."] = { "explorer_up", mode = { "n", "i" } },
-						["<CR>"] = { "explorer_focus", mode = { "n", "i" } },
 					},
 				},
 			},

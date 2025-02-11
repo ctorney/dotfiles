@@ -36,7 +36,7 @@ alias ll="eza -l --icons=always"
 alias ls="eza --icons=always"
 alias c="clear"
 # alias imgcat="wezterm imgcat"
-alias vi='NVIM_APPNAME="nvim-kickstart" nvim'
+alias vi='nvim'
 
 # eval "$(/usr/libexec/path_helper)"    
 
