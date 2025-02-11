@@ -31,17 +31,6 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.comment",
-		opts = {
-			mappings = {
-				comment = "gc",
-				comment_visual = "<leader>/",
-				textobject = "gc",
-				comment_line = "<leader>/",
-			},
-		},
-	},
-	{
 		"jpalardy/vim-slime",
 		lazy = false,
 		ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },

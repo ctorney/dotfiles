@@ -10,6 +10,7 @@ return {
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
+		image = { enabled = true },
 		statuscolumn = { enabled = true },
 		picker = {
 			enabled = true,
@@ -17,12 +18,15 @@ return {
 				explorer = {
 					layout = { preset = "default", preview = true },
 					auto_close = true,
+					focus = "input",
 				},
 			},
 			win = {
 				input = {
 					keys = {
 						["<Esc>"] = { "close", mode = { "n", "i" } },
+						[".."] = { "explorer_up", mode = { "n", "i" } },
+						["<CR>"] = { "explorer_focus", mode = { "n", "i" } },
 					},
 				},
 			},
