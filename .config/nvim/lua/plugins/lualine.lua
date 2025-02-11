@@ -40,7 +40,7 @@ return {
             -- stylua: ignore
 						-- Snacks.profiler.status(),
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-						{ "filename", path = 3 },
+						{ "filename", path = 3, file_status = false },
 						{
 							"diagnostics",
 							symbols = {

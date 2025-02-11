@@ -82,6 +82,13 @@ return {
 	},
 	{
 		"akinsho/bufferline.nvim",
-		opts = { options = { indicator = { style = "none" }, separator_style = "thin", show_tab_indicators = false } },
+		opts = {
+			options = {
+				indicator = { style = "none" },
+				separator_style = "thin",
+				show_tab_indicators = false,
+				always_show_bufferline = false,
+			},
+		},
 	},
 }
