@@ -32,8 +32,8 @@ return {
 					disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
 				},
 				sections = {
-					lualine_a = { "hostname" },
-					lualine_b = { "mode" },
+					lualine_a = { { "hostname" } },
+					lualine_b = { { "mode" } },
 
 					lualine_c = {},
 					lualine_x = {
