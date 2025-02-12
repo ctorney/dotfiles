@@ -16,7 +16,12 @@ return {
 			enabled = true,
 			sources = {
 				explorer = {
+					tree = false,
 					layout = { preset = "default", preview = true },
+					-- cmd = "fd --exact-depth=1",
+					exclude = { "*/*" },
+					include = { "*/" },
+					-- args = "--exact-depth=1",
 					auto_close = true,
 					focus = "input",
 					win = {
