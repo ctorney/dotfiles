@@ -20,7 +20,7 @@ return {
 					layout = { preset = "default", preview = true },
 					-- cmd = "fd --exact-depth=1",
 					exclude = { "*/*" },
-					include = { "*/" },
+					include = { "*" },
 					-- args = "--exact-depth=1",
 					auto_close = true,
 					focus = "input",
@@ -28,8 +28,13 @@ return {
 						input = {
 							keys = {
 								["<Esc>"] = { "close", mode = { "n", "i" } },
-								["<Left>"] = { "explorer_up", mode = { "n", "i" } },
+								-- ["<Left>"] = { "explorer_up", mode = { "n", "i" } },
+								["<Left>"] = {
+									{ "explorer_close_all", "explorer_up" },
+									mode = { "n", "i" },
+								},
 								["<Right>"] = { "explorer_focus", mode = { "n", "i" } },
+								-- ["<C-h>"] = { "toggle_hidden", mode = { "n", "i" } },
 							},
 						},
 					},

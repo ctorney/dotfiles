@@ -94,3 +94,18 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.linebreak = true
 	end,
 })
+vim.api.nvim_create_autocmd("BufLeave", {
+	group = vim.api.nvim_create_augroup("codecompanion_unlist", { clear = true }),
+	callback = function()
+		-- Get all buffers
+		local buffers = vim.api.nvim_list_bufs()
+		-- Check each buffer
+		for _, buf in ipairs(buffers) do
+			-- If buffer exists and has codecompanion filetype
+			if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].filetype == "codecompanion" then
+				-- Set the buffer to unlisted
+				vim.bo[buf].buflisted = false
+			end
+		end
+	end,
+})

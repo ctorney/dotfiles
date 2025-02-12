@@ -16,6 +16,7 @@ vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = tr
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n", "x" }, "<leader>/", "gcc", { desc = "Comment line or visual selection", remap = true })
 vim.keymap.set("n", "<leader>bd", "<cmd>:bd<cr>", { desc = "Delete buffer" })
+
 vim.keymap.set("n", "<leader>td", function()
 	local current_config = vim.diagnostic.config()
 	if current_config == nil then

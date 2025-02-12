@@ -130,7 +130,7 @@ return {
 					keymaps = {
 						hide = {
 							modes = {
-								n = { "q", "<esc>" },
+								n = { "q", "<esc>", "<BS>" },
 							},
 							callback = function(chat)
 								chat.ui:hide()
