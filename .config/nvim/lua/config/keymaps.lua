@@ -28,5 +28,5 @@ vim.keymap.set("n", "<leader>td", function()
 	})
 end, { desc = "Toggle virtual text" })
 
-local functions = require("functions")
+local functions = require("config.functions")
 vim.keymap.set("n", "<leader>fe", functions.ExplorerOpenCurrentDir, { desc = "File explorer" })

@@ -31,7 +31,6 @@ yabai -m config                                 \
     normal_window_opacity        0.90           \
     window_opacity               off            \
     insert_feedback_color        0xffd75f5f     \
-    split_ratio                  0.618           \
     split_type                   auto           \
     auto_balance                 off            \
     bottom_padding               10             \
@@ -42,16 +41,19 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 # check if we're on a 5k display
-if [[ "$(yabai -m query --displays | jq '.[].frame.width')" -gt 5120 ]]; then
-    yabai -m config top_padding                  2              \
+
+if [[ "$(yabai -m query --displays | jq -r '.[].uuid')" = "550B7538-30E1-4933-832C-5D090B413997" ]]; then
+    yabai -m config top_padding  2             \
     left_padding                 2             \
     right_padding                2             \
-    window_gap                   4             
+    window_gap                   4             \
+    split_ratio                  0.55           
 else
-    yabai -m config top_padding                  4              \
+    yabai -m config top_padding  4             \
     left_padding                 4             \
     right_padding                4             \
-    window_gap                   8             
+    window_gap                   8             \
+    split_ratio                  0.618           
 fi
 
 
@@ -84,6 +86,7 @@ fi
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^AnyConnect$" manage=off
+yabai -m rule --add app="^Zoom$" manage=off
 yabai -m rule --add app="^Calendar$" scratchpad="Calendar" opacity=".95" grid="11:11:1:1:9:9"
 borders active_color=0xffd3c6aa inactive_color=0xff7a8478 width=5.0 &
 echo "yabai configuration loaded.."
