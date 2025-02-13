@@ -51,6 +51,7 @@ return {
 						input = {
 							keys = {
 								["<CR>"] = { "smart_enter", mode = { "n", "i" } },
+								["<S-CR>"] = { "explorer_open", mode = { "n", "i" } },
 								["<Left>"] = { "up_and_close", mode = { "n", "i" } },
 								["<Right>"] = { "enter_and_clear", mode = { "n", "i" } },
 								["<C-h>"] = { "toggle_hidden", mode = { "n", "i" } },
