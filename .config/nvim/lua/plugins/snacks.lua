@@ -17,24 +17,43 @@ return {
 			sources = {
 				explorer = {
 					tree = false,
+					follow_file = false,
 					layout = { preset = "default", preview = true },
-					-- cmd = "fd --exact-depth=1",
 					exclude = { "*/*" },
-					include = { "*" },
-					-- args = "--exact-depth=1",
+					include = { "*", ".*" },
 					auto_close = true,
+					actions = {
+						up_and_close = function(picker, item)
+							local Tree = require("snacks.explorer.tree")
+							picker:set_cwd(vim.fs.dirname(picker:cwd()))
+							Tree:close_all(picker:cwd())
+							picker:find()
+						end,
+						enter_and_clear = function(picker, item)
+							picker:set_cwd(picker:dir())
+							picker.input:set("", "")
+							picker:find()
+						end,
+						smart_enter = function(picker, item, action)
+							if not item then
+								return
+							elseif item.dir then
+								picker:set_cwd(picker:dir())
+								picker.input:set("", "")
+								picker:find()
+							else
+								Snacks.picker.actions.jump(picker, item, action)
+							end
+						end,
+					},
 					focus = "input",
 					win = {
 						input = {
 							keys = {
-								["<Esc>"] = { "close", mode = { "n", "i" } },
-								-- ["<Left>"] = { "explorer_up", mode = { "n", "i" } },
-								["<Left>"] = {
-									{ "explorer_close_all", "explorer_up" },
-									mode = { "n", "i" },
-								},
-								["<Right>"] = { "explorer_focus", mode = { "n", "i" } },
-								-- ["<C-h>"] = { "toggle_hidden", mode = { "n", "i" } },
+								["<CR>"] = { "smart_enter", mode = { "n", "i" } },
+								["<Left>"] = { "up_and_close", mode = { "n", "i" } },
+								["<Right>"] = { "enter_and_clear", mode = { "n", "i" } },
+								["<C-h>"] = { "toggle_hidden", mode = { "n", "i" } },
 							},
 						},
 					},
@@ -65,13 +84,13 @@ return {
 			end,
 			desc = "Notification History",
 		},
-		{
-			"<leader>fe",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "File Explorer",
-		},
+		-- {
+		-- 	"<leader>fe",
+		-- 	function()
+		-- 		Snacks.explorer()
+		-- 	end,
+		-- 	desc = "File Explorer",
+		-- },
 		-- find
 		{
 			"<leader>fb",
