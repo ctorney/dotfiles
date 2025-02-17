@@ -88,12 +88,12 @@ return {
 				separator_style = "thin",
 				show_tab_indicators = false,
 				always_show_bufferline = false,
-				custom_filter = function(buf_number)
-					-- filter out filetypes you don't want to see
-					if vim.bo[buf_number].filetype ~= "codecompanion" then
-						return true
-					end
-				end,
+				-- custom_filter = function(buf_number)
+				-- 	-- filter out filetypes you don't want to see
+				-- 	if vim.bo[buf_number].filetype ~= "codecompanion" then
+				-- 		return true
+				-- 	end
+				-- end,
 			},
 		},
 	},

@@ -4,18 +4,38 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		dashboard = { enabled = true },
+		dashboard = {
+			enabled = true,
+			sections = {
+				{ section = "header", pane = 1, padding = 4 },
+				{ section = "keys", gap = 1, padding = 4 },
+				{ icon = " ", title = "Recent Files", padding = 1 },
+				{ section = "recent_files", opts = { limit = 3 }, indent = 1, padding = 1 },
+				{ icon = " ", title = "Projects", padding = 1 },
+				{ section = "projects", opts = { limit = 3 }, indent = 1, padding = 4 },
+				{ section = "startup", padding = 5 },
+			},
+		},
 		indent = { enabled = true },
 		bufdelete = { enabled = true },
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
 		image = { enabled = true },
+		terminal = { enabled = true },
 		statuscolumn = { enabled = true },
 		picker = {
 			enabled = true,
+			-- ui_select = true,
+			-- formatters = { file = { truncate = 4000, icon_width = 4, git_status_hl = false } },
+			-- icons = {
+			-- 	files = {
+			-- 		enabled = true, -- show file icons
+			-- 	},
+			-- },
 			sources = {
 				explorer = {
+					enabled = true,
 					tree = false,
 					follow_file = false,
 					layout = { preset = "default", preview = true },
@@ -85,13 +105,13 @@ return {
 			end,
 			desc = "Notification History",
 		},
-		-- {
-		-- 	"<leader>fe",
-		-- 	function()
-		-- 		Snacks.explorer()
-		-- 	end,
-		-- 	desc = "File Explorer",
-		-- },
+		{
+			"<leader>fx",
+			function()
+				Snacks.explorer()
+			end,
+			desc = "File Explorer",
+		},
 		-- find
 		{
 			"<leader>fb",
