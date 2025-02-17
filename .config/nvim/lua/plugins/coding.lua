@@ -170,4 +170,5 @@ return {
 			{ "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
 		},
 	},
+	{ "milanglacier/yarepl.nvim", config = true },
 }
