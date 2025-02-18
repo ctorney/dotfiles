@@ -88,5 +88,7 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^AnyConnect$" manage=off
 yabai -m rule --add app="^Zoom$" manage=off
 yabai -m rule --add app="^Calendar$" scratchpad="Calendar" opacity=".95" grid="11:11:1:1:9:9"
+yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
 borders active_color=0xffd3c6aa inactive_color=0xff7a8478 width=5.0 &
 echo "yabai configuration loaded.."

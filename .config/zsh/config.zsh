@@ -18,9 +18,9 @@ setopt INC_APPEND_HISTORY
 conda activate tf
 export EDITOR=nvim
 
-if [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s TMUX
-fi
+# if [ -z "$TMUX" ]; then
+#   exec tmux new-session -A -s TMUX
+# fi
 
 PLUGIN_PATH=$HOME/.config/zsh/plugins
 
