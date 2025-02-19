@@ -16,7 +16,11 @@ vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = tr
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n", "x" }, "<leader>/", "gcc", { desc = "Comment line or visual selection", remap = true })
 vim.keymap.set("n", "<leader>bd", "<cmd>:bd<cr>", { desc = "Delete buffer" })
-
+-- Move to window using the <ctrl> hjkl keys
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 vim.keymap.set("n", "<leader>td", function()
 	local current_config = vim.diagnostic.config()
 	if current_config == nil then

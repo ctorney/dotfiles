@@ -170,5 +170,108 @@ return {
 			{ "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
 		},
 	},
-	{ "milanglacier/yarepl.nvim", config = true },
+	{
+		"milanglacier/yarepl.nvim",
+		opts = function(_, opts)
+			-- see `:h buflisted`, whether the REPL buffer should be buflisted.
+			opts.buflisted = false
+			-- whether the REPL buffer should be a scratch buffer.
+			opts.scratch = true
+			-- the filetype of the REPL buffer created by `yarepl`
+			opts.ft = "REPL"
+			-- How yarepl open the REPL window, can be a string or a lua function.
+			-- See below example for how to configure this option
+
+			opts.wincmd = function(bufnr, name)
+				vim.api.nvim_open_win(bufnr, true, {
+					relative = "editor",
+					row = math.floor(vim.o.lines * 0.01),
+					col = math.floor(vim.o.columns * 0.75),
+					width = math.floor(vim.o.columns * 0.25),
+					height = math.floor(vim.o.lines * 0.98),
+					style = "minimal",
+					title = "",
+					border = "rounded",
+					title_pos = "center",
+				})
+			end
+
+			--wincmd = "belowright 15 split",
+			-- The available REPL palattes that `yarepl` can create REPL based on.   -- when a REPL process exits, should the window associated with those REPLs closed?
+			-- To disable a built-in meta, set its key to `false`, e.g., `metas = { R = false }`
+			opts.metas = {
+				aichat = false,
+				radian = false,
+				ipython = { cmd = "ipython", formatter = "bracketed_pasting" },
+				python = false,
+				R = false,
+				bash = false,
+				zsh = false,
+			}
+			opts.close_on_exit = true
+			-- whether automatically scroll to the bottom of the REPL window after sending
+			-- text? This feature would be helpful if you want to ensure that your view
+			-- stays updated with the latest REPL output.
+			opts.scroll_to_bottom_after_sending = false
+			-- Format REPL buffer names as #repl_name#n (e.g., #ipython#1) instead of using terminal defaults
+			opts.format_repl_buffers_names = true
+
+			require("yarepl.extensions.code_cell").register_text_objects({
+				{
+					key = "<Leader>c",
+					start_pattern = "```.+",
+					end_pattern = "^```$",
+					ft = { "rmd", "quarto", "markdown" },
+					desc = "markdown code cells",
+				},
+				{
+					key = "c",
+					start_pattern = "^# ?%%%%.*",
+					end_pattern = "^# ?%%%%.*",
+					ft = { "r", "python" },
+					desc = "r/python code cells",
+				},
+			})
+		end,
+	},
+	{
+		"Vigemus/iron.nvim",
+		main = "iron.core", -- <== This informs lazy.nvim to use the entrypoint of `iron.core` to load the configuration.
+		opts = function(_, opts)
+			opts.config = {
+				scratch_repl = true,
+				repl_definition = {
+					python = {
+						command = { "ipython", "--no-autoindent" },
+						format = require("iron.fts.common").bracketed_paste_python,
+						block_deviders = { "# %%", "#%%" },
+					},
+				},
+				-- How the repl window will be displayed
+				-- See below for more information
+				repl_open_cmd = require("iron.view").right("%40"),
+			}
+			-- Iron doesn't set keymaps by default anymore.
+			-- You can set them here or manually add keymaps to the functions in iron.core
+			opts.keymaps = {
+				send_motion = "<space>sc",
+				visual_send = "<space>sc",
+				send_file = "<space>sf",
+				send_line = "<space>sl",
+				send_until_cursor = "<space>su",
+				send_mark = "<space>sm",
+				mark_motion = "<space>mc",
+				mark_visual = "<space>mc",
+				remove_mark = "<space>md",
+				cr = "<space>s<cr>",
+				interrupt = "<space>s<space>",
+				exit = "<space>sq",
+				clear = "<space>cl",
+			}
+			-- If the highlight is on, you can change how it looks
+			-- For the available options, check nvim_set_hl
+			opts.highlight = { italic = true }
+			opts.ignore_blank_lines = true -- ignore blank lines when sending visual select lines
+		end,
+	},
 }
