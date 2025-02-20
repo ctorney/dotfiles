@@ -124,10 +124,8 @@ return {
 	{
 		"echasnovski/mini.ai",
 		event = "VeryLazy",
-		dependencies = { "GCBallesteros/NotebookNavigator.nvim" },
 		opts = function()
 			local ai = require("mini.ai")
-			local nn = require("notebook-navigator")
 			return {
 				n_lines = 500,
 				custom_textobjects = {
@@ -150,7 +148,44 @@ return {
 					},
 					u = ai.gen_spec.function_call(), -- u for "Usage"
 					U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
-					h = nn.miniai_spec,
+					h = function(opts)
+						local cell_marker = "# %%"
+						local start_line = vim.fn.search("^" .. cell_marker, "bcnW")
+
+						if start_line == 0 then
+							start_line = 1
+						else
+							if opts == "i" then
+								start_line = start_line + 1
+							end
+						end
+
+						local end_line = vim.fn.search("^" .. cell_marker, "nW") - 1
+						if end_line == -1 then
+							end_line = vim.fn.line("$")
+						end
+
+						if opts == "i" then
+							-- Find first non-blank line after start
+							local first_nonblank = vim.fn.nextnonblank(start_line)
+							if first_nonblank > 0 and first_nonblank <= end_line then
+								start_line = first_nonblank
+							end
+
+							-- Find last non-blank line before end
+							local last_nonblank = vim.fn.prevnonblank(end_line)
+							if last_nonblank >= start_line then
+								end_line = last_nonblank
+							end
+						end
+
+						local last_col = math.max(vim.fn.getline(end_line):len(), 1)
+
+						local from = { line = start_line, col = 1 }
+						local to = { line = end_line, col = last_col }
+
+						return { from = from, to = to }
+					end,
 				},
 			}
 		end,
