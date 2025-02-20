@@ -66,9 +66,18 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*.FCMacro",
 	command = "set filetype=python",
 })
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*.ino",
 	command = "set filetype=c",
+})
+
+vim.api.nvim_create_autocmd("WinEnter", {
+	callback = function()
+		if vim.bo.filetype == "REPL" then
+			vim.cmd("startinsert")
+		end
+	end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {

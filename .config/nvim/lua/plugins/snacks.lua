@@ -1,9 +1,11 @@
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
+	-- commit = "004050c",
 	lazy = false,
 	---@type snacks.Config
 	opts = {
+		dim = { enabled = true },
 		dashboard = {
 			enabled = true,
 			pane_gap = 10,
@@ -57,7 +59,7 @@ return {
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
-		image = { enabled = true },
+		image = { enabled = true, doc = { inline = true, float = false } },
 		terminal = { enabled = true },
 		statuscolumn = { enabled = true },
 		picker = {

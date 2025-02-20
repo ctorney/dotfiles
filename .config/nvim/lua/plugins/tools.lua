@@ -1,6 +1,24 @@
 return {
 	{ "mrjones2014/smart-splits.nvim", lazy = false },
 	{
+		"numtostr/FTerm.nvim",
+		-- event = "BufWinEnter",
+		opts = {
+			dimensions = { height = 0.8, width = 0.8 },
+			border = "rounded",
+		},
+		keys = {
+			{
+				"<c-/>",
+				function()
+					require("FTerm").toggle()
+				end,
+				mode = { "n", "x", "o", "t", "i" },
+				desc = "Toggle FTerm",
+			},
+		},
+	},
+	{
 		"gbprod/yanky.nvim",
 		opts = {},
 	},
@@ -106,8 +124,10 @@ return {
 	{
 		"echasnovski/mini.ai",
 		event = "VeryLazy",
+		dependencies = { "GCBallesteros/NotebookNavigator.nvim" },
 		opts = function()
 			local ai = require("mini.ai")
+			local nn = require("notebook-navigator")
 			return {
 				n_lines = 500,
 				custom_textobjects = {
@@ -130,6 +150,7 @@ return {
 					},
 					u = ai.gen_spec.function_call(), -- u for "Usage"
 					U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
+					h = nn.miniai_spec,
 				},
 			}
 		end,

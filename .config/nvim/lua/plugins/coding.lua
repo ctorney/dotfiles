@@ -30,45 +30,45 @@ return {
 			},
 		},
 	},
-	{
-		"jpalardy/vim-slime",
-		lazy = false,
-		ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
-		config = function()
-			vim.g.slime_target = "tmux"
-			-- vim.g.slime_config = { socket_name = "default", target_pane = "{right}" }
-			vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
-			vim.g.slime_dont_ask_default = 1
-			vim.g.slime_bracketed_paste = 1
-			vim.g.slime_no_mappings = 1
-
-			vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
-		end,
-	},
-
-	{
-		"klafyvel/vim-slime-cells",
-		requires = { { "jpalardy/vim-slime", opt = true } },
-		ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
-		config = function()
-			vim.g.slime_cell_delimiter = "^\\s*##"
-
-			vim.cmd([[
-        nmap <S-CR> <Plug>SlimeCellsSendAndGoToNext
-        nmap <C-CR> <Plug>SlimeCellsSendAndGoToNext
-        xmap <S-CR> <Plug>SlimeRegionSend
-        xmap <C-CR> <Plug>SlimeRegionSend
-        imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
-        imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
-        nmap <leader>cv <Plug>Slimeconfig
-        nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
-        nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
-        nmap <leader>ss <Plug>SlimeCellsSend
-        nmap <S-Down> <Plug>SlimeCellsNext
-        nmap <S-Up> <Plug>SlimeCellsPrev
-        ]])
-		end,
-	},
+	-- {
+	-- 	"jpalardy/vim-slime",
+	-- 	lazy = false,
+	-- 	ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
+	-- 	config = function()
+	-- 		vim.g.slime_target = "tmux"
+	-- 		-- vim.g.slime_config = { socket_name = "default", target_pane = "{right}" }
+	-- 		vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
+	-- 		vim.g.slime_dont_ask_default = 1
+	-- 		vim.g.slime_bracketed_paste = 1
+	-- 		vim.g.slime_no_mappings = 1
+	--
+	-- 		vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
+	-- 	end,
+	-- },
+	--
+	-- {
+	-- 	"klafyvel/vim-slime-cells",
+	-- 	requires = { { "jpalardy/vim-slime", opt = true } },
+	-- 	ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
+	-- 	config = function()
+	-- 		vim.g.slime_cell_delimiter = "^\\s*##"
+	--
+	-- 		vim.cmd([[
+	--        nmap <S-CR> <Plug>SlimeCellsSendAndGoToNext
+	--        nmap <C-CR> <Plug>SlimeCellsSendAndGoToNext
+	--        xmap <S-CR> <Plug>SlimeRegionSend
+	--        xmap <C-CR> <Plug>SlimeRegionSend
+	--        imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
+	--        imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
+	--        nmap <leader>cv <Plug>Slimeconfig
+	--        nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
+	--        nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
+	--        nmap <leader>ss <Plug>SlimeCellsSend
+	--        nmap <S-Down> <Plug>SlimeCellsNext
+	--        nmap <S-Up> <Plug>SlimeCellsPrev
+	--        ]])
+	-- 	end,
+	-- },
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		ft = { "markdown", "codecompanion" },
@@ -172,6 +172,7 @@ return {
 	},
 	{
 		"milanglacier/yarepl.nvim",
+		dependencies = { "echasnovski/mini.ai" },
 		opts = function(_, opts)
 			-- see `:h buflisted`, whether the REPL buffer should be buflisted.
 			opts.buflisted = false
@@ -181,19 +182,43 @@ return {
 			opts.ft = "REPL"
 			-- How yarepl open the REPL window, can be a string or a lua function.
 			-- See below example for how to configure this option
+			-- opts.wincmd = "vertical 30 split"
+
+			-- opts.wincmd = function(bufnr, name)
+			-- 	vim.api.nvim_open_win(bufnr, false, {
+			-- 		-- relative = "editor",
+			-- 		-- row = math.floor(vim.o.lines * 0.01),
+			-- 		-- col = math.floor(vim.o.columns * 0.75),
+			-- 		-- width = math.floor(vim.o.columns * 0.25),
+			-- 		-- height = math.floor(vim.o.lines * 0.98),
+			-- 		style = "minimal",
+			-- 		-- title = "",
+			-- 		-- border = "rounded",
+			-- 		-- title_pos = "center",
+			-- 	})
+			-- end
 
 			opts.wincmd = function(bufnr, name)
-				vim.api.nvim_open_win(bufnr, true, {
-					relative = "editor",
-					row = math.floor(vim.o.lines * 0.01),
-					col = math.floor(vim.o.columns * 0.75),
-					width = math.floor(vim.o.columns * 0.25),
-					height = math.floor(vim.o.lines * 0.98),
-					style = "minimal",
-					title = "",
-					border = "rounded",
-					title_pos = "center",
-				})
+				-- Store the current window ID before splitting
+				local current_win = vim.api.nvim_get_current_win()
+
+				-- Create the split and get the new window ID
+				vim.cmd("vertical rightbelow split")
+				local new_win = vim.api.nvim_get_current_win()
+
+				-- Set the buffer in the new window
+				vim.api.nvim_win_set_buf(new_win, bufnr)
+
+				-- -- Set the width of the new window
+				local width = math.floor(vim.o.columns * 0.30)
+				vim.cmd("vertical resize " .. width)
+
+				vim.opt_local.number = false
+				vim.opt_local.relativenumber = false
+				-- Start terminal in insert mode
+				vim.cmd("startinsert")
+				-- Return focus to the original window
+				-- vim.api.nvim_set_current_win(current_win)
 			end
 
 			--wincmd = "belowright 15 split",
@@ -215,17 +240,16 @@ return {
 			opts.scroll_to_bottom_after_sending = false
 			-- Format REPL buffer names as #repl_name#n (e.g., #ipython#1) instead of using terminal defaults
 			opts.format_repl_buffers_names = true
-
 			require("yarepl.extensions.code_cell").register_text_objects({
 				{
-					key = "<Leader>c",
+					key = "c",
 					start_pattern = "```.+",
 					end_pattern = "^```$",
 					ft = { "rmd", "quarto", "markdown" },
 					desc = "markdown code cells",
 				},
 				{
-					key = "c",
+					key = "<Leader>c",
 					start_pattern = "^# ?%%%%.*",
 					end_pattern = "^# ?%%%%.*",
 					ft = { "r", "python" },
@@ -233,45 +257,16 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"Vigemus/iron.nvim",
-		main = "iron.core", -- <== This informs lazy.nvim to use the entrypoint of `iron.core` to load the configuration.
-		opts = function(_, opts)
-			opts.config = {
-				scratch_repl = true,
-				repl_definition = {
-					python = {
-						command = { "ipython", "--no-autoindent" },
-						format = require("iron.fts.common").bracketed_paste_python,
-						block_deviders = { "# %%", "#%%" },
-					},
-				},
-				-- How the repl window will be displayed
-				-- See below for more information
-				repl_open_cmd = require("iron.view").right("%40"),
-			}
-			-- Iron doesn't set keymaps by default anymore.
-			-- You can set them here or manually add keymaps to the functions in iron.core
-			opts.keymaps = {
-				send_motion = "<space>sc",
-				visual_send = "<space>sc",
-				send_file = "<space>sf",
-				send_line = "<space>sl",
-				send_until_cursor = "<space>su",
-				send_mark = "<space>sm",
-				mark_motion = "<space>mc",
-				mark_visual = "<space>mc",
-				remove_mark = "<space>md",
-				cr = "<space>s<cr>",
-				interrupt = "<space>s<space>",
-				exit = "<space>sq",
-				clear = "<space>cl",
-			}
-			-- If the highlight is on, you can change how it looks
-			-- For the available options, check nvim_set_hl
-			opts.highlight = { italic = true }
-			opts.ignore_blank_lines = true -- ignore blank lines when sending visual select lines
-		end,
+		keys = {
+			{ "<leader>rp", "<cmd>REPLStart ipython<cr><cmd>wincmd h<cr>", desc = "Start an ipython REPL" },
+			{ "<leader>rq", "<cmd>REPLClose<cr>", desc = "Close the current REPL" },
+			{ "<leader>ra", "<cmd>REPLAttachBufferToREPL<cr>", desc = "Attach current buffer to a REPL" },
+			{ "<leader>sv", "<cmd>REPLSendVisual<cr>", desc = "Send code to REPL", mode = { "v" } },
+			{ "<leader>sl", "<cmd>REPLSendLine<cr>", desc = "Send line to REPL" },
+			{ "<leader>sf", "ggvG<cmd>REPLSendVisual<cr>", desc = "Send file to REPL" },
+			{ "<leader>so", "<cmd>REPLSendOperator<cr>", desc = "Send motion to REPL" },
+			{ "<leader>sp", "1Gv5G<cmd>REPLSendVisual<cr>", desc = "Send cell to REPL" },
+			{ "<leader>ss", "<cmd>REPLSendOperator<cr>ih", desc = "Send visual selection to REPL" },
+		},
 	},
 }
