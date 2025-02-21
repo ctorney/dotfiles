@@ -1,8 +1,7 @@
 return {
-	{ "mrjones2014/smart-splits.nvim", lazy = false },
+	-- { "mrjones2014/smart-splits.nvim", lazy = false },
 	{
 		"numtostr/FTerm.nvim",
-		-- event = "BufWinEnter",
 		opts = {
 			dimensions = { height = 0.8, width = 0.8 },
 			border = "rounded",
@@ -18,17 +17,18 @@ return {
 			},
 		},
 	},
-	{
-		"gbprod/yanky.nvim",
-		opts = {},
-	},
+	-- {
+	-- 	"gbprod/yanky.nvim",
+	-- 	opts = {},
+	-- },
 	{
 		"gbprod/substitute.nvim",
-		opts = {
-			on_substitute = function()
-				require("yanky.integration").substitute()
-			end,
-		},
+		config = true,
+		-- opts = {
+		-- 	on_substitute = function()
+		-- 		require("yanky.integration").substitute()
+		-- 	end,
+		-- },
 		keys = {
 			{
 				"gs",
@@ -74,7 +74,6 @@ return {
 	},
 	{
 		"folke/flash.nvim",
-		event = "VeryLazy",
 		---@type Flash.Config
 		opts = {},
 		keys = {

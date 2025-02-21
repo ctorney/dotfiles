@@ -5,6 +5,12 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
+		styles = {
+			snacks_image = {
+				relative = "editor",
+				col = -1,
+			},
+		},
 		dim = { enabled = true },
 		dashboard = {
 			enabled = true,
@@ -59,8 +65,7 @@ return {
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
-		image = { enabled = true, doc = { inline = true, float = false } },
-		terminal = { enabled = true },
+		image = { enabled = true, doc = { inline = true, float = true } },
 		statuscolumn = { enabled = true },
 		picker = {
 			enabled = true,

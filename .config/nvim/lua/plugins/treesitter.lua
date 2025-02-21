@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		depends = { "nvim-treesitter/nvim-treesitter-textobjects" },
+		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
 		opts = {
@@ -49,35 +50,36 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		event = "VeryLazy",
-		enabled = true,
+		lazy = true,
+		-- event = "VeryLazy",
+		-- enabled = true,
 		config = function()
-			local textobjects =
-				{
-					move = {
-						enable = true,
-						goto_next_start = {
-							["]f"] = "@function.outer",
-							["]c"] = "@class.outer",
-							["]a"] = "@parameter.inner",
-						},
-						goto_next_end = {
-							["]F"] = "@function.outer",
-							["]C"] = "@class.outer",
-							["]A"] = "@parameter.inner",
-						},
-						goto_previous_start = {
-							["[f"] = "@function.outer",
-							["[c"] = "@class.outer",
-							["[a"] = "@parameter.inner",
-						},
-						goto_previous_end = {
-							["[F"] = "@function.outer",
-							["[C"] = "@class.outer",
-							["[A"] = "@parameter.inner",
-						},
+			local textobjects = {
+				move = {
+					enable = true,
+					goto_next_start = {
+						["]f"] = "@function.outer",
+						["]c"] = "@class.outer",
+						["]a"] = "@parameter.inner",
 					},
-				}, require("nvim-treesitter.configs").setup({ textobjects = textobjects })
+					goto_next_end = {
+						["]F"] = "@function.outer",
+						["]C"] = "@class.outer",
+						["]A"] = "@parameter.inner",
+					},
+					goto_previous_start = {
+						["[f"] = "@function.outer",
+						["[c"] = "@class.outer",
+						["[a"] = "@parameter.inner",
+					},
+					goto_previous_end = {
+						["[F"] = "@function.outer",
+						["[C"] = "@class.outer",
+						["[A"] = "@parameter.inner",
+					},
+				},
+			}
+			require("nvim-treesitter.configs").setup({ textobjects = textobjects })
 		end,
 	},
 }

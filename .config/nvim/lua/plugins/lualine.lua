@@ -1,13 +1,13 @@
 return {
-	{
-		"vimpostor/vim-tpipeline",
-		dependencies = "nvim-lualine/lualine.nvim",
-		enabled = true,
-		event = "VeryLazy",
-		init = function()
-			vim.g.tpipeline_restore = 1
-		end,
-	},
+	-- {
+	-- 	"vimpostor/vim-tpipeline",
+	-- 	dependencies = "nvim-lualine/lualine.nvim",
+	-- 	enabled = true,
+	-- 	event = "VeryLazy",
+	-- 	init = function()
+	-- 		vim.g.tpipeline_restore = 1
+	-- 	end,
+	-- },
 	{
 
 		"nvim-lualine/lualine.nvim",

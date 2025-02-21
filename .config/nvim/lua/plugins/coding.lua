@@ -1,7 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		lazy = false,
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			filetypes = {
 				markdown = true,
@@ -30,22 +30,6 @@ return {
 			},
 		},
 	},
-	-- {
-	-- 	"jpalardy/vim-slime",
-	-- 	lazy = false,
-	-- 	ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
-	-- 	config = function()
-	-- 		vim.g.slime_target = "tmux"
-	-- 		-- vim.g.slime_config = { socket_name = "default", target_pane = "{right}" }
-	-- 		vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
-	-- 		vim.g.slime_dont_ask_default = 1
-	-- 		vim.g.slime_bracketed_paste = 1
-	-- 		vim.g.slime_no_mappings = 1
-	--
-	-- 		vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
-	-- 	end,
-	-- },
-	--
 	{
 		"klafyvel/vim-slime-cells",
 		ft = { "python" },
@@ -93,13 +77,11 @@ return {
 	},
 	{
 		"olimorris/codecompanion.nvim",
-		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"echasnovski/mini.diff",
 		},
-		config = true,
 		opts = {
 			display = {
 				chat = {
@@ -155,7 +137,6 @@ return {
 			{ "<leader>i", ":'<,'>CodeCompanion<cr>", desc = "Inline code companion", mode = { "v" }, silent = true },
 			{ "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
 			{ "gt", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
-			{ "<c-p>", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v", "i" } },
 			{ "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
 		},
 	},
