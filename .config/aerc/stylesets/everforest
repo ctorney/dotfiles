@@ -40,8 +40,9 @@ dirlist_*.selected.bold=true
 dirlist_*.selected.bg=#a7c080
 dirlist_*.selected.fg=#010101
 
-statusline_default.fg=#7c7f93
-statusline_default.bg=none
+statusline_default.fg=#a7c080
+statusline_default.bg=#1e2326
+statusline_default.bg=#111111
 statusline_error.bold=true
 statusline_success.bold=true
 

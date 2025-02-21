@@ -15,7 +15,8 @@ vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap 
 vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = true })
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n", "x" }, "<leader>/", "gcc", { desc = "Comment line or visual selection", remap = true })
-vim.keymap.set("n", "<leader>bd", "<cmd>:bd<cr>", { desc = "Delete buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>:bd!<cr>", { desc = "Delete buffer" })
+vim.keymap.set("n", "<leader>q", "<cmd>wall<cr><cmd>qall<cr>", { desc = "Save and quit" })
 
 -- Move to window using the <ctrl> hjkl keys
 vim.keymap.set({ "n", "x", "i" }, "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
@@ -37,30 +38,9 @@ end, { desc = "Toggle virtual text" })
 local functions = require("config.functions")
 vim.keymap.set("n", "<leader>fe", functions.ExplorerOpenCurrentDir, { desc = "File explorer" })
 
--- local function set_terminal_keymaps()
--- 	local opts = { buffer = 0 }
--- 	vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
--- 	vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
--- 	vim.keymap.set("t", "<C-h>", vim.cmd.wincmd("h"), opts)
--- 	vim.keymap.set("t", "<C-j>", vim.cmd.wincmd("j"), opts)
--- 	vim.keymap.set("t", "<C-k>", vim.cmd.wincmd("k"), opts)
--- 	vim.keymap.set("t", "<C-l>", vim.cmd.wincmd("l"), opts)
--- end
---
--- -- if you only want these mappings for toggle term use term://*toggleterm#* instead
--- vim.api.nvim_create_autocmd("TermOpen", {
--- 	pattern = [[term://*]],
--- 	callback = set_terminal_keymaps,
--- })
-
-local opts = {}
-vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
--- the opts entry is optional, btw:
--- vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
-vim.keymap.set("t", "jj", [[<C-\><C-n>]], opts)
-vim.keymap.set("t", "<C-h>", "<cmd>wincmd h<cr>", opts)
-vim.keymap.set("t", "<C-j>", "<cmd>wincmd j<cr>", opts)
-vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr>", opts)
-vim.keymap.set("t", "<C-l>", "<cmd>wincmd l<cr>", opts)
--- I map these binds to both terminal and insert mode like:
--- vim.keymap.set({'t', 'i'}, '<C-h>', vim.cmd.wincmd("h"), opts)
+vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
+vim.keymap.set("t", "jj", [[<C-\><C-n>]])
+vim.keymap.set("t", "<C-h>", "<cmd>wincmd h<cr>")
+vim.keymap.set("t", "<C-j>", "<cmd>wincmd j<cr>")
+vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr>")
+vim.keymap.set("t", "<C-l>", "<cmd>wincmd l<cr>")
