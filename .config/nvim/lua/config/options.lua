@@ -104,16 +104,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- vim.api.nvim_create_autocmd("BufLeave", {
--- 	group = vim.api.nvim_create_augroup("codecompanion_unlist", { clear = true }),
--- 	pattern = "codecompanion",
--- 	callback = function(ev)
--- 		-- Only modify the specific buffer that triggered the event
--- 		local buf = ev.buf
--- 		if vim.api.nvim_buf_is_valid(buf) then
--- 			pcall(function()
--- 				vim.api.nvim_buf_set_option(buf, "buflisted", false)
--- 			end)
--- 		end
--- 	end,
--- })
+vim.api.nvim_create_autocmd("BufLeave", {
+	group = vim.api.nvim_create_augroup("codecompanion_unlist", { clear = true }),
+	pattern = "*CodeCompanion*",
+	callback = function(ev)
+		local buf = ev.buf
+		if vim.api.nvim_buf_is_valid(buf) then
+			pcall(function()
+				vim.api.nvim_set_option_value("buflisted", false, { buf = buf })
+			end)
+		end
+	end,
+})

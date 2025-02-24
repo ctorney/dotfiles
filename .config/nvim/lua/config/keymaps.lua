@@ -37,6 +37,7 @@ end, { desc = "Toggle virtual text" })
 
 local functions = require("config.functions")
 vim.keymap.set("n", "<leader>fe", functions.ExplorerOpenCurrentDir, { desc = "File explorer" })
+vim.keymap.set("n", "<leader>im", functions.show_image, { desc = "File explorer" })
 
 vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
 vim.keymap.set("t", "jj", [[<C-\><C-n>]])

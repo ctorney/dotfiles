@@ -109,21 +109,41 @@ return {
 			},
 		},
 	},
+	-- {
+	-- 	"utilyre/barbecue.nvim",
+	-- 	name = "barbecue",
+	-- 	version = "*",
+	-- 	dependencies = {
+	-- 		"SmiteshP/nvim-navic",
+	-- 		"nvim-tree/nvim-web-devicons", -- optional dependency
+	-- 	},
+	-- 	opts = {
+	-- 		-- configurations go here
+	-- 	},
+	-- },
 	{
 		"akinsho/bufferline.nvim",
+		enabled = false,
 		event = { "BufRead", "BufNewFile" },
 		opts = {
 			options = {
-				indicator = { style = "none" },
+				hover = {
+					enabled = true,
+					delay = 200,
+					reveal = { "close" },
+				},
+				show_close_icon = false,
+				show_buffer_close_icons = false,
+				indicator = { style = "icon" },
 				separator_style = "thin",
 				show_tab_indicators = false,
-				always_show_bufferline = false,
-				-- custom_filter = function(buf_number)
-				-- 	-- filter out filetypes you don't want to see
-				-- 	if vim.bo[buf_number].filetype ~= "codecompanion" then
-				-- 		return true
-				-- 	end
-				-- end,
+				always_show_bufferline = true,
+				custom_filter = function(buf_number)
+					-- filter out filetypes you don't want to see
+					if vim.bo[buf_number].filetype ~= "codecompanion" then
+						return true
+					end
+				end,
 			},
 		},
 	},

@@ -35,12 +35,24 @@ return {
 					lualine_a = { { "hostname" } },
 					lualine_b = { { "mode" } },
 
-					lualine_c = {},
-					lualine_x = {
-            -- stylua: ignore
-						-- Snacks.profiler.status(),
+					lualine_c = {
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 						{ "filename", path = 3, file_status = false },
+					},
+					lualine_x = {
+						{
+							"buffers",
+							cond = function()
+								return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
+							end,
+							mode = 0,
+							icons_enabled = true,
+							symbols = {
+								modified = " ●", -- Text to show when the buffer is modified
+								alternate_file = "", -- Text to show to identify the alternate file
+								directory = "", -- Text to show when the buffer is a directory
+							},
+						},
 						{
 							"diagnostics",
 							symbols = {
@@ -60,7 +72,8 @@ return {
 						},
 					},
 					lualine_y = {
-						{ "location", padding = { left = 0, right = 1 } },
+						{ "location", padding = { left = 1, right = 1 } },
+						{ "progress", padding = { left = 1, right = 1 } },
 					},
 					lualine_z = {
 						function()
