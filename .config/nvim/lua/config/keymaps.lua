@@ -45,3 +45,7 @@ vim.keymap.set("t", "<C-h>", "<cmd>wincmd h<cr>")
 vim.keymap.set("t", "<C-j>", "<cmd>wincmd j<cr>")
 vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr>")
 vim.keymap.set("t", "<C-l>", "<cmd>wincmd l<cr>")
+
+vim.keymap.set({ "n", "v", "i" }, "<c-space><c-q>", function()
+	vim.cmd("!shpool detach")
+end)

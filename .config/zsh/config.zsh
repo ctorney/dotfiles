@@ -9,6 +9,7 @@ export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 export MPLBACKEND_TRANSPARENT=1
 export MPLBACKEND_CHAFA_OPTS="-f kitty --passthrough tmux"
 
+export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 setopt HIST_IGNORE_ALL_DUPS
@@ -18,9 +19,11 @@ setopt INC_APPEND_HISTORY
 conda activate tf
 export EDITOR=nvim
 
-# if [ -z "$TMUX" ]; then
-#   exec tmux new-session -A -s TMUX
-# fi
+# Check if we're not already in a shpool session and shpool is installed
+if [ -z "$SHPOOL_SESSION_NAME" ] && command -v shpool >/dev/null 2>&1; then
+  # Launch shpool and attach to the "main" session
+  exec shpool attach main
+fi
 
 PLUGIN_PATH=$HOME/.config/zsh/plugins
 
@@ -66,35 +69,6 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
 zstyle ':fzf-tab:*' fzf-flags   --color=bg+:#A7C080,fg+:#1e2326,gutter:-1,pointer:#A7C080,hl+:#1e2326
 
-# bindkey '^I' expand-or-complete
-# bindkey '^I' fzf-tab-complete
-# bindkey              '^I' menu-select
-# bindkey "$terminfo[kcbt]" menu-select
-# bindkey -M menuselect              '^I'         menu-complete
-# bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
-# zstyle ':autocomplete:*' add-space 
-# zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
-# bindkey -M menuselect '^M' .accept-line
-# bindkey '^I^I' autosuggest-accept
-# # all Tab widgets
-# zstyle ':autocomplete:*complete*:*' insert-ambiguous no
-# # all history widgets
-# zstyle ':autocomplete:*history*:*' insert-unambiguous yes
-# # ^S
-# zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
-# bindkey '^R' .history-incremental-search-backward
-# bindkey '^S' .history-incremental-search-forward
-# () {
-#    local -a prefix=( '\e'{\[,O} )
-#    local -a up=( ${^prefix}A ) down=( ${^prefix}B )
-#    local key=
-#    for key in $up[@]; do
-#       bindkey "$key" up-line-or-history
-#    done
-#    for key in $down[@]; do
-#       bindkey "$key" down-line-or-history
-#    done
-# }
 
 source <(fzf --zsh)
 
@@ -106,7 +80,7 @@ export FZF_DEFAULT_OPTS="--preview='[[ \$(file --mime {}) =~ binary ]] && echo {
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 
 # Use 'git ls-files' when inside GIT repo, or fd otherwise
-export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
+export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fdfind --type f --type l $FD_OPTIONS"
 
 # Find commands for "Ctrl+T" and "Opt+C" shortcuts
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
