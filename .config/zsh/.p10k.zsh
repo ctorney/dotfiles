@@ -1653,7 +1653,7 @@
 
   function prompt_shpool() {
     if [[ -n "$SHPOOL_SESSION_NAME" ]]; then
-      p10k segment -f 208 -t "[$SHPOOL_SESSION_NAME]"
+      p10k segment -f 208 -t "$(echo -e '\UF0378')"
     fi
   }
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
