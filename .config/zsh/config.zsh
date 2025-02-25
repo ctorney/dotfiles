@@ -9,6 +9,7 @@ export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 export MPLBACKEND_TRANSPARENT=1
 export MPLBACKEND_CHAFA_OPTS="-f kitty --passthrough tmux"
 
+export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 setopt HIST_IGNORE_ALL_DUPS
