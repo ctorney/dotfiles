@@ -145,7 +145,7 @@ return {
 		opts = function(_, opts)
 			opts.buflisted = false
 			opts.scratch = true
-			opts.ft = "REPL"
+			opts.ft = "markdown"
 
 			opts.wincmd = function(bufnr, name)
 				-- Create the split and get the new window ID
