@@ -1,3 +1,6 @@
+source $HOME/.config/zsh/instant-zsh.zsh
+instant-zsh-pre "%76F❯%f "
+
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
@@ -16,7 +19,19 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt INC_APPEND_HISTORY
 
+__conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$CONDA_HOME/etc/profile.d/conda.sh" ]; then
+        . "$CONDA_HOME/etc/profile.d/conda.sh"
+    else
+        export PATH="$CONDA_HOME/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 conda activate tf
+
 export EDITOR=nvim
 
 # Check if we're not already in a shpool session and shpool is installed
@@ -80,7 +95,14 @@ export FZF_DEFAULT_OPTS="--preview='[[ \$(file --mime {}) =~ binary ]] && echo {
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
 
 # Use 'git ls-files' when inside GIT repo, or fd otherwise
-export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fdfind --type f --type l $FD_OPTIONS"
+# Use fd if available, otherwise fallback to fdfind
+if command -v fd >/dev/null 2>&1; then
+    FD_COMMAND="fd"
+else
+    FD_COMMAND="fdfind"
+fi
+
+export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | $FD_COMMAND --type f --type l $FD_OPTIONS"
 
 # Find commands for "Ctrl+T" and "Opt+C" shortcuts
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
@@ -111,3 +133,5 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+instant-zsh-post
