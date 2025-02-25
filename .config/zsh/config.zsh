@@ -37,6 +37,7 @@ alias ls="eza --icons=always"
 alias c="clear"
 # alias imgcat="wezterm imgcat"
 alias vi='nvim'
+alias fd='fdfind'
 
 # eval "$(/usr/libexec/path_helper)"    
 
@@ -45,7 +46,7 @@ if [ -x /usr/libexec/path_helper ]; then
 fi
 
 
-export PATH=/opt/nvim-linux64/bin:~/.local/bin:~/.local/go/bin:$PATH
+export PATH=/opt/nvim-linux64/bin:~/.local/bin:~/.local/go/bin:/opt/.fzf/bin:$PATH
 
 eval "$(zoxide init zsh --cmd cd)"
 
