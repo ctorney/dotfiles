@@ -1,5 +1,3 @@
-source $HOME/.config/zsh/instant-zsh.zsh
-instant-zsh-pre "%76F❯%f "
 
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
@@ -134,4 +132,3 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-instant-zsh-post
