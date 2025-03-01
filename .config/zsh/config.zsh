@@ -50,11 +50,15 @@ fi
 
 # alias vi="nvim"
 
-alias ll="ls -l --color=always"
-# alias ls="eza --icons=always"
+if command -v eza >/dev/null 2>&1; then
+    alias ll='eza --icons=always -l'
+    alias ls="eza --icons=always"
+else
+    alias ll='ls -l --color=always'
+fi
+
 
 alias c="clear"
-# alias imgcat="wezterm imgcat"
 alias vi='nvim'
 alias fd='fdfind'
 
