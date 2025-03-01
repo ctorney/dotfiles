@@ -49,6 +49,27 @@ return {
 				["<Tab>"] = { "select_next", "fallback" },
 				["<S-Tab>"] = { "select_prev", "fallback" },
 			},
+
+			-- cmdline = {
+			--   keymap = {
+			--     -- recommended, as the default keymap will only show and select the next item
+			--     ['<Tab>'] = { 'show', 'accept' },
+			--   },
+			completion = {
+				menu = {
+					auto_show = true,
+				},
+				ghost_text = { enabled = true },
+				list = {
+					selection = {
+						-- When `true`, will automatically select the first item in the completion list
+						preselect = false,
+						-- When `true`, inserts the completion item automatically when selecting it
+						auto_insert = true,
+					},
+				},
+			},
+
 			sources = function()
 				local type = vim.fn.getcmdtype()
 				if type == "/" or type == "?" then

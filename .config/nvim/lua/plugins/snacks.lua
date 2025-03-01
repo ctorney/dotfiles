@@ -133,6 +133,13 @@ return {
 		},
 	},
 	keys = {
+		{
+			"<leader>bd",
+			function()
+				Snacks.bufdelete.delete()
+			end,
+			desc = "Close Buffer",
+		},
 		-- Top Pickers & Explorer
 		{
 			"<leader>fg",

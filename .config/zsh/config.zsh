@@ -28,7 +28,8 @@ else
     fi
 fi
 unset __conda_setup
-conda activate tf
+
+conda activate /datadisk/envs/tf
 
 export EDITOR=nvim
 
@@ -48,8 +49,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # alias vi="nvim"
-alias ll="eza -l --icons=always"
-alias ls="eza --icons=always"
+
+alias ll="ls -l --color=always"
+# alias ls="eza --icons=always"
+
 alias c="clear"
 # alias imgcat="wezterm imgcat"
 alias vi='nvim'
