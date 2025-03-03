@@ -39,6 +39,7 @@ return {
 				"query",
 				"vim",
 				"vimdoc",
+				"yaml",
 			},
 			auto_install = true,
 			highlight = {

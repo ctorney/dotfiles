@@ -132,6 +132,32 @@ return {
 					},
 				},
 			},
+			adapters = {
+				anthropic = function()
+					return require("codecompanion.adapters").extend("anthropic", {
+						-- env = {
+						-- 				api_key = "ANTHROPIC_API_KEY",
+						-- 			},
+						schema = {
+							-- 				---@type CodeCompanion.Schema
+							model = {
+								order = 1,
+								mapping = "parameters",
+								type = "enum",
+								desc = "The model that will complete your prompt. See https://docs.anthropic.com/claude/docs/models-overview for additional details and options.",
+								default = "claude-3-7-sonnet-20250219",
+								choices = {
+									["claude-3-7-sonnet-20250219"] = { opts = { can_reason = false } },
+									"claude-3-5-sonnet-20241022",
+									"claude-3-5-haiku-20241022",
+									"claude-3-opus-20240229",
+									"claude-2.1",
+								},
+							},
+						},
+					})
+				end,
+			},
 		},
 		keys = {
 			{ "<leader>i", ":'<,'>CodeCompanion<cr>", desc = "Inline code companion", mode = { "v" }, silent = true },
