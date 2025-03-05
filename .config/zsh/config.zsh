@@ -61,6 +61,7 @@ fi
 alias c="clear"
 alias vi='nvim'
 alias fd='fdfind'
+alias nvimage='function _nvimage() { echo "![terminalimage]($(realpath "$1"))\n"; }; _nvimage'
 
 # eval "$(/usr/libexec/path_helper)"    
 
