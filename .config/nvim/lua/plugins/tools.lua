@@ -1,6 +1,14 @@
 return {
 	-- { "mrjones2014/smart-splits.nvim", lazy = false },
 	{
+		-- 	dir = "~/workspace/terminal-image.nvim",
+		-- 	name = "terminal-image.nvim",
+		-- 	config = true,
+		-- },{
+		"ctorney/terminal-image.nvim",
+		opts = {},
+	},
+	{
 		"numtostr/FTerm.nvim",
 		opts = {
 			dimensions = { height = 0.8, width = 0.8 },

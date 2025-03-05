@@ -29,7 +29,7 @@ else
 fi
 unset __conda_setup
 
-conda activate /datadisk/envs/tf
+conda activate tf
 
 export EDITOR=nvim
 

@@ -23,6 +23,8 @@ vim.keymap.set({ "n", "x", "i" }, "<C-j>", "<C-w>j", { desc = "Go to Lower Windo
 vim.keymap.set({ "n", "x", "i" }, "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 vim.keymap.set({ "n", "x", "i" }, "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
+vim.keymap.set({ "t" }, "<C-t>", "<C-\\><C-n>zt<C-\\><C-n>i", { desc = "Send cursor to top line", remap = true })
+
 vim.keymap.set("n", "<leader>td", function()
 	local current_config = vim.diagnostic.config()
 	if current_config == nil then

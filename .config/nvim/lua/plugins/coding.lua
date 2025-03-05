@@ -193,7 +193,15 @@ return {
 			opts.metas = {
 				aichat = false,
 				radian = false,
-				ipython = { cmd = "ipython", formatter = "bracketed_pasting" },
+				ipython = {
+					cmd = {
+						"ipython",
+						"-i",
+						"-c",
+						'\'import matplotlib;matplotlib.use("module://matplotlib-backend-nvim");matplotlib.rc("figure", figsize=(10, 6));from qbstyles import mpl_style;mpl_style("dark")\'',
+					},
+					formatter = "bracketed_pasting",
+				},
 				python = false,
 				R = false,
 				bash = false,
