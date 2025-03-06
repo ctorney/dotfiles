@@ -164,6 +164,13 @@ return {
 		},
 		-- find
 		{
+			"<leader><CR>",
+			function()
+				Snacks.picker.buffers()
+			end,
+			desc = "Buffers",
+		},
+		{
 			"<leader>fb",
 			function()
 				Snacks.picker.buffers()

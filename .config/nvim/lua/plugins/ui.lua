@@ -83,6 +83,7 @@ return {
 			}
 		end,
 	},
+
 	{
 		"sphamba/smear-cursor.nvim",
 		event = "VeryLazy",

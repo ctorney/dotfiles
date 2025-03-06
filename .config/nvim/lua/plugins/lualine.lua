@@ -41,19 +41,6 @@ return {
 					},
 					lualine_x = {
 						{
-							"buffers",
-							cond = function()
-								return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
-							end,
-							mode = 0,
-							icons_enabled = true,
-							symbols = {
-								modified = " ●", -- Text to show when the buffer is modified
-								alternate_file = "", -- Text to show to identify the alternate file
-								directory = "", -- Text to show when the buffer is a directory
-							},
-						},
-						{
 							"diagnostics",
 							symbols = {
 								error = icons.diagnostics.Error,
@@ -62,6 +49,19 @@ return {
 								hint = icons.diagnostics.Hint,
 							},
 						},
+						-- {
+						-- 	"buffers",
+						-- 	cond = function()
+						-- 		return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
+						-- 	end,
+						-- 	mode = 0,
+						-- 	icons_enabled = true,
+						-- 	symbols = {
+						-- 		modified = " ●", -- Text to show when the buffer is modified
+						-- 		alternate_file = "", -- Text to show to identify the alternate file
+						-- 		directory = "", -- Text to show when the buffer is a directory
+						-- 	},
+						-- },
 						{
 
 							require("lazy.status").updates,
