@@ -16,7 +16,7 @@ end
 
 -- Assuming Snacks is already required/imported
 function M.show_image()
-	local image_path = "/Users/colin.torney/workspace/test/im.png"
+	local image_path = "/Users/colin.torney/workspace/test/griffin"
 	local placement = require("snacks.image.placement")
 
 	local buffer = vim.api.nvim_get_current_buf()

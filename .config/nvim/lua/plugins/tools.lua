@@ -1,10 +1,11 @@
 return {
 	-- { "mrjones2014/smart-splits.nvim", lazy = false },
+	-- {
+	-- 	dir = "~/workspace/terminal-image.nvim",
+	-- 	name = "terminal-image.nvim",
+	-- 	config = true,
+	-- },
 	{
-		-- 	dir = "~/workspace/terminal-image.nvim",
-		-- 	name = "terminal-image.nvim",
-		-- 	config = true,
-		-- },{
 		"ctorney/terminal-image.nvim",
 		opts = {},
 	},

@@ -51,10 +51,10 @@ fi
 # alias vi="nvim"
 
 if command -v eza >/dev/null 2>&1; then
-    alias ll='eza --icons=always -l'
+    alias ll='eza --icons=always -l -snew'
     alias ls="eza --icons=always"
 else
-    alias ll='ls -l --color=always'
+    alias ll='ls -l --color=always -rt'
 fi
 
 
