@@ -36,17 +36,6 @@ return {
 		event = "VeryLazy",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		opts = {
-			routes = {
-				{
-					filter = {
-						event = "msg_show",
-						any = {
-							{ find = "Agent service not initialized" },
-						},
-					},
-					opts = { skip = true },
-				},
-			},
 			lsp = {
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,

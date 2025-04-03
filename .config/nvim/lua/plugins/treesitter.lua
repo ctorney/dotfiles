@@ -51,9 +51,9 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		lazy = true,
-		-- event = "VeryLazy",
-		-- enabled = true,
+		-- lazy = true,
+		event = "VeryLazy",
+		enabled = true,
 		config = function()
 			local textobjects = {
 				move = {

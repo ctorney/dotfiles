@@ -166,7 +166,7 @@ return {
 		{
 			"<leader><CR>",
 			function()
-				Snacks.picker.buffers()
+				Snacks.picker.buffers({ sort_lastused = false, current = false })
 			end,
 			desc = "Buffers",
 		},
