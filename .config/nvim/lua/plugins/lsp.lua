@@ -1,5 +1,9 @@
 return -- LSP Plugins
 {
+    {
+    "williamboman/mason.nvim",
+      config = true,
+},
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",

@@ -1,10 +1,26 @@
 return {
-	-- { "mrjones2014/smart-splits.nvim", lazy = false },
-	-- {
-	-- 	dir = "~/workspace/terminal-image.nvim",
-	-- 	name = "terminal-image.nvim",
-	-- 	config = true,
-	-- },
+	{
+		dir = "~/workspace/arduino-tools.nvim/",
+		name = "arduino-tools.nvim",
+		ft = { "arduino" },
+		opts = {
+			cli_config = "~/Library/Arduino15/",
+		},
+	},
+	{
+		"stevearc/vim-arduino",
+		ft = { "arduino" },
+		config = function()
+			vim.g.arduino_autoformat_on_save = 1
+			vim.cmd([[
+        nmap <leader>au <Plug>ArduinoUpload
+        nmap <leader>ac <Plug>ArduinoCompile
+        nmap <leader>as <Plug>ArduinoSerial
+        nmap <leader>av <Plug>ArduinoVerify
+
+        ]])
+		end,
+	},
 	{
 		"ctorney/terminal-image.nvim",
 		opts = {},
@@ -78,6 +94,8 @@ return {
 				lua = { "stylua" },
 				-- Conform will run multiple formatters sequentially
 				python = { "isort", "blue" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
 			},
 		},
 	},
