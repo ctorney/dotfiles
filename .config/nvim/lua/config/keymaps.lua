@@ -17,6 +17,7 @@ vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = tr
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n", "x" }, "<leader>/", "gcc", { desc = "Comment line or visual selection", remap = true })
 vim.keymap.set("n", "<leader>q", "<cmd>wall<cr><cmd>qall<cr>", { desc = "Save and quit" })
+vim.keymap.set("n", "P", "<cmd>pu<cr>", { desc = "Paste into next line" })
 
 -- Move to window using the <ctrl> hjkl keys
 vim.keymap.set({ "n", "x", "i" }, "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
@@ -37,9 +38,10 @@ vim.keymap.set("n", "<leader>td", function()
 	})
 end, { desc = "Toggle virtual text" })
 
+vim.keymap.set("x", "<leader>w", "<cmd>echo wordcount().visual_words<CR>", { desc = "Visual word count" })
+
 local functions = require("config.functions")
 vim.keymap.set("n", "<leader>fe", functions.ExplorerOpenCurrentDir, { desc = "File explorer" })
-vim.keymap.set("n", "<leader>im", functions.show_image, { desc = "File explorer" })
 
 vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
 vim.keymap.set("t", "jj", [[<C-\><C-n>]])
