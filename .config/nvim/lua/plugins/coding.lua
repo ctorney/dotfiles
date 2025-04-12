@@ -208,7 +208,7 @@ return {
 				zsh = false,
 			}
 			opts.close_on_exit = true
-			opts.scroll_to_bottom_after_sending = true
+			opts.scroll_to_bottom_after_sending = false
 			opts.format_repl_buffers_names = true
 			vim.keymap.set(
 				"n",
