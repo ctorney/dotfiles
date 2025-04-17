@@ -1,9 +1,9 @@
 return -- LSP Plugins
 {
-    {
-    "williamboman/mason.nvim",
-      config = true,
-},
+	{
+		"williamboman/mason.nvim",
+		config = true,
+	},
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
@@ -79,7 +79,12 @@ return -- LSP Plugins
 					},
 				},
 				texlab = {},
-
+				clangd = {
+					cmd = { "clangd", "--header-insertion=never" },
+					capabilities = vim.tbl_deep_extend("force", {}, capabilities, {
+						offsetEncoding = { "utf-8" },
+					}),
+				},
 				lua_ls = {
 					settings = {
 						Lua = {

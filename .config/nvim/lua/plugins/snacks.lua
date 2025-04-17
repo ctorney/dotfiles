@@ -38,7 +38,12 @@ return {
 						desc = "Config",
 						action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
 					},
-					{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
+					{
+						icon = " ",
+						key = "o",
+						desc = "Obsidian",
+						action = ":lua Snacks.explorer({cwd = '~/Obsidian/Notes/'})",
+					},
 					{
 						icon = "󰒲 ",
 						key = "l",
@@ -65,7 +70,7 @@ return {
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
-		image = { enabled = true, force = true, doc = { inline = true, float = false } },
+		image = { enabled = true, force = true, doc = { inline = false, float = false } },
 		statuscolumn = { enabled = true },
 		picker = {
 			enabled = true,
