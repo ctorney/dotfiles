@@ -42,7 +42,7 @@ return {
 						icon = " ",
 						key = "o",
 						desc = "Obsidian",
-						action = ":lua Snacks.dashboard.pick('files', {cwd = '~/Obsidian/Notes/'})",
+						action = ":lua Snacks.explorer({cwd = '~/Obsidian/Notes/', exclude = {}})",
 					},
 					{
 						icon = "󰒲 ",
@@ -188,6 +188,13 @@ return {
 				Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 			end,
 			desc = "Find Config File",
+		},
+		{
+			"<leader>fo",
+			function()
+				Snacks.picker.explorer({cwd = "~/Obsidian/Notes/", exclude = {}})
+			end,
+			desc = "Find Files",
 		},
 		{
 			"<leader>ff",

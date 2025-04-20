@@ -11,7 +11,6 @@ vim.keymap.set("n", "<C-Down>", "30j", { desc = "Scroll down" })
 -- vim.keymap.set("n", "<C-Left>", "30h", { desc = "Move left" })
 -- vim.keymap.set("n", "<C-Right>", "30l", { desc = "Move right" })
 
-vim.keymap.set("n", "<leader>o", "<cmd>lua Snacks.picker.files({cwd = '~/Obsidian/Notes/'})<cr>", { desc = "Open Obsidian" })
 vim.keymap.set({ "i", "n" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save" })
 vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
 vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
