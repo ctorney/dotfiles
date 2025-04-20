@@ -42,7 +42,7 @@ return {
 						icon = " ",
 						key = "o",
 						desc = "Obsidian",
-						action = ":lua Snacks.explorer({cwd = '~/Obsidian/Notes/'})",
+						action = ":lua Snacks.dashboard.pick('files', {cwd = '~/Obsidian/Notes/'})",
 					},
 					{
 						icon = "󰒲 ",
