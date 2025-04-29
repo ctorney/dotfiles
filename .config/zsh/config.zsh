@@ -33,11 +33,11 @@ conda activate tf
 
 export EDITOR=nvim
 
-# Check if we're not already in a shpool session and shpool is installed
-if [ -z "$SHPOOL_SESSION_NAME" ] && command -v shpool >/dev/null 2>&1; then
-  # Launch shpool and attach to the "main" session
-  exec shpool attach main
-fi
+# # # Check if we're not already in a shpool session and shpool is installed
+# if [ -z "$SHPOOL_SESSION_NAME" ] && command -v shpool >/dev/null 2>&1; then
+#    # Launch shpool and attach to the "main" session
+#    exec shpool attach main
+# fi
 
 PLUGIN_PATH=$HOME/.config/zsh/plugins
 

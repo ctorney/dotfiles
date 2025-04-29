@@ -1,12 +1,12 @@
 return {
-	{
-		dir = "~/workspace/arduino-tools.nvim/",
-		name = "arduino-tools.nvim",
-		ft = { "arduino" },
-		opts = {
-			cli_config = "~/Library/Arduino15/",
-		},
-	},
+	-- {
+	-- 	dir = "~/workspace/arduino-tools.nvim/",
+	-- 	name = "arduino-tools.nvim",
+	-- 	ft = { "arduino" },
+	-- 	opts = {
+	-- 		cli_config = "~/Library/Arduino15/",
+	-- 	},
+	-- },
 	{
 		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit

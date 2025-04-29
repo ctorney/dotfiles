@@ -70,7 +70,7 @@ return {
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
-		image = { enabled = true, force = true, doc = { inline = false, float = false } },
+		image = { enabled = true, force = true, doc = { inline = true, float = false } },
 		statuscolumn = { enabled = true },
 		picker = {
 			enabled = true,
@@ -145,7 +145,13 @@ return {
 			end,
 			desc = "Close Buffer",
 		},
-		-- Top Pickers & Explorer
+		{
+			"<leader>f/",
+			function()
+				Snacks.picker.grep({buffers = true})
+			end,
+			desc = "Grep",
+		},
 		{
 			"<leader>fg",
 			function()
