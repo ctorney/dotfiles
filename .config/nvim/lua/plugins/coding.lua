@@ -76,6 +76,12 @@ return {
 		enabled = true,
 	},
 	{
+		"Davidyz/VectorCode",
+		version = "*", -- optional, depending on whether you're on nightly or release
+		dependencies = { "nvim-lua/plenary.nvim" },
+		cmd = "VectorCode", -- if you're lazy-loading VectorCode
+	},
+	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -83,6 +89,11 @@ return {
 			"echasnovski/mini.diff",
 		},
 		opts = {
+			extensions = {
+				vectorcode = {
+					opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
+				},
+			},
 			display = {
 				chat = {
 					window = { layout = "float", title = " Code Companion " },
@@ -97,7 +108,7 @@ return {
 					roles = {
 						user = "Human",
 					},
-					adapter = "anthropic",
+					adapter = "gemini",
 					keymaps = {
 						hide = {
 							modes = {
@@ -108,10 +119,16 @@ return {
 							end,
 							description = "Hide the chat buffer",
 						},
+						send = {
+							modes = {
+								n = { "<CR>", "<C-s>" },
+								i = { "<CR>", "<C-s>" },
+							},
+						},
 					},
 				},
 				inline = {
-					adapter = "anthropic",
+					adapter = "gemini",
 					keymaps = {
 						accept_change = {
 							modes = {

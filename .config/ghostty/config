@@ -14,3 +14,5 @@ quit-after-last-window-closed = true
 keybind = ctrl+enter=unbind
 keybind = shift+enter=unbind
 shell-integration-features = no-cursor
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+quick-terminal-position = center

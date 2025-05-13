@@ -2,6 +2,7 @@ return -- LSP Plugins
 {
 	{
 		"williamboman/mason.nvim",
+		-- version = "^1.0.0",
 		config = true,
 	},
 	{
@@ -17,7 +18,12 @@ return -- LSP Plugins
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "williamboman/mason.nvim", opts = {} },
+			-- { "williamboman/mason.nvim", opts = {} },
+			{
+				"williamboman/mason.nvim",
+				-- version = "^1.0.0",
+				config = true,
+			},
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			-- "hrsh7th/cmp-nvim-lsp",

@@ -70,7 +70,7 @@ return {
 		notifier = { enabled = true },
 		scroll = { enabled = true },
 		quickfile = { enabled = true },
-		image = { enabled = true, force = true, doc = { inline = true, float = false } },
+		image = { enabled = true, force = true, doc = { enabled = false, inline = true, float = false } },
 		statuscolumn = { enabled = true },
 		picker = {
 			enabled = true,
@@ -151,6 +151,13 @@ return {
 				Snacks.picker.grep({buffers = true})
 			end,
 			desc = "Grep",
+		},
+    {
+			"<leader>fw",
+			function()
+				Snacks.picker.grep_word()
+			end,
+			desc = "Grep word under cursor",
 		},
 		{
 			"<leader>fg",
