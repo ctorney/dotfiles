@@ -1,0 +1,9 @@
+X-Mailer: aerc {{version}}
+
+Forwarded message from {{.OriginalFrom | names | join ", "}} on {{dateFormat .OriginalDate "Mon Jan 2, 2006 at 3:04 PM"}}:
+{{if eq .OriginalMIMEType "text/html"}}
+{{quote (.OriginalText|exec `w3m -T text/html -I UTF-8 -cols 200`)}}
+{{else}}
+{{quote .OriginalText}}
+{{end}}
+

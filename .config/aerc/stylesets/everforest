@@ -8,32 +8,41 @@ completion_pill.reverse=true
 
 
 default.fg=#d3c6aa
+header.fg=#7fbbb3
+
+title.fg=#7fbbb3
 
 error.fg=#e67e80
 warning.fg=#e69875
-success.fg=#a7c070
+success.fg=#a7c080
 
-tab.bg=#1E2326
+tab.bg=none
 tab.selected.bold=true
 
 border.fg=#d3c6aa
 border.bold=true
 
+tab.fg=#7c7f93
+tab.selected.fg=#d3c6aa
+tab.selected.reverse=false
+
 msglist_unread.bold=true
+#msglist_unread.fg=#7fbbb3
 msglist_flagged.fg=#e69875
 msglist_flagged.bold=true
 msglist_result.fg=#1e66f5
 msglist_result.bold=true
 msglist_*.selected.bold=true
-msglist_*.selected.bg=#d3c6aa
-msglist_*.selected.fg=#1e2326
+msglist_*.selected.fg=#010101
+msglist_*.selected.bg=#a7c080
 
 dirlist_*.selected.bold=true
-dirlist_*.selected.bg=#d3c6aa
-dirlist_*.selected.fg=#1e2326
+dirlist_*.selected.bg=#a7c080
+dirlist_*.selected.fg=#010101
 
-statusline_default.fg=#7c7f93
-statusline_default.bg=#272e33
+statusline_default.fg=#a7c080
+statusline_default.bg=#1e2326
+statusline_default.bg=#111111
 statusline_error.bold=true
 statusline_success.bold=true
 

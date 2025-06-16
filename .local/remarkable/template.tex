@@ -1,0 +1,96 @@
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=0.5cm}
+\usepackage{enumitem}
+\setlist[itemize]{left=0pt}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{titling}
+\setlength{\droptitle}{-2cm} % Adjust the value as needed to move the title closer to the top margin
+\setlength{\parskip}{0pt} % Remove the space between paragraphs
+\setlength{\parindent}{0pt} % Remove the indentation for paragraphs
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{amssymb}
+\setmainfont{Roboto}
+
+% Remove page number
+\pagenumbering{gobble}
+
+% Custom title format
+\pretitle{\begin{flushleft}\Large}
+\posttitle{\end{flushleft}}
+% \date{CURRENT_DATE}
+\title{Weekly Planner \hfill CURRENT_DATE}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3cm} % Adjust the value as needed to remove the white space between the title and the first section
+
+\section*{Tasks}
+
+\begin{multicols}{2}
+\begin{itemize}[left=8pt]
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+\end{itemize}
+
+\columnbreak
+\begin{itemize}[left=8pt]
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+  \item[$\square$] \hrulefill
+\end{itemize}
+
+
+\end{multicols}
+
+\section*{Research Notes}
+
+\hrulefill
+\doublespacing
+
+
+\hrulefill
+
+\hrulefill
+
+\hrulefill
+
+\hrulefill
+
+\hrulefill
+
+\hrulefill
+
+\hrulefill
+
+\section*{Meetings \& Deadlines}
+\begin{tabular}{p{0.15\textwidth}|p{0.15\textwidth}|p{0.6\textwidth}}
+    \underline{\textbf{Day}} & \underline{\textbf{Time}} & \underline{\textbf{Description}} \\
+    \vspace{0.2cm}\hrulefill & \vspace{0.2cm}\hrulefill & \vspace{0.2cm}\hrulefill \\
+    \hrulefill & \hrulefill & \hrulefill \\
+    \hrulefill & \hrulefill & \hrulefill \\
+    \hrulefill & \hrulefill & \hrulefill \\
+    \hrulefill & \hrulefill & \hrulefill \\
+    \hrulefill & \hrulefill & \hrulefill \\
+    \hrulefill & \hrulefill & \hrulefill \\
+    \hrulefill & \hrulefill & \hrulefill \\
+\end{tabular}
+
+\end{document}
+

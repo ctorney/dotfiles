@@ -1,6 +1,6 @@
 [general]
 accounts = outlook
-pythonfile = ~/.config/offlineimap/offlineimap.py
+pythonfile = /Users/colin.torney/.config/offlineimap/offlineimap.py
 
 [Account outlook]
 localrepository = outlook-local
@@ -9,20 +9,21 @@ maxsyncaccounts = 1
 
 [Repository outlook-local]
 type = Maildir
-localfolders = ~/mail/outlook
+localfolders = /Users/colin.torney/.mail/glasgow
 
 [Repository outlook-remote]
 type = IMAP
 auth_mechanisms = XOAUTH2
-oauth2_access_token_eval = get_token("colin.torney@glasgow.ac.uk")
+oauth2_access_token_eval = get_token()
 remoteuser = colin.torney@glasgow.ac.uk
 remotehost = outlook.office365.com
 remoteport = 993
+singlethreadperfolder = yes
+maxconnections = 1
 ssl = yes
+ssl_version = tls1_2
+sslcacertfile = /opt/homebrew/etc/openssl@3/cert.pem
 realdelete = no
 sync_deletes = yes
-ipv6 = False
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 # only backup the folders listed here
 folderfilter = lambda folder: folder in ['INBOX', 'Drafts', 'Archive', 'Deleted Items', 'Sent Items' ]
-# copy_ignore_eval = lambda foldername: {'Archive': [20562,24695,25947,28435,28601,28636,28833,23659,23418,23677]}.get(foldername)
