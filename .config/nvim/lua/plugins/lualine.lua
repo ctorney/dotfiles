@@ -32,8 +32,9 @@ return {
 					disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
 				},
 				sections = {
-					lualine_a = { { "hostname" } },
-					lualine_b = { { "mode" } },
+					-- lualine_a = { { "hostname" } },
+					lualine_a = { { "mode" } },
+          lualine_b = {{""}},
 
 					lualine_c = {
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
@@ -75,11 +76,7 @@ return {
 						{ "location", padding = { left = 1, right = 1 } },
 						{ "progress", padding = { left = 1, right = 1 } },
 					},
-					lualine_z = {
-						function()
-							return " " .. os.date("%R")
-						end,
-					},
+					lualine_z = { { "hostname" } },
 				},
 				extensions = { "lazy", "fzf" },
 			}
