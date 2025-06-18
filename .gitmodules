@@ -16,9 +16,6 @@
 [submodule ".config/zsh/plugins/zsh-autosuggestions"]
 	path = .config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule ".config/tmux/tmux-power"]
-	path = .config/tmux/tmux-power
-	url = https://github.com/wfxr/tmux-power.git
 [submodule ".config/zsh/plugins/zsh-autocomplete"]
 	path = .config/zsh/plugins/zsh-autocomplete
 	url = https://github.com/marlonrichert/zsh-autocomplete.git
