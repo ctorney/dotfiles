@@ -52,20 +52,42 @@ return {
 --     vim.keymap.set("n", "gzc", "<Plug>SlimeConfig", { remap = true, silent = false })
 --   end,
 -- },
+{
+    "jpalardy/vim-slime",
+    ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
+    config = function()
+      vim.g.slime_target = "tmux"
+      vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
+      vim.g.slime_dont_ask_default = 1
+      vim.g.slime_bracketed_paste = 1
 
+      vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
+      vim.api.nvim_set_keymap("n", "<leader>sm", "<Plug>SlimeMotionSend", { desc = "Send motion" })
+    end,
+  },
+{
+    "klafyvel/vim-slime-cells",
+    requires = { { "jpalardy/vim-slime", opt = true } },
+    ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
+    config = function()
+      vim.g.slime_cell_delimiter = "^\\s*##"
 
-	{
-		"klafyvel/vim-slime-cells",
-		ft = { "python" },
-		config = function()
-			vim.g.slime_cell_delimiter = "^\\s*# %%"
-
-			vim.cmd([[
-	       nmap <S-Down> <Plug>SlimeCellsNext
-	       nmap <S-Up> <Plug>SlimeCellsPrev
-	       ]])
-		end,
-	},
+      vim.cmd([[
+        nmap <S-CR> <Plug>SlimeCellsSendAndGoToNext
+        nmap <C-CR> <Plug>SlimeCellsSendAndGoToNext
+        xmap <S-CR> <Plug>SlimeRegionSend
+        xmap <C-CR> <Plug>SlimeRegionSend
+        imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
+        imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
+        nmap <leader>cv <Plug>Slimeconfig
+        nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
+        nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
+        nmap <leader>ss <Plug>SlimeCellsSend
+        nmap <S-Down> <Plug>SlimeCellsNext
+        nmap <S-Up> <Plug>SlimeCellsPrev
+        ]])
+    end,
+  },
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		ft = { "markdown", "codecompanion" },
@@ -207,101 +229,5 @@ return {
 			{ "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
 		},
 	},
-	{
-		"milanglacier/yarepl.nvim",
-		opts = function(_, opts)
-			opts.buflisted = false
-			opts.scratch = true
-			opts.ft = "REPL"
-
-			opts.wincmd = function(bufnr, name)
-				-- Create the split and get the new window ID
-				vim.cmd("vertical rightbelow split")
-				local new_win = vim.api.nvim_get_current_win()
-
-				-- Set the buffer in the new window
-				vim.api.nvim_win_set_buf(new_win, bufnr)
-
-				-- -- Set the width of the new window
-				local width = math.floor(vim.o.columns * 0.30)
-				vim.cmd("vertical resize " .. width)
-
-				vim.opt_local.number = false
-				vim.opt_local.relativenumber = false
-				vim.cmd("startinsert")
-			end
-
-			opts.metas = {
-				aichat = false,
-				radian = false,
-				ipython = {
-					cmd = {
-						"ipython",
-						"-i",
-						"-c",
-						'\'import matplotlib;matplotlib.use("module://matplotlib-backend-nvim");matplotlib.rc("figure", figsize=(10, 6));from qbstyles import mpl_style;mpl_style("dark")\'',
-					},
-					formatter = "bracketed_pasting",
-				},
-				python = false,
-				R = false,
-				bash = false,
-				zsh = false,
-			}
-			opts.close_on_exit = true
-			opts.scroll_to_bottom_after_sending = false
-			opts.format_repl_buffers_names = true
-			vim.keymap.set(
-				"n",
-				"<leader>rq",
-				"<cmd>REPLClose<cr>",
-				{ noremap = true, silent = true, desc = "Close the current REPL" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>ra",
-				"<cmd>REPLAttachBufferToREPL<cr>",
-				{ noremap = true, silent = true, desc = "Attach current buffer to a REPL" }
-			)
-			vim.keymap.set(
-				"v",
-				"<leader>sv",
-				"<cmd>REPLSendVisual<cr>",
-				{ noremap = true, silent = true, desc = "Send code to REPL" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>sl",
-				"<cmd>REPLSendLine<cr>",
-				{ noremap = true, silent = true, desc = "Send line to REPL" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>sf",
-				"ggvG<cmd>REPLSendVisual<cr>",
-				{ noremap = true, silent = true, desc = "Send file to REPL" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>so",
-				"<cmd>REPLSendOperator<cr>",
-				{ noremap = true, silent = true, desc = "Send motion to REPL" }
-			)
-			vim.keymap.set(
-				"n",
-				"<C-CR>",
-				"<cmd>REPLSendOperator<cr>ihg]hjj",
-				{ desc = "Send visual selection to REPL", remap = true }
-			)
-			vim.keymap.set(
-				"i",
-				"<C-CR>",
-				"<Esc><cmd>REPLSendOperator<cr>ihg]hjji",
-				{ desc = "Send visual selection to REPL", remap = true }
-			)
-		end,
-		keys = {
-			{ "<leader>rp", "<cmd>REPLStart ipython<cr><cmd>wincmd h<cr>", desc = "Start an ipython REPL" },
-		},
-	},
+	
 }

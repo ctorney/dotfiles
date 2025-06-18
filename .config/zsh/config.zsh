@@ -7,6 +7,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
 export ZSH_ASK_API_KEY=$OPENAI_API_KEY
 
+export MPLBACKEND=module://matplotlib-backend-terminal
 export MPLBACKEND_TRANSPARENT=1
 export MPLBACKEND_CHAFA_OPTS="-f kitty --passthrough tmux"
 
@@ -17,6 +18,11 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt INC_APPEND_HISTORY
 
+if [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s TMUX
+fi
+
+echo -ne "\033]0;$(hostname)\007"
 __conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
