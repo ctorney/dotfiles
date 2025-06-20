@@ -5,8 +5,8 @@
 
 
 PRINT_ONLY=0
-DIR=""
-OPTS=""
+DIR="$HOME"
+MULTISELECT=""
 
 for arg in "$@"; do
   if [ "$arg" = "--print-only" ]; then
@@ -17,7 +17,7 @@ for arg in "$@"; do
 done
 
 if [ "$PRINT_ONLY" -eq 1 ]; then
-  OPTS="--multi"
+  MULTISELECT="--multi"
 fi
 
 if [ -n "$DIR" ]; then
@@ -39,22 +39,21 @@ if [ -d {} ]; then
     echo 'Preview not available for this file type'
   fi
 "
-# todo - previews, openers
 
   while true; do
     # List parent directory, then fd results
-    selection=$( (printf "..\n"; fd -d 1) | fzf $OPTS --style=full --header-lines=0 --layout=reverse --border=sharp   \
+    selection=$( (printf "..\n"; fd -d 1) | fzf $MULTISELECT --style=full --layout=reverse --border=sharp  \
       --preview="$preview_command" \
       --preview-window='40%' \
       --prompt="> " \
-    --bind 'focus:+transform-header:file --brief {} || echo "No file selected"' \
-    --bind 'left:abort' --expect=left \
+      --bind 'focus:+transform-header:file --brief {} || echo "No file selected"' \
+      --bind 'change:top' \
       --bind='ctrl-p:toggle-preview' \
       --bind='ctrl-f:+reload(printf "..\n"; fd )' \
       --bind='ctrl-d:+reload(printf "..\n"; fd -d 1)' 
     )
 
-key=$(head -1 <<< "$selection")
+    key=$(head -1 <<< "$selection")
     if [[ $key == "left" ]]; then
       selection=".."
     fi
@@ -83,8 +82,13 @@ key=$(head -1 <<< "$selection")
     # If file, open in $EDITOR and exit
     if [[ -f "$selection" ]]; then
 
+      if file --mime-type "$selection" | grep -q "text/"; then
         $EDITOR "$selection"
         break
+      fi
+
+      open "$selection"
+      break
     fi
   done
 
