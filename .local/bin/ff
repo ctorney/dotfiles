@@ -42,7 +42,7 @@ if [ -d {} ]; then
 
   while true; do
     # List parent directory, then fd results
-    selection=$( (printf "..\n"; fd -d 1) | fzf $MULTISELECT --style=full --layout=reverse --border=sharp  \
+    selection=$( (printf "..\n"; fd -d 1) | fzf $MULTISELECT --style=full --layout=reverse --border=sharp --no-clear \
       --preview="$preview_command" \
       --preview-window='40%' \
       --prompt="> " \
@@ -91,4 +91,4 @@ if [ -d {} ]; then
       break
     fi
   done
-
+tput rmcup
