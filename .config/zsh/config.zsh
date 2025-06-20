@@ -64,9 +64,12 @@ else
 fi
 
 
+if command fdfind >/dev/null 2>&1; then
+    alias fd='fdfind'
+fi
+
 alias c="clear"
 alias vi='nvim'
-alias fd='fdfind'
 alias nvimage='function _nvimage() { echo "![terminalimage]($(realpath "$1"))\n"; }; _nvimage'
 
 # eval "$(/usr/libexec/path_helper)"    

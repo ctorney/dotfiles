@@ -154,7 +154,7 @@ return {
 					roles = {
 						user = "Human",
 					},
-					adapter = "gemini",
+					adapter = "anthropic",
 					keymaps = {
 						hide = {
 							modes = {
@@ -174,7 +174,7 @@ return {
 					},
 				},
 				inline = {
-					adapter = "gemini",
+					adapter = "anthropic",
 					keymaps = {
 						accept_change = {
 							modes = {

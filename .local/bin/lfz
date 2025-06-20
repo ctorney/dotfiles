@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+# lfz - List Files with FZF optional directory and print-only mode
+# Usage: lfz --print-only [<directory>] 
+
+
+PRINT_ONLY=0
+DIR=""
+MULTISELECT=""
+
+for arg in "$@"; do
+  if [ "$arg" = "--print-only" ]; then
+    PRINT_ONLY=1
+  elif [ -d "$arg" ]; then
+    DIR="$arg"
+  fi
+done
+
+if [ "$PRINT_ONLY" -eq 1 ]; then
+  MULTISELECT="--multi"
+fi
+
+if [ -n "$DIR" ]; then
+  cd "$DIR" || { echo "Failed to find directory $DIR"; exit 1; }
+fi
+
+
+
+# todo - previews, openers
+
+  while true; do
+    # List parent directory, then fd results
+    selection=$( (printf "..\n"; fd -d 1) | fzf $MULTISELECT --layout=reverse --border=sharp  \
+      --preview='tree -C {}' --preview-window='45%,border-sharp' \
+      --prompt="> " \
+      --bind='ctrl-p:toggle-preview' \
+      --bind='ctrl-f:+reload(printf "..\n"; fd )' \
+      --bind='ctrl-d:+reload(printf "..\n"; fd -d 1)' 
+    )
+
+    # If nothing selected, exit
+    [[ -z "$selection" ]] && break
+
+    # If selection is '..', go up
+    if [[ "$selection" == ".." ]]; then
+      cd ..
+      continue
+    fi
+
+    # If directory, cd into it
+    if [[ -d "$selection" ]]; then
+      cd "$selection"
+      continue
+    fi
+
+      if [ "$PRINT_ONLY" -eq 1 ]; then
+        # add quotes around each item
+        selection=$(echo "$selection" | sed "s|^|$(pwd)/|; s/.*/'&'/")
+        echo "$selection" 
+        break
+      fi
+    # If file, open in $EDITOR and exit
+    if [[ -f "$selection" ]]; then
+
+        $EDITOR "$selection"
+        break
+    fi
+  done
+
