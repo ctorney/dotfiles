@@ -27,14 +27,23 @@ fi
 
 preview_command="
 if [ -d {} ]; then
-    eza -al --color=always --icons {}
+    eza -a1 --color=always --icons {}
   elif file --mime {} | grep -q \"image/\"; then
     # Use FZF_PREVIEW_COLUMNS if available, otherwise use a fixed width
     width=\$(( \${FZF_PREVIEW_COLUMNS:-40} ))
     height=\$(( \${FZF_PREVIEW_LINES:-20} ))
     chafa -s \${width}x\${height} --fit-width --passthrough tmux -f kitty {}
+  elif [[ {} == *.csv ]]; then
+    mlr --icsv --opprint head -n \${FZF_PREVIEW_LINES:-20} {} | cut -c 1-\$(( \${FZF_PREVIEW_COLUMNS:-80} )) | bat --color=always --style=plain
+  elif [[ {} == *.ipynb ]]; then
+    nbpreview {}  | cut -c 1-\$(( \${FZF_PREVIEW_COLUMNS:-80} )) | bat --color=always --style=plain
   elif file --mime {} | grep -q \"text/\"; then
    bat --color=always --style=plain {} 
+  elif file --mime {} | grep -q \"application/pdf\"; then
+    pdftotext {} - | bat --color=always --style=plain  
+  elif file --mime {} | grep -q \"application/do\|application/vnd.oasis.opendocument\|application/vnd.openxmlformats\"; then
+    # Convert Word/OpenOffice documents to text using pandoc
+    pandoc -t plain {} | bat --color=always --style=plain
   else
     echo 'Preview not available for this file type'
   fi
