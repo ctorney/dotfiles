@@ -34,8 +34,15 @@ else
     fi
 fi
 unset __conda_setup
-
-conda activate tf
+if [ -n "$TMUX" ]; then
+    precmd() {
+        if [ -n "$CONDA_DEFAULT_ENV" ]; then
+            tmux set-environment CONDA_DEFAULT_ENV "$CONDA_DEFAULT_ENV"
+        fi
+      }
+fi
+   
+conda activate jax
 
 export EDITOR=nvim
 

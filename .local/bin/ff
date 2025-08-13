@@ -28,6 +28,8 @@ fi
 preview_command="
   if [ -d {} ]; then
     eza -a1 --color=always --icons {}
+  elif [[ {} == *.gif || {} == *.xls* ]]; then
+    file  {} 
   elif file --mime {} | grep -q \"image/\"; then
     # Use FZF_PREVIEW_COLUMNS if available, otherwise use a fixed width
     width=\$(( \${FZF_PREVIEW_COLUMNS:-40} ))
@@ -38,12 +40,12 @@ preview_command="
   elif [[ {} == *.ipynb ]]; then
     nbpreview {}  | cut -c 1-\$(( \${FZF_PREVIEW_COLUMNS:-80} )) | bat --color=always --style=plain
   elif file --mime {} | grep -q \"text/\"; then
-   bat --color=always --style=plain {} 
+   head -n \${FZF_PREVIEW_LINES:-20} {} | cut -c 1-\$(( \${FZF_PREVIEW_COLUMNS:-80} )) | bat --color=always --style=plain
   elif file --mime {} | grep -q \"application/pdf\"; then
-    pdftotext {} - | bat --color=always --style=plain  
+    pdftotext {} - | head -n \${FZF_PREVIEW_LINES:-20} | cut -c 1-\$(( \${FZF_PREVIEW_COLUMNS:-80} )) | bat --color=always --style=plain
   elif file --mime {} | grep -q \"application/do\|application/vnd.oasis.opendocument\|application/vnd.openxmlformats\"; then
     # Convert Word/OpenOffice documents to text using pandoc
-    pandoc -t plain {} | bat --color=always --style=plain
+    pandoc -t plain {} | head -n \${FZF_PREVIEW_LINES:-20} | cut -c 1-\$(( \${FZF_PREVIEW_COLUMNS:-80} )) | bat --color=always --style=plain
   else
     echo 'Preview not available for this file type'
   fi
@@ -71,7 +73,7 @@ preview_command="
     if [[ $key == "right" ]]; then
       selection=$(tail -n +2 <<< "$selection")
       if [[ -f "$selection" ]]; then
-        continue
+        selection=$(dirname "$selection")
       fi    
     fi
 
@@ -105,7 +107,6 @@ preview_command="
       fi
 
       open "$selection"
-      break
     fi
   done
 tput rmcup

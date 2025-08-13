@@ -10,7 +10,7 @@ pdf_file="weekly_planner_$(date +%Y%m%d).pdf"
 
 xelatex -output-directory=$(pwd) -jobname="${pdf_file%.pdf}" current_week.tex >/dev/null
 
-/opt/homebrew/bin/rmapi put "${pdf_file}" "2. AREAS/Time Management"
+/Users/colin.torney/.local/go/bin/rmapi put "${pdf_file}" "2. AREAS/Time Management"
 # Remove the temporary LaTeX file
 rm current_week.tex
 rm weekly_planner_*
