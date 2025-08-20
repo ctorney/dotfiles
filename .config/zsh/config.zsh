@@ -42,7 +42,7 @@ if [ -n "$TMUX" ]; then
       }
 fi
    
-conda activate jax
+conda activate tf
 
 export EDITOR=nvim
 

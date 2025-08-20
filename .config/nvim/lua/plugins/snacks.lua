@@ -68,7 +68,7 @@ return {
 		indent = { enabled = true },
 		bufdelete = { enabled = true },
 		notifier = { enabled = true },
-		scroll = { enabled = true },
+		scroll = { enabled = false },
 		quickfile = { enabled = true },
 		image = { enabled = true, force = true, doc = { enabled = false, inline = true, float = false } },
 		statuscolumn = { enabled = true },
