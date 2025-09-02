@@ -24,9 +24,9 @@ return {
 			-- Required.
 			"nvim-lua/plenary.nvim",
 		},
-    cmd = {
-      "Obsidian",
-    },
+		cmd = {
+			"Obsidian",
+		},
 		opts = {
 			workspaces = {
 				{
@@ -200,6 +200,10 @@ return {
 						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
 						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
 					}),
+					m = {
+						{ "%b()", "%b[]", "%b{}" },
+						"^.().*().$",
+					},
 					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), -- function
 					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), -- class
 					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags

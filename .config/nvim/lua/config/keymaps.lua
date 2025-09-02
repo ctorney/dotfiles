@@ -1,7 +1,7 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "U", "<cmd>redo<cr>", { desc = "Redo" })
 vim.keymap.set("n", "<C-Left>", "<cmd>e #<cr>", { desc = "Previous edited buffer" })
-vim.keymap.set("n", "<bs>", "<cmd>bprevious<cr>", { desc = "Previous edited buffer" })
+vim.keymap.set("n", "<bs>", "<cmd>b #<cr>", { desc = "Previous edited buffer" })
 vim.keymap.set("n", "<s-bs>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape" })
 vim.keymap.set("n", "gl", "$", { desc = "End of line" })
@@ -51,6 +51,16 @@ vim.keymap.set("t", "<C-j>", "<cmd>wincmd j<cr>")
 vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr>")
 vim.keymap.set("t", "<C-l>", "<cmd>wincmd l<cr>")
 
-vim.keymap.set({ "n", "v", "i", "x", "t" }, "<c-a>d", function()
-	vim.cmd("!shpool detach")
-end)
+-- vim.keymap.set({ "n", "v", "i", "x", "t" }, "<c-a>d", function()
+-- 	vim.cmd("!shpool detach")
+-- end)
+
+-- Jumps to matching pair
+vim.keymap.set("n", "mm", "%")
+
+-- Selects until matching pair, e.g. vm - select until matching pair
+vim.keymap.set("x", "m", "%")
+
+-- Use with operators, e.g. dm - delete until matching pair
+vim.keymap.set("o", "m", "%")
+
