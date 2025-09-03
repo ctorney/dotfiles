@@ -6,8 +6,17 @@ vim.keymap.set("n", "<s-bs>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape" })
 vim.keymap.set("n", "gl", "$", { desc = "End of line" })
 vim.keymap.set("n", "gh", "^", { desc = "Start of line" })
-vim.keymap.set("n", "<C-Up>", "30k", { desc = "Scroll up" })
-vim.keymap.set("n", "<C-Down>", "30j", { desc = "Scroll down" })
+
+
+
+
+-- movement
+vim.keymap.set({ 'n', 'v' }, '<C-Up>', '<cmd>Treewalker Up<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-Down>', '<cmd>Treewalker Down<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-Left>', '<cmd>Treewalker Left<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-Right>', '<cmd>Treewalker Right<cr>', { silent = true })
+-- vim.keymap.set("n", "<C-Up>", "30k", { desc = "Scroll up" })
+-- vim.keymap.set("n", "<C-Down>", "30j", { desc = "Scroll down" })
 -- vim.keymap.set("n", "<C-Left>", "30h", { desc = "Move left" })
 -- vim.keymap.set("n", "<C-Right>", "30l", { desc = "Move right" })
 

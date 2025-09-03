@@ -93,7 +93,7 @@ return {
 		ft = { "markdown", "codecompanion" },
 	},
 	{
-		"echasnovski/mini.diff",
+		"nvim-mini/mini.diff",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			source = {
@@ -132,7 +132,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			"echasnovski/mini.diff",
+			"nvim-mini/mini.diff",
 		},
 		opts = {
 			extensions = {
