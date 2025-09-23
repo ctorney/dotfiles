@@ -9,6 +9,9 @@ vim.keymap.set("n", "gh", "^", { desc = "Start of line" })
 
 
 
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- movement
 vim.keymap.set({ 'n', 'v' }, '<C-Up>', '<cmd>Treewalker Up<cr>', { silent = true })

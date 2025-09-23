@@ -6,8 +6,8 @@ alt - l : yabai -m window --focus next
 
 
 #change focus between external displays (left and right)
-alt - s: yabai -m display --focus west
-alt - g: yabai -m display --focus east
+# alt - s: yabai -m display --focus west
+# alt - g: yabai -m display --focus east
 
 # -- Modifying the Layout --
 

@@ -18,9 +18,9 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt INC_APPEND_HISTORY
 
-if [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s TMUX
-fi
+# if [ -z "$TMUX" ]; then
+#   exec tmux new-session -A -s TMUX
+# fi
 
 echo -ne "\033]0;$(hostname)\007"
 __conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -76,7 +76,8 @@ if command fdfind >/dev/null 2>&1; then
 fi
 
 alias c="clear"
-alias vi='nvim'
+alias nvim='nvim --listen /tmp/nvim'
+alias vi='nvim --listen /tmp/nvim'
 alias nvimage='function _nvimage() { echo "![terminalimage]($(realpath "$1"))\n"; }; _nvimage'
 
 # eval "$(/usr/libexec/path_helper)"    

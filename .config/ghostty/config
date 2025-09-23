@@ -1,9 +1,10 @@
 font-family = "IosevkaTerm Nerd Font"
 font-size = 14
 font-thicken = true
-theme = Everforest Dark - Hard
+theme = Everforest Dark   Hard
 background = "#010101"
-macos-titlebar-style = "native"
+macos-titlebar-style = "tabs"
+custom-shader = "shaders/cursor_smear.glsl"
 title = " "
 background-opacity = 0.9
 background-blur-radius = 20
