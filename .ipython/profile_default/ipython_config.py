@@ -862,7 +862,7 @@ c.TerminalInteractiveShell.editor = 'nvim'
 ## Customize the terminal title format.  This is a python format string.
 #  Available substitutions are: {cwd}.
 #  Default: 'IPython: {cwd}'
-# c.TerminalInteractiveShell.term_title_format = 'IPython: {cwd}'
+c.TerminalInteractiveShell.term_title_format = 'IPython'
 
 ## The time in milliseconds that is waited for a mapped key
 #         sequence to complete.

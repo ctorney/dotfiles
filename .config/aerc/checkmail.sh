@@ -6,9 +6,9 @@ NOTMUCH=$(pgrep -f notmuch)
 if [ -n "$OFFLINEIMAP" -o -n "$NOTMUCH" ]; then
   if [ -n "$OFFLINEIMAP" ]; then
     RUNTIME=$(ps -o etime= -p "$OFFLINEIMAP" | awk -F: '{ if (NF==3) {print $1*3600 + $2*60 + $3} else if (NF==2) {print $1*60 + $2} }')
-    if [ -n "$RUNTIME" ] && [ "$RUNTIME" -gt 7200 ]; then
+    if [ -n "$RUNTIME" ] && [ "$RUNTIME" -gt 300 ]; then
       echo "Killing stale offlineimap process..."
-      kill "$OFFLINEIMAP"
+      kill -9 "$OFFLINEIMAP"
     else
       echo "Already running one instance of offlineimap or notmuch. Exiting..."
       exit 0

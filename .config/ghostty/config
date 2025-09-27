@@ -5,7 +5,6 @@ theme = Everforest Dark   Hard
 background = "#010101"
 macos-titlebar-style = "tabs"
 custom-shader = "shaders/cursor_smear.glsl"
-title = " "
 background-opacity = 0.9
 background-blur-radius = 20
 window-padding-x = 10

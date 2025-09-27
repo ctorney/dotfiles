@@ -22,7 +22,6 @@ setopt INC_APPEND_HISTORY
 #   exec tmux new-session -A -s TMUX
 # fi
 
-echo -ne "\033]0;$(hostname)\007"
 __conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -34,6 +33,7 @@ else
     fi
 fi
 unset __conda_setup
+
 if [ -n "$TMUX" ]; then
     precmd() {
         if [ -n "$CONDA_DEFAULT_ENV" ]; then
@@ -42,7 +42,7 @@ if [ -n "$TMUX" ]; then
       }
 fi
    
-conda activate tf
+# conda activate tf
 
 export EDITOR=nvim
 
@@ -148,12 +148,4 @@ bindkey "^[[H"   beginning-of-line
 bindkey "^[[F"   end-of-line
 bindkey "^[[1;5C" forward-word
 
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
 

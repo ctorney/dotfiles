@@ -75,6 +75,7 @@ return {
 
 	{
 		"sphamba/smear-cursor.nvim",
+    enabled = false,
 		event = "VeryLazy",
 		opts = {
 			hide_target_hack = true,
