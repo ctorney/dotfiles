@@ -72,7 +72,6 @@ M.hosts_picker = function()
       },
       confirm = function(picker, item)
         picker:close()
-        vim.notify("You selected: " .. item.text, vim.log.levels.INFO)
 					local ssh_host_infos = vim.fn.systemlist("ssh -GT " .. item.text)
 
 					if vim.v.shell_error ~= 0 then
@@ -89,7 +88,7 @@ M.hosts_picker = function()
 
 					local cmd = M.get_cmd(user[1].text, user[2].text, user[3].text)
 					-- vim.cmd(cmd)
-          Oil.open_float(cmd)
+          Oil.open_float(cmd, {preview = {}})
       end,
     }
   )

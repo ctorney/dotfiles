@@ -42,7 +42,7 @@ return {
 						icon = " ",
 						key = "o",
 						desc = "Obsidian",
-						action = ":lua Snacks.explorer({cwd = '~/Obsidian/Notes/', exclude = {}})",
+				    action = "lua require('oil').open_float('~/Obsidian/Notes/', { preview = {} })",
 					},
 					{
 						icon = "󰒲 ",
@@ -205,7 +205,7 @@ return {
 		{
 			"<leader>fo",
 			function()
-				Snacks.picker.explorer({cwd = "~/Obsidian/Notes/", exclude = {}})
+				require("oil").open_float("~/Obsidian/Notes/", { preview = {} })
 			end,
 			desc = "Find Files",
 		},

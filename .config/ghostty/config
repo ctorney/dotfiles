@@ -17,3 +17,7 @@ keybind = shift+enter=unbind
 shell-integration-features = no-cursor
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 quick-terminal-position = center
+keybind = unconsumed:ctrl+h=goto_split:left
+keybind = unconsumed:ctrl+j=goto_split:bottom
+keybind = unconsumed:ctrl+k=goto_split:top
+keybind = unconsumed:ctrl+l=goto_split:right
