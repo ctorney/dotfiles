@@ -7,7 +7,7 @@ vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape" })
 vim.keymap.set("n", "gl", "$", { desc = "End of line" })
 vim.keymap.set("n", "gh", "^", { desc = "Start of line" })
 
-
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
@@ -53,8 +53,9 @@ end, { desc = "Toggle virtual text" })
 
 vim.keymap.set("x", "<leader>w", "<cmd>echo wordcount().visual_words<CR>", { desc = "Visual word count" })
 
-local functions = require("config.functions")
-vim.keymap.set("n", "<leader>fe", functions.ExplorerOpenCurrentDir, { desc = "File explorer" })
+vim.keymap.set("n", "<leader>fe", require("config.functions").ExplorerOpenCurrentDir, { desc = "File explorer" })
+
+vim.keymap.set("n", "<leader>fh", require("config.hosts").hosts_picker, { desc = "SSH to host" })
 
 vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
 vim.keymap.set("t", "jj", [[<C-\><C-n>]])
