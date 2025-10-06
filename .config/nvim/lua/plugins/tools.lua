@@ -18,7 +18,7 @@ return {
 				-- Padding around the floating window
 				padding = 2,
 				-- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-				max_width = 0.8,
+				max_width = 0.5,
 				max_height = 0.8,
 				border = "rounded",
 				win_options = {
@@ -34,16 +34,21 @@ return {
 					return conf
 				end,
 			},
-      preview_win = {
-        preview_method = "load",
-        disable_preview = function(filename)
-          -- return false for py, txt, md, lua files
-          if filename:match("%.py$") or filename:match("%.txt$") or filename:match("%.md$") or filename:match("%.lua$") then
-            return false
-          end
-          return true 
-        end,
-      },
+			preview_win = {
+				preview_method = "load",
+				disable_preview = function(filename)
+					-- return false for py, txt, md, lua files
+					if
+						filename:match("%.py$")
+						or filename:match("%.txt$")
+						or filename:match("%.md$")
+						or filename:match("%.lua$")
+					then
+						return false
+					end
+					return true
+				end,
+			},
 			keymaps = {
 				["g?"] = { "actions.show_help", mode = "n" },
 				["<CR>"] = "actions.select",
@@ -77,14 +82,14 @@ return {
 			{
 				"-",
 				function()
-					require("oil").open_float(nil, { preview = {} })
+					require("oil").open_float(nil) -- , { preview = {} })
 				end,
 				desc = "Open Oil",
 			},
 			{
 				"<leader>fe",
 				function()
-					require("oil").open_float(nil, { preview = {} })
+					require("oil").open_float(nil) --, { preview = {} })
 				end,
 				desc = "Open Oil",
 			},
@@ -150,16 +155,36 @@ return {
 		opts = {},
 	},
 	{
-		"numtostr/FTerm.nvim",
+		"nvzone/floaterm",
+    lazy = false,
+		dependencies = "nvzone/volt",
 		opts = {
-			dimensions = { height = 0.8, width = 0.8 },
-			border = "rounded",
+			border = true,
+			size = { h = 60, w = 70 },
+
+			-- to use, make this func(buf)
+			mappings = { sidebar = nil, term = nil },
+
+			-- Default sets of terminals you'd like to open
+			terminals = {
+				{ name = "Terminal" },
+				-- cmd can be function too
+				{ name = "Terminal", cmd = "btop" },
+				-- More terminals
+			},
 		},
+		config = function(_, opts)
+			require("floaterm").setup(opts)
+			-- Ensure colorscheme is applied after floaterm loads
+			-- vim.cmd.colorscheme("everforest")
+		end,
+		cmd = "FloatermToggle",
 		keys = {
 			{
 				"<c-/>",
 				function()
-					require("FTerm").toggle()
+			vim.cmd.colorscheme("everforest")
+					require("floaterm").toggle()
 				end,
 				mode = { "n", "x", "o", "t", "i" },
 				desc = "Toggle FTerm",

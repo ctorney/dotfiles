@@ -5,13 +5,10 @@ return {
 		lazy = false,
 		priority = 1000, -- make sure to load this before all the other start plugins
 		init = function()
-			-- Load the colorscheme here.
-			-- Like many other themes, this one has different styles, and you could load
-			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("everforest")
-
+			-- Don't load colorscheme here - wait for config to complete setup first
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
+			vim.cmd.colorscheme("everforest")
 		end,
 		config = function()
 			require("everforest").setup({
@@ -19,16 +16,37 @@ return {
 				transparent_background_level = 2,
 				float_style = "dim",
 				on_highlights = function(hl, palette)
+					--      hl.Normal = { bg = palette.bg,fg = palette.fg }
 					hl.NormalFloat = { bg = palette.none }
+					--      hl.exdarkbg = { bg = palette.bg_dim, fg = palette.fg }
 					hl.FloatBorder = { bg = palette.none }
 					hl.FloatTitle = { bg = palette.none }
 					hl.MiniDiffOverAdd = { fg = palette.blue, bg = palette.bg_dim }
 					hl.MiniDiffOverDelete = { fg = palette.red, bg = palette.bg_dim }
 					hl.MiniDiffOverChange = { fg = palette.blue, bg = palette.bg_dim }
 					hl.DiffChange = { fg = palette.grey0, bg = palette.none }
-					-- hl.BlinkCmpSignatureHelpBorder = { fg = palette.grey0, bg = palette.red }
+					-- -- hl.BlinkCmpSignatureHelpBorder = { fg = palette.grey0, bg = palette.red }
+					--
+					-- -- Floaterm highlight groups (with border = true)
+					-- hl.normal = { bg = palette.bg_dim, fg = palette.fg }  -- Terminal window background
+					-- hl.comment = { fg = palette.grey1, bg = palette.none }  -- Border color when bordered
+					--
+					-- -- Floaterm sidebar/UI specific groups - ensure proper backgrounds
+					-- hl.xdarkbg = { bg = palette.bg_dim, fg = palette.fg }  -- Active terminal title
+					-- hl.exgreen = { fg = "#a7c080", bg = palette.bg_dim }  -- Green text on dark background
+					hl.exred = { fg = "#e67e80", bg = palette.bg_dim }    -- Red text on dark background
+					hl.ExGreen = { fg = "#a7c080", bg = palette.bg_dim }  -- Active terminal (green on dark bg)
+					-- hl.Comment = { fg = palette.grey2, bg = palette.bg_dim }  -- Inactive terminals (grey on dark bg)
+					-- hl.exdarkborder = { fg = palette.grey1, bg = palette.bg_dim }  -- Border with background
+					-- hl.exblack2bg = { bg = palette.bg_dim, fg = palette.fg }
+					-- hl.exblack2border = { fg = palette.grey2, bg = palette.bg_dim }
+					-- hl.FloatSpecialBorder = { bg = palette.bg_dim, fg = "#e67e80" }
+					--
+					-- -- FloatermSidebar specific (this is the filetype set by floaterm)
+					-- hl.FloatermSidebar = { bg = palette.bg_dim, fg = palette.fg }
 				end,
 			})
+			-- Load the colorscheme AFTER setup is complete
 		end,
 	},
 	{

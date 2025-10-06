@@ -88,7 +88,7 @@ M.hosts_picker = function()
 
 					local cmd = M.get_cmd(user[1].text, user[2].text, user[3].text)
 					-- vim.cmd(cmd)
-          Oil.open_float(cmd, {preview = {}})
+          Oil.open_float(cmd)  --, {preview = {}})
       end,
     }
   )
