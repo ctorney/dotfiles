@@ -1,7 +1,7 @@
 font-family = "IosevkaTerm Nerd Font"
 font-size = 14
 font-thicken = true
-theme = Everforest Dark   Hard
+theme = Everforest Dark Hard
 background = "#010101"
 macos-titlebar-style = "tabs"
 macos-window-buttons = "hidden"

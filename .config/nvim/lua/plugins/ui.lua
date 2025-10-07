@@ -4,12 +4,6 @@ return {
 		version = false,
 		lazy = false,
 		priority = 1000, -- make sure to load this before all the other start plugins
-		init = function()
-			-- Don't load colorscheme here - wait for config to complete setup first
-			-- You can configure highlights by doing something like:
-			vim.cmd.hi("Comment gui=none")
-			vim.cmd.colorscheme("everforest")
-		end,
 		config = function()
 			require("everforest").setup({
 				background = "hard",
@@ -25,28 +19,12 @@ return {
 					hl.MiniDiffOverDelete = { fg = palette.red, bg = palette.bg_dim }
 					hl.MiniDiffOverChange = { fg = palette.blue, bg = palette.bg_dim }
 					hl.DiffChange = { fg = palette.grey0, bg = palette.none }
-					-- -- hl.BlinkCmpSignatureHelpBorder = { fg = palette.grey0, bg = palette.red }
-					--
-					-- -- Floaterm highlight groups (with border = true)
-					-- hl.normal = { bg = palette.bg_dim, fg = palette.fg }  -- Terminal window background
-					-- hl.comment = { fg = palette.grey1, bg = palette.none }  -- Border color when bordered
-					--
-					-- -- Floaterm sidebar/UI specific groups - ensure proper backgrounds
-					-- hl.xdarkbg = { bg = palette.bg_dim, fg = palette.fg }  -- Active terminal title
-					-- hl.exgreen = { fg = "#a7c080", bg = palette.bg_dim }  -- Green text on dark background
-					hl.exred = { fg = "#e67e80", bg = palette.bg_dim }    -- Red text on dark background
-					hl.ExGreen = { fg = "#a7c080", bg = palette.bg_dim }  -- Active terminal (green on dark bg)
-					-- hl.Comment = { fg = palette.grey2, bg = palette.bg_dim }  -- Inactive terminals (grey on dark bg)
-					-- hl.exdarkborder = { fg = palette.grey1, bg = palette.bg_dim }  -- Border with background
-					-- hl.exblack2bg = { bg = palette.bg_dim, fg = palette.fg }
-					-- hl.exblack2border = { fg = palette.grey2, bg = palette.bg_dim }
-					-- hl.FloatSpecialBorder = { bg = palette.bg_dim, fg = "#e67e80" }
-					--
-					-- -- FloatermSidebar specific (this is the filetype set by floaterm)
-					-- hl.FloatermSidebar = { bg = palette.bg_dim, fg = palette.fg }
 				end,
 			})
 			-- Load the colorscheme AFTER setup is complete
+			vim.cmd.colorscheme("everforest")
+      vim.api.nvim_set_hl(0, "added", { fg = "#e67e80", bg = "#000000", bold = true })
+      vim.api.nvim_set_hl(0, "removed", { fg = "#a7c080", bg = "#000000", bold = true })
 		end,
 	},
 	{

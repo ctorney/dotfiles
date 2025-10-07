@@ -1,10 +1,41 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
+		dependencies = {
+			"copilotlsp-nvim/copilot-lsp",
+		},
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
+
+			should_attach = function(bufnr, bufname)
+				if vim.bo[bufnr].buftype == "acwrite" then
+					return true
+				end
+
+				if not vim.bo[bufnr].buflisted then
+					return false
+				end
+
+				if vim.bo[bufnr].buftype ~= "" then
+					return false
+				end
+
+				return true
+			end,
+			nes = {
+				enabled = true,
+				keymap = {
+					accept_and_goto = "<leader>p",
+					accept = false,
+					dismiss = "<Esc>",
+				},
+			},
 			filetypes = {
 				markdown = true,
+				python = true,
+				clang = true,
+				lua = true,
+				["*"] = false,
 			},
 			suggestion = {
 				enabled = true,
@@ -30,49 +61,49 @@ return {
 			},
 		},
 	},
---   {
---   "jpalardy/vim-slime",
---   init = function()
---     -- these two should be set before the plugin loads
---     vim.g.slime_target = "neovim"
---     vim.g.slime_no_mappings = true
---   end,
---   config = function()
---     vim.g.slime_input_pid = false
---     vim.g.slime_suggest_default = true
---     vim.g.slime_menu_config = false
---     vim.g.slime_neovim_ignore_unlisted = false
---     -- options not set here are g:slime_neovim_menu_order, g:slime_neovim_menu_delimiter, and g:slime_get_jobid
---     -- see the documentation above to learn about those options
---
---     -- called MotionSend but works with textobjects as well
---     vim.keymap.set("n", "gz", "<Plug>SlimeMotionSend", { remap = true, silent = false })
---     vim.keymap.set("n", "gzz", "<Plug>SlimeLineSend", { remap = true, silent = false })
---     vim.keymap.set("x", "gz", "<Plug>SlimeRegionSend", { remap = true, silent = false })
---     vim.keymap.set("n", "gzc", "<Plug>SlimeConfig", { remap = true, silent = false })
---   end,
--- },
-{
-    "jpalardy/vim-slime",
-    ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
-    config = function()
-      vim.g.slime_target = "tmux"
-      vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
-      vim.g.slime_dont_ask_default = 1
-      vim.g.slime_bracketed_paste = 1
+	--   {
+	--   "jpalardy/vim-slime",
+	--   init = function()
+	--     -- these two should be set before the plugin loads
+	--     vim.g.slime_target = "neovim"
+	--     vim.g.slime_no_mappings = true
+	--   end,
+	--   config = function()
+	--     vim.g.slime_input_pid = false
+	--     vim.g.slime_suggest_default = true
+	--     vim.g.slime_menu_config = false
+	--     vim.g.slime_neovim_ignore_unlisted = false
+	--     -- options not set here are g:slime_neovim_menu_order, g:slime_neovim_menu_delimiter, and g:slime_get_jobid
+	--     -- see the documentation above to learn about those options
+	--
+	--     -- called MotionSend but works with textobjects as well
+	--     vim.keymap.set("n", "gz", "<Plug>SlimeMotionSend", { remap = true, silent = false })
+	--     vim.keymap.set("n", "gzz", "<Plug>SlimeLineSend", { remap = true, silent = false })
+	--     vim.keymap.set("x", "gz", "<Plug>SlimeRegionSend", { remap = true, silent = false })
+	--     vim.keymap.set("n", "gzc", "<Plug>SlimeConfig", { remap = true, silent = false })
+	--   end,
+	-- },
+	{
+		"jpalardy/vim-slime",
+		ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
+		config = function()
+			vim.g.slime_target = "tmux"
+			vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
+			vim.g.slime_dont_ask_default = 1
+			vim.g.slime_bracketed_paste = 1
 
-      vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
-      vim.api.nvim_set_keymap("n", "<leader>sm", "<Plug>SlimeMotionSend", { desc = "Send motion" })
-    end,
-  },
-{
-    "klafyvel/vim-slime-cells",
-    requires = { { "jpalardy/vim-slime", opt = true } },
-    ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
-    config = function()
-      vim.g.slime_cell_delimiter = "^\\s*##"
+			vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
+			vim.api.nvim_set_keymap("n", "<leader>sm", "<Plug>SlimeMotionSend", { desc = "Send motion" })
+		end,
+	},
+	{
+		"klafyvel/vim-slime-cells",
+		requires = { { "jpalardy/vim-slime", opt = true } },
+		ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
+		config = function()
+			vim.g.slime_cell_delimiter = "^\\s*##"
 
-      vim.cmd([[
+			vim.cmd([[
         nmap <S-CR> <Plug>SlimeCellsSendAndGoToNext
         nmap <C-CR> <Plug>SlimeCellsSendAndGoToNext
         xmap <S-CR> <Plug>SlimeRegionSend
@@ -86,10 +117,30 @@ return {
         nmap <S-Down> <Plug>SlimeCellsNext
         nmap <S-Up> <Plug>SlimeCellsPrev
         ]])
-    end,
-  },
+		end,
+	},
+	-- {
+	--     "OXY2DEV/markview.nvim",
+	--     lazy = false,
+	--       ft = {"markdown", "codecompanion" },
+	--     opts = {preview = {
+	--       enable = true,
+	--         icon_provider = "mini", -- "mini" or "devicons"
+	--     }}
+	--     -- For blink.cmp's completion
+	--     -- source
+	--     -- dependencies = {
+	--     --     "saghen/blink.cmp"
+	--     -- },
+	-- },
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {
+			heading = {
+				enabled = true,
+				icons = { "  " }, -- T = {}, -- <--- This disables header icons/numbers
+			},
+		},
 		ft = { "markdown", "codecompanion" },
 	},
 	{
@@ -121,78 +172,79 @@ return {
 		},
 		enabled = true,
 	},
-{
-  "folke/sidekick.nvim",
-  opts = {
-    -- add any options here
-    cli = {
-      win = { layout = "float"},
-      mux = {
-        backend = "zellij",
-        enabled = false,
-      },
-    },
-  },
-  keys = {
-    {
-      "<tab>",
-      function()
-        -- if there is a next edit, jump to it, otherwise apply it if any
-        if not require("sidekick").nes_jump_or_apply() then
-          return "<Tab>" -- fallback to normal tab
-        end
-      end,
-      expr = true,
-      desc = "Goto/Apply Next Edit Suggestion",
-    },
-    {
-      "<c-.>",
-      function()
-        require("sidekick.cli").focus()
-      end,
-      mode = { "n", "x", "i", "t" },
-      desc = "Sidekick Switch Focus",
-    },
-    {
-      "<leader>aa",
-      function()
-        require("sidekick.cli").toggle({ focus = true })
-      end,
-      desc = "Sidekick Toggle CLI",
-      mode = { "n", "v" },
-    },
-    {
-      "<leader>ac",
-      function()
-        require("sidekick.cli").toggle({ name = "claude", focus = true })
-      end,
-      desc = "Sidekick Claude Toggle",
-      mode = { "n", "v" },
-    },
-    {
-      "<leader>ag",
-      function()
-        require("sidekick.cli").toggle({ name = "grok", focus = true })
-      end,
-      desc = "Sidekick Grok Toggle",
-      mode = { "n", "v" },
-    },
-    {
-      "<leader>ap",
-      function()
-        require("sidekick.cli").select_prompt()
-      end,
-      desc = "Sidekick Ask Prompt",
-      mode = { "n", "v" },
-    },
-  },
-},
+	{
+		"folke/sidekick.nvim",
+		opts = {
+			-- add any options here
+			cli = {
+				win = { layout = "float" },
+				mux = {
+					backend = "zellij",
+					enabled = false,
+				},
+			},
+		},
+		keys = {
+			{
+				"<tab>",
+				function()
+					-- if there is a next edit, jump to it, otherwise apply it if any
+					if not require("sidekick").nes_jump_or_apply() then
+						return "<Tab>" -- fallback to normal tab
+					end
+				end,
+				expr = true,
+				desc = "Goto/Apply Next Edit Suggestion",
+			},
+			{
+				"<c-.>",
+				function()
+					require("sidekick.cli").focus()
+				end,
+				mode = { "n", "x", "i", "t" },
+				desc = "Sidekick Switch Focus",
+			},
+			{
+				"<leader>aa",
+				function()
+					require("sidekick.cli").toggle({ focus = true })
+				end,
+				desc = "Sidekick Toggle CLI",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>ac",
+				function()
+					require("sidekick.cli").toggle({ name = "claude", focus = true })
+				end,
+				desc = "Sidekick Claude Toggle",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>ag",
+				function()
+					require("sidekick.cli").toggle({ name = "grok", focus = true })
+				end,
+				desc = "Sidekick Grok Toggle",
+				mode = { "n", "v" },
+			},
+			{
+				"<leader>ap",
+				function()
+					require("sidekick.cli").select_prompt()
+				end,
+				desc = "Sidekick Ask Prompt",
+				mode = { "n", "v" },
+			},
+		},
+	},
 	-- {
 	-- 	"Davidyz/VectorCode",
 	-- 	version = "*", -- optional, depending on whether you're on nightly or release
 	-- 	dependencies = { "nvim-lua/plenary.nvim" },
 	-- 	cmd = "VectorCode", -- if you're lazy-loading VectorCode
 	-- },
+
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
@@ -201,15 +253,10 @@ return {
 			"nvim-mini/mini.diff",
 		},
 		opts = {
-			extensions = {
-				vectorcode = {
-					opts = { add_tool = true, add_slash_command = true, tool_opts = {} },
-				},
-			},
 			display = {
 				chat = {
 					window = { layout = "float", title = " Code Companion " },
-					start_in_insert_mode = true,
+					start_in_insert_mode = false,
 				},
 				diff = {
 					provider = "mini_diff",
@@ -262,30 +309,32 @@ return {
 				},
 			},
 			adapters = {
-				anthropic = function()
-					return require("codecompanion.adapters").extend("anthropic", {
-						-- env = {
-						-- 				api_key = "ANTHROPIC_API_KEY",
-						-- 			},
-						schema = {
-							-- 				---@type CodeCompanion.Schema
-							model = {
-								order = 1,
-								mapping = "parameters",
-								type = "enum",
-								desc = "The model that will complete your prompt. See https://docs.anthropic.com/claude/docs/models-overview for additional details and options.",
-								default = "claude-3-7-sonnet-20250219",
-								choices = {
-									["claude-3-7-sonnet-20250219"] = { opts = { can_reason = false } },
-									"claude-3-5-sonnet-20241022",
-									"claude-3-5-haiku-20241022",
-									"claude-3-opus-20240229",
-									"claude-2.1",
+				http = {
+					anthropic = function()
+						return require("codecompanion.adapters").extend("anthropic", {
+							-- env = {
+							-- 				api_key = "ANTHROPIC_API_KEY",
+							-- 			},
+							schema = {
+								-- 				---@type CodeCompanion.Schema
+								model = {
+									order = 1,
+									mapping = "parameters",
+									type = "enum",
+									desc = "The model that will complete your prompt. See https://docs.anthropic.com/claude/docs/models-overview for additional details and options.",
+									default = "claude-3-7-sonnet-20250219",
+									choices = {
+										["claude-3-7-sonnet-20250219"] = { opts = { can_reason = false } },
+										"claude-3-5-sonnet-20241022",
+										"claude-3-5-haiku-20241022",
+										"claude-3-opus-20240229",
+										"claude-2.1",
+									},
 								},
 							},
-						},
-					})
-				end,
+						})
+					end,
+				},
 			},
 		},
 		keys = {
@@ -295,5 +344,4 @@ return {
 			-- { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
 		},
 	},
-	
 }

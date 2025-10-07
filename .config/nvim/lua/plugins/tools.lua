@@ -156,7 +156,7 @@ return {
 	},
 	{
 		"nvzone/floaterm",
-    lazy = false,
+    lazy = true,
 		dependencies = "nvzone/volt",
 		opts = {
 			border = true,
@@ -183,7 +183,10 @@ return {
 			{
 				"<c-/>",
 				function()
-			vim.cmd.colorscheme("everforest")
+			-- vim.cmd.colorscheme("everforest")
+          -- vim.api.nvim_set_hl(0, "added", { fg = "#ff0000", bg = "#000000", bold = true })
+          -- vim.api.nvim_set_hl(0, "removed", { fg = "#ff0000", bg = "#00f000", bold = true })
+
 					require("floaterm").toggle()
 				end,
 				mode = { "n", "x", "o", "t", "i" },
