@@ -151,12 +151,27 @@ return {
 	-- 	},
 	-- },
 	{
+		"stevearc/stickybuf.nvim",
+		opts = {
+			-- This function is run on BufEnter to determine pinning should be activated
+			get_auto_pin = function(bufnr)
+				-- You can return "bufnr", "buftype", "filetype", or a custom function to set how the window will be pinned.
+				-- You can instead return an table that will be passed in as "opts" to `stickybuf.pin`.
+				-- The function below encompasses the default logic. Inspect the source to see what it does.
+				if vim.bo[bufnr].filetype == "codecompanion" then
+					return "filetype"
+				end
+				return require("stickybuf").should_auto_pin(bufnr)
+			end,
+		},
+	},
+	{
 		"ctorney/terminal-image.nvim",
 		opts = {},
 	},
 	{
 		"nvzone/floaterm",
-    lazy = true,
+		lazy = true,
 		dependencies = "nvzone/volt",
 		opts = {
 			border = true,
@@ -173,19 +188,19 @@ return {
 				-- More terminals
 			},
 		},
-		config = function(_, opts)
-			require("floaterm").setup(opts)
-			-- Ensure colorscheme is applied after floaterm loads
-			-- vim.cmd.colorscheme("everforest")
-		end,
+		-- config = function(_, opts)
+		-- 	require("floaterm").setup(opts)
+		-- 	-- Ensure colorscheme is applied after floaterm loads
+		-- 	-- vim.cmd.colorscheme("everforest")
+		-- end,
 		cmd = "FloatermToggle",
 		keys = {
 			{
 				"<c-/>",
 				function()
-			-- vim.cmd.colorscheme("everforest")
-          -- vim.api.nvim_set_hl(0, "added", { fg = "#ff0000", bg = "#000000", bold = true })
-          -- vim.api.nvim_set_hl(0, "removed", { fg = "#ff0000", bg = "#00f000", bold = true })
+					-- vim.cmd.colorscheme("everforest")
+					-- vim.api.nvim_set_hl(0, "added", { fg = "#ff0000", bg = "#000000", bold = true })
+					-- vim.api.nvim_set_hl(0, "removed", { fg = "#ff0000", bg = "#00f000", bold = true })
 
 					require("floaterm").toggle()
 				end,

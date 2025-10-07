@@ -22,6 +22,16 @@ return {
 
 				return true
 			end,
+
+
+      server_opts_overrides = {
+				on_init = function(client)
+					local au = vim.api.nvim_create_augroup("copilotlsp.init", { clear = true })
+					-- Use our vendored override that omits TextChangedI so NES only triggers
+					-- while NOT in insert mode.
+					require('config.copilot_ls').lsp_on_init(client, au)
+				end,
+			},
 			nes = {
 				enabled = true,
 				keymap = {
@@ -60,6 +70,20 @@ return {
 				},
 			},
 		},
+		-- keys = {
+		--   { "<leader>nes",
+		--     function()
+		--
+		--       if require("copilot").nes.is_active() then
+		--         require("copilot-lsp.nes").request_nes('copilot_ls')
+		--       else
+		--         require("copilot").nes.enable()
+		--         require("copilot-lsp.nes").request_nes('copilot_ls')
+		--         require("copilot").nes.disable()
+		--       end
+		--     end,
+		--     desc = "Open Copilot panel" },
+		-- },
 	},
 	--   {
 	--   "jpalardy/vim-slime",
@@ -255,7 +279,7 @@ return {
 		opts = {
 			display = {
 				chat = {
-					window = { layout = "float", title = " Code Companion " },
+					window = { layout = "vertical", position = "left", width = 0.30, title = " Code Companion " },
 					start_in_insert_mode = false,
 				},
 				diff = {
@@ -267,7 +291,7 @@ return {
 					roles = {
 						user = "Human",
 					},
-					adapter = "anthropic",
+					adapter = "copilot",
 					keymaps = {
 						hide = {
 							modes = {
@@ -281,13 +305,13 @@ return {
 						send = {
 							modes = {
 								n = { "<CR>", "<C-s>" },
-								i = { "<CR>", "<C-s>" },
+								-- i = { "<CR>", "<C-s>" },
 							},
 						},
 					},
 				},
 				inline = {
-					adapter = "anthropic",
+					adapter = "copilot",
 					keymaps = {
 						accept_change = {
 							modes = {

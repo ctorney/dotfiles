@@ -76,3 +76,4 @@ vim.keymap.set("x", "m", "%")
 -- Use with operators, e.g. dm - delete until matching pair
 vim.keymap.set("o", "m", "%")
 
+-- vim.keymap.set("n", "<leader>nes", require("copilot-lsp.nes").request_nes('copilot_ls'), { desc = "GitHub Copilot NES" })
