@@ -24,16 +24,16 @@ return {
 			end,
 
 
-      server_opts_overrides = {
-				on_init = function(client)
-					local au = vim.api.nvim_create_augroup("copilotlsp.init", { clear = true })
-					-- Use our vendored override that omits TextChangedI so NES only triggers
-					-- while NOT in insert mode.
-					require('config.copilot_ls').lsp_on_init(client, au)
-				end,
-			},
+			--    server_opts_overrides = {
+			-- 	on_init = function(client)
+			-- 		local au = vim.api.nvim_create_augroup("copilotlsp.init", { clear = true })
+			-- 		-- Use our vendored override that omits TextChangedI so NES only triggers
+			-- 		-- while NOT in insert mode.
+			-- 		require('config.copilot_ls').lsp_on_init(client, au)
+			-- 	end,
+			-- },
 			nes = {
-				enabled = true,
+				enabled = false,
 				keymap = {
 					accept_and_goto = "<leader>p",
 					accept = false,
