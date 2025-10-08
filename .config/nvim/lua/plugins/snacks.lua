@@ -1,3 +1,5 @@
+local hosts = require("config.hosts")
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -17,15 +19,16 @@ return {
 			pane_gap = 10,
 			preset = {
 				keys = {
-					{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-					{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+					-- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+					-- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 					{ icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.explorer()" },
-					{
-						icon = " ",
-						key = "g",
-						desc = "Find Text",
-						action = ":lua Snacks.dashboard.pick('live_grep')",
-					},
+					{ icon = " ", key = "h", desc = "Hosts", action = "<leader>fh" },
+					-- {
+					-- 	icon = " ",
+					-- 	key = "g",
+					-- 	desc = "Find Text",
+					-- 	action = ":lua Snacks.dashboard.pick('live_grep')",
+					-- },
 					{
 						icon = " ",
 						key = "r",
@@ -55,14 +58,14 @@ return {
 				},
 			},
 			sections = {
-				{ section = "header", pane = 1, padding = 4, indent = 60 },
+				-- { section = "header", pane = 1, padding = 4, indent = 60 },
 				{ section = "keys", gap = 1, padding = 4, pane = 1 },
-				{ section = "terminal", cmd = "", padding = 4, height = 6, pane = 2 },
-				{ icon = " ", title = "Recent Files", padding = 1, gap = 1, pane = 2 },
-				{ section = "recent_files", opts = { limit = 3 }, indent = 1, padding = 1, pane = 2 },
-				{ icon = " ", title = "Projects", padding = 1, pane = 2 },
-				{ section = "projects", opts = { limit = 3 }, indent = 1, padding = 1, pane = 2 },
-				{ section = "startup", padding = 0, pane = 1, indent = 60 },
+				-- { section = "terminal", cmd = "", padding = 4, height = 6, pane = 2 },
+				{ icon = " ", title = "Recent Files" , padding = 1, gap = 1 },
+				{ section = "recent_files", opts = { limit = 30 }, indent = 1, padding = 5}, --, padding = 1, pane = 1 },
+				-- { icon = " ", title = "Projects", padding = 1, pane = 2 },
+				-- { section = "projects", opts = { limit = 3 }, indent = 1, padding = 1, pane = 2 },
+				{ section = "startup",  padding = 1},
 			},
 		},
 		indent = { enabled = true },
@@ -174,7 +177,8 @@ return {
 			desc = "Notification History",
 		},
 		{
-			"<leader>fl",
+			"/",
+			-- "<leader>fl",
 			function()
 				Snacks.picker.lines()
 			end,
