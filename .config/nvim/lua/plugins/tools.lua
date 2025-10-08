@@ -84,14 +84,21 @@ return {
 				function()
 					require("oil").open_float(nil) -- , { preview = {} })
 				end,
-				desc = "Open Oil",
+				desc = "Open oil at current buffer",
 			},
+			-- {
+			-- 	"<leader>fe",
+			-- 	function()
+			-- 		require("oil").open_float(nil) --, { preview = {} })
+			-- 	end,
+			-- 	desc = "Open oil at current buffer",
+			-- },
 			{
 				"<leader>fe",
 				function()
-					require("oil").open_float(nil) --, { preview = {} })
+					require("oil").open_float('~', { preview = {} })
 				end,
-				desc = "Open Oil",
+				desc = "Open oil in home directory",
 			},
 		},
 	},
@@ -182,9 +189,9 @@ return {
 
 			-- Default sets of terminals you'd like to open
 			terminals = {
-				{ name = "Terminal" },
+				{ name = "Local" },
 				-- cmd can be function too
-				{ name = "Terminal", cmd = "btop" },
+				{ name = "euclid35", cmd = "ssh euclid35" },
 				-- More terminals
 			},
 		},

@@ -1,9 +1,9 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		dependencies = {
-			"copilotlsp-nvim/copilot-lsp",
-		},
+		-- dependencies = {
+		-- 	"copilotlsp-nvim/copilot-lsp",
+		-- },
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 
@@ -42,6 +42,7 @@ return {
 			},
 			filetypes = {
 				markdown = true,
+        quarto = true,
 				python = true,
 				clang = true,
 				lua = true,
@@ -196,72 +197,7 @@ return {
 		},
 		enabled = true,
 	},
-	{
-		"folke/sidekick.nvim",
-		opts = {
-			-- add any options here
-			cli = {
-				win = { layout = "float" },
-				mux = {
-					backend = "zellij",
-					enabled = false,
-				},
-			},
-		},
-		keys = {
-			{
-				"<tab>",
-				function()
-					-- if there is a next edit, jump to it, otherwise apply it if any
-					if not require("sidekick").nes_jump_or_apply() then
-						return "<Tab>" -- fallback to normal tab
-					end
-				end,
-				expr = true,
-				desc = "Goto/Apply Next Edit Suggestion",
-			},
-			{
-				"<c-.>",
-				function()
-					require("sidekick.cli").focus()
-				end,
-				mode = { "n", "x", "i", "t" },
-				desc = "Sidekick Switch Focus",
-			},
-			{
-				"<leader>aa",
-				function()
-					require("sidekick.cli").toggle({ focus = true })
-				end,
-				desc = "Sidekick Toggle CLI",
-				mode = { "n", "v" },
-			},
-			{
-				"<leader>ac",
-				function()
-					require("sidekick.cli").toggle({ name = "claude", focus = true })
-				end,
-				desc = "Sidekick Claude Toggle",
-				mode = { "n", "v" },
-			},
-			{
-				"<leader>ag",
-				function()
-					require("sidekick.cli").toggle({ name = "grok", focus = true })
-				end,
-				desc = "Sidekick Grok Toggle",
-				mode = { "n", "v" },
-			},
-			{
-				"<leader>ap",
-				function()
-					require("sidekick.cli").select_prompt()
-				end,
-				desc = "Sidekick Ask Prompt",
-				mode = { "n", "v" },
-			},
-		},
-	},
+	
 	-- {
 	-- 	"Davidyz/VectorCode",
 	-- 	version = "*", -- optional, depending on whether you're on nightly or release
@@ -274,7 +210,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			"nvim-mini/mini.diff",
+			-- "nvim-mini/mini.diff",
 		},
 		opts = {
 			display = {
@@ -282,9 +218,9 @@ return {
 					window = { layout = "vertical", position = "left", width = 0.30, title = " Code Companion " },
 					start_in_insert_mode = false,
 				},
-				diff = {
-					provider = "mini_diff",
-				},
+				-- diff = {
+					-- provider = "mini_diff",
+				-- },
 			},
 			strategies = {
 				chat = {

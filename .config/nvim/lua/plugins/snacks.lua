@@ -174,13 +174,19 @@ return {
 			desc = "Notification History",
 		},
 		{
+			"<leader>fl",
+			function()
+				Snacks.picker.lines()
+			end,
+			desc = "Buffer lines",
+		},
+		{
 			"<leader>fx",
 			function()
 				Snacks.explorer()
 			end,
 			desc = "File Explorer",
 		},
-		-- find
 		{
 			"<leader><CR>",
 			function()
