@@ -43,6 +43,7 @@ return {
 			filetypes = {
 				markdown = true,
         quarto = true,
+        mail = true,
 				python = true,
 				clang = true,
 				lua = true,
