@@ -47,7 +47,7 @@ return {
 				python = true,
 				clang = true,
 				lua = true,
-				["*"] = false,
+				["*"] = true,
 			},
 			suggestion = {
 				enabled = true,
