@@ -1,0 +1,18 @@
+
+#!/bin/bash
+
+env_dir="$HOME/.venv"
+if [ ! -d "$env_dir" ]; then
+  echo "Directory $env_dir does not exist."
+  exit 1
+fi
+
+env_name=$(ls -1 "$env_dir" | fzf --height=10 --layout=reverse --border --prompt="Select Python venv: ")
+
+if [ -z "$env_name" ]; then
+  echo "No environment selected."
+  exit 1
+fi
+
+source "$env_dir/$env_name/bin/activate"
+exec ipython -i -c "import matplotlib.pyplot as plt; plt.style.use('dark_background');"
