@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Oswald', Arial, sans-serif;
+            color: #fff;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.45);
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .clock {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        .weather {
+            /* Weather section removed */
+        }
+        .bookmarks {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .bookmark {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .bookmark:hover {
+            transform: scale(1.1);
+        }
+        .bookmark-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="clock" id="clock">--:--</div>
+        <div class="bookmarks">
+            <!-- Example bookmarks, replace href and icon as needed -->
+            <a class="bookmark" href="https://web.whatsapp.com/" target="_blank">
+                <span class="bookmark-icon">💬</span>
+                WhatsApp
+            </a>
+            <a class="bookmark" href="https://mail.google.com/" target="_blank">
+                <span class="bookmark-icon">📧</span>
+                Gmail
+            </a>
+            <a class="bookmark" href="https://onedrive.live.com/" target="_blank">
+                <span class="bookmark-icon">☁️</span>
+                OneDrive
+            </a>
+            <a class="bookmark" href="https://github.com/" target="_blank">
+                <span class="bookmark-icon">🐙</span>
+                GitHub
+            </a>
+            <!-- Add more bookmarks as needed -->
+        </div>
+    </div>
+    <script>
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Unsplash background (refresh weekly)
+        const UNSPLASH_URL = 'https://source.unsplash.com/random/1920x1080/?nature,landscape';
+        function setBackground() {
+            const bgData = JSON.parse(localStorage.getItem('unsplash_bg') || '{}');
+            const now = Date.now();
+            const weekMs = 7 * 24 * 60 * 60 * 1000;
+            if (!bgData.url || !bgData.timestamp || now - bgData.timestamp > weekMs) {
+                // Fetch new image
+                const img = new Image();
+                img.onload = function() {
+                    document.body.style.backgroundImage = `url('${img.src}')`;
+                    localStorage.setItem('unsplash_bg', JSON.stringify({ url: img.src, timestamp: now }));
+                };
+                img.src = UNSPLASH_URL + '&' + now; // Add timestamp to avoid cache
+            } else {
+                document.body.style.backgroundImage = `url('${bgData.url}')`;
+            }
+        }
+        setBackground();
+
+        // Weather (OpenWeatherMap API)
+        // Weather section removed
+    </script>
+</body>
+</html>
