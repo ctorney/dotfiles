@@ -24,6 +24,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+if [ -z "$TMUX" ] && command -v tmux >/dev/null 2>&1; then
+  # Check if session 'TMUX' exists and is attached
+  if ! tmux list-sessions 2>/dev/null | grep '^TMUX:' | grep -q '(attached)'; then
+    tmux new-session -A -s TMUX
+    exit
+  fi
+fi
 
 # __conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 # if [ $? -eq 0 ]; then
@@ -79,8 +86,8 @@ if command fdfind >/dev/null 2>&1; then
 fi
 
 alias c="clear"
-alias nvim='nvim --listen /tmp/nvim'
-alias vi='nvim --listen /tmp/nvim'
+# alias nvim='nvim --listen /tmp/nvim'
+alias vi='nvim'
 alias nvimage='function _nvimage() { echo "![terminalimage]($(realpath "$1"))\n"; }; _nvimage'
 
 # eval "$(/usr/libexec/path_helper)"    
@@ -98,7 +105,6 @@ source $PLUGIN_PATH/powerlevel10k/powerlevel10k.zsh-theme
 source $PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $PLUGIN_PATH/zsh-ask/zsh-ask.zsh
 source $PLUGIN_PATH/zsh-ai-commands/zsh-ai-commands.zsh
-source $PLUGIN_PATH/k/k.sh
 # source $PLUGIN_PATH/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source $PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 autoload -U compinit; compinit
