@@ -43,8 +43,6 @@ return {
 		opts = {
 			columns = {
 				"icon",
-				"permissions",
-				"size",
 				"mtime",
 			},
 			view_options = {

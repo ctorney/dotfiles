@@ -45,7 +45,7 @@ return {
 						icon = " ",
 						key = "o",
 						desc = "Obsidian",
-				    action = "lua require('oil').open_float('~/Obsidian/Notes/', { preview = {} })",
+				    action = ":lua require('oil').open_float('~/Obsidian/Notes/', { preview = {} })",
 					},
 					{
 						icon = "󰒲 ",
