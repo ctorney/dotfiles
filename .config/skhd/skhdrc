@@ -26,6 +26,8 @@ alt - c : sh ~/.config/skhd/scratchpad.sh
 alt - r : sh ~/.config/skhd/freecad.sh
 
 
+alt - space : osascript ~/.local/bin/helium
+
 # -- Modifying Window Size --
 
 # maximize a window

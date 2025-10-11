@@ -46,8 +46,15 @@ GPG_KEY = os.getenv('OAUTH_GPG_KEY')
 if not GPG_KEY:
     sys.exit('ERROR: OAUTH_GPG_KEY environment variable must be set')
 
+# Remove the actual key and provide no default
+GPG_PASSPHRASE = os.getenv('GPG_PASSPHRASE')
+if GPG_PASSPHRASE:
+    DECRYPTION_PIPE = ['gpg', '--batch', '--yes', '--passphrase',  GPG_PASSPHRASE, '--pinentry-mode' ,'loopback', '--decrypt']
+else:
+    DECRYPTION_PIPE = ['gpg', '--decrypt']
+
+
 ENCRYPTION_PIPE = ['gpg', '--encrypt', '--recipient', GPG_KEY]
-DECRYPTION_PIPE = ['gpg', '--decrypt']
 # The token file must be encrypted because it contains multi-use bearer tokens
 # whose usage does not require additional verification. Specify whichever
 # encryption and decryption pipes you prefer. They should read from standard
@@ -112,10 +119,15 @@ if path.exists():
         sub = subprocess.run(DECRYPTION_PIPE, check=True, input=path.read_bytes(),
                              capture_output=True)
         token = json.loads(sub.stdout)
-    except subprocess.CalledProcessError:
-        sys.exit('Difficulty decrypting token file. Is your decryption agent primed for '
-                 'non-interactive usage, or an appropriate environment variable such as '
-                 'GPG_TTY set to allow interactive agent usage from inside a pipe?')
+
+    except subprocess.CalledProcessError as e:
+        sys.exit(
+            "Difficulty decrypting token file. "
+                "Is your decryption agent primed for non-interactive usage, "
+                "or an appropriate environment variable such as 'GPG_TTY' set "
+                "to allow interactive agent usage from inside a pipe?"
+        )
+
 
 
 def writetokenfile():

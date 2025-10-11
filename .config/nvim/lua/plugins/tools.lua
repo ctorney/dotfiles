@@ -7,6 +7,35 @@ return {
 	-- 		cli_config = "~/Library/Arduino15/",
 	-- 	},
 	-- },
+	-- {
+	--     "inhesrom/remote-ssh.nvim",
+	--     branch = "master",
+	--     dependencies = {
+	--         "inhesrom/telescope-remote-buffer", --See https://github.com/inhesrom/telescope-remote-buffer for features
+	--         "nvim-telescope/telescope.nvim",
+	--         "nvim-lua/plenary.nvim",
+	--         "neovim/nvim-lspconfig",
+	--         -- nvim-notify is recommended, but not necessarily required into order to get notifcations during operations - https://github.com/rcarriga/nvim-notify
+	--         "rcarriga/nvim-notify",
+	--     },
+	--     config = function ()
+	--         require('telescope-remote-buffer').setup(
+	--             -- Default keymaps to open telescope and search open buffers including "remote" open buffers
+	--             --fzf = "<leader>fz",
+	--             --match = "<leader>gb",
+	--             --oldfiles = "<leader>rb"
+	--         )
+	--
+	--         -- setup lsp_config here or import from part of neovim config that sets up LSP
+	--         -- local lsp_config = require("lsp.config")
+	--
+	--         require('remote-ssh').setup({
+	--             on_attach = lsp_config.on_attach,
+	--             capabilities = lsp_config.capabilities,
+	--             filetype_to_server = lsp_config.filetype_to_server
+	--         })
+	--     end
+	-- }
 	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
@@ -26,22 +55,22 @@ return {
 					{ "mtime", "desc" },
 				},
 			},
-lsp_file_methods = {
-    -- Enable or disable LSP file operations
-    enabled = false,
-    -- Time to wait for LSP file operations to complete before skipping
-    timeout_ms = 1000,
-    -- Set to true to autosave buffers that are updated with LSP willRenameFiles
-    -- Set to "unmodified" to only save unmodified buffers
-    autosave_changes = false,
-  },
+			lsp_file_methods = {
+				-- Enable or disable LSP file operations
+				enabled = true,
+				-- Time to wait for LSP file operations to complete before skipping
+				timeout_ms = 1000,
+				-- Set to true to autosave buffers that are updated with LSP willRenameFiles
+				-- Set to "unmodified" to only save unmodified buffers
+				autosave_changes = false,
+			},
 			skip_confirm_for_simple_edits = true,
 			float = {
 				-- Padding around the floating window
 				padding = 2,
 				-- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-				max_width = 0.4,
-				max_height = 0.4,
+				max_width = 0.8,
+				max_height = 0.8,
 				border = "rounded",
 				win_options = {
 					winblend = 0,
@@ -104,7 +133,7 @@ lsp_file_methods = {
 			{
 				"-",
 				function()
-					require("oil").open_float(nil) -- , { preview = {} })
+					require("oil").open_float(nil, { preview = {} })
 				end,
 				desc = "Open oil at current buffer",
 			},
@@ -118,7 +147,7 @@ lsp_file_methods = {
 			{
 				"<leader>fe",
 				function()
-					require("oil").open_float("~") -- { preview = {} })
+					require("oil").open_float(nil, { preview = {} })
 				end,
 				desc = "Open oil in home directory",
 			},

@@ -85,7 +85,7 @@ fi
 
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^AnyConnect$" manage=off
+yabai -m rule --add app="Cisco Secure Client" manage=off
 yabai -m rule --add app="^Zoom$" manage=off
 yabai -m rule --add app="^Calendar$" scratchpad="Calendar" opacity=".95" grid="11:11:1:1:9:9"
 yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'

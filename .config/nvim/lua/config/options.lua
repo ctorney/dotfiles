@@ -104,15 +104,36 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufLeave", {
-	group = vim.api.nvim_create_augroup("codecompanion_unlist", { clear = true }),
-	pattern = "*CodeCompanion*",
-	callback = function(ev)
-		local buf = ev.buf
-		if vim.api.nvim_buf_is_valid(buf) then
-			pcall(function()
-				vim.api.nvim_set_option_value("buflisted", false, { buf = buf })
-			end)
-		end
-	end,
-})
+			if vim.g.have_nerd_font then
+				local signs = { ERROR = "", WARN = "", INFO = "", HINT = "" }
+				local diagnostic_signs = {}
+				for type, icon in pairs(signs) do
+					diagnostic_signs[vim.diagnostic.severity[type]] = icon
+				end
+				vim.diagnostic.config({
+					signs = { text = diagnostic_signs },
+					virtual_text = false,
+					underline = false,
+				})
+			end
+local lsp_configs = {}
+
+for _, f in pairs(vim.api.nvim_get_runtime_file('lsp/*.lua', true)) do
+  local server_name = vim.fn.fnamemodify(f, ':t:r')
+  table.insert(lsp_configs, server_name)
+end
+
+vim.lsp.enable(lsp_configs)
+
+-- vim.api.nvim_create_autocmd("BufLeave", {
+-- 	group = vim.api.nvim_create_augroup("codecompanion_unlist", { clear = true }),
+-- 	pattern = "*CodeCompanion*",
+-- 	callback = function(ev)
+-- 		local buf = ev.buf
+-- 		if vim.api.nvim_buf_is_valid(buf) then
+-- 			pcall(function()
+-- 				vim.api.nvim_set_option_value("buflisted", false, { buf = buf })
+-- 			end)
+-- 		end
+-- 	end,
+-- })
