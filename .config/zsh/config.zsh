@@ -18,29 +18,32 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt INC_APPEND_HISTORY
 
-# if [ -z "$TMUX" ]; then
-#   exec tmux new-session -A -s TMUX
+export PATH=/opt/nvim-linux64/bin:~/.local/bin:~/.local/go/bin:/opt/.fzf/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# __conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "$CONDA_HOME/etc/profile.d/conda.sh" ]; then
+#         . "$CONDA_HOME/etc/profile.d/conda.sh"
+#     else
+#         export PATH="$CONDA_HOME/bin:$PATH"
+#     fi
 # fi
+# unset __conda_setup
 
-__conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$CONDA_HOME/etc/profile.d/conda.sh" ]; then
-        . "$CONDA_HOME/etc/profile.d/conda.sh"
-    else
-        export PATH="$CONDA_HOME/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -n "$TMUX" ]; then
-    precmd() {
-        if [ -n "$CONDA_DEFAULT_ENV" ]; then
-            tmux set-environment CONDA_DEFAULT_ENV "$CONDA_DEFAULT_ENV"
-        fi
-      }
-fi
+# if [ -n "$TMUX" ]; then
+#     precmd() {
+#         if [ -n "$CONDA_DEFAULT_ENV" ]; then
+#             tmux set-environment CONDA_DEFAULT_ENV "$CONDA_DEFAULT_ENV"
+#         fi
+#       }
+# fi
    
 # conda activate tf
 
@@ -87,7 +90,6 @@ if [ -x /usr/libexec/path_helper ]; then
 fi
 
 
-export PATH=/opt/nvim-linux64/bin:~/.local/bin:~/.local/go/bin:/opt/.fzf/bin:$PATH
 
 eval "$(zoxide init zsh --cmd cd)"
 
