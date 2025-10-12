@@ -1,24 +1,9 @@
 
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export CLICOLOR=true
-
-export XDG_CONFIG_HOME=$HOME/.config
-
-export ZSH_AI_COMMANDS_OPENAI_API_KEY=$OPENAI_API_KEY
-export ZSH_ASK_API_KEY=$OPENAI_API_KEY
-
-export MPLBACKEND=module://matplotlib-backend-terminal
-export MPLBACKEND_TRANSPARENT=1
-export MPLBACKEND_CHAFA_OPTS="-f kitty --passthrough tmux"
-
-export HISTFILE=~/.zsh_history
-export HISTSIZE=100000
-export SAVEHIST=100000
+source .zshenv
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt INC_APPEND_HISTORY
 
-export PATH=/opt/nvim-linux64/bin:~/.local/bin:~/.local/go/bin:/opt/.fzf/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

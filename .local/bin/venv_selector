@@ -13,5 +13,6 @@ if [ -z "$env_name" ]; then
   exit 1
 fi
 
+source "$HOME/.config/zsh/.zshenv"
 source "$env_dir/$env_name/bin/activate"
 exec ipython -i -c "import matplotlib.pyplot as plt; plt.style.use('dark_background');"
