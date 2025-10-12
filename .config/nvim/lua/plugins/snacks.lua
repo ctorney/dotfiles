@@ -21,7 +21,7 @@ return {
 				keys = {
 					-- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
 					-- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-					{ icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.explorer()" },
+					{ icon = " ", key = "e", desc = "Explorer", action = ":lua require('oil').open_float(nil, {preview = {}})" },
 					{ icon = " ", key = "h", desc = "Hosts", action = "<leader>fh" },
 					-- {
 					-- 	icon = " ",

@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 env_dir="$HOME/.venv"
