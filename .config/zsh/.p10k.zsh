@@ -31,8 +31,7 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     os_icon                 # os identifier
-    shpool                  # ssh connection pool status
-    anaconda                # conda environment (https://conda.io/)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     dir                     # current directory
     prompt_char             # prompt symbol
   )
@@ -43,11 +42,11 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     status                  # exit code of the last command
+    vcs                     # git status
     # command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
@@ -928,8 +927,9 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=false
   # Separate environment name from Python version only with a space.
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
+  typeset -g POWERLEVEL9K_VIRTUALENV_CONTENT_EXPANSION='(${VIRTUAL_ENV:t})'
   # Custom icon.
-  # typeset -g POWERLEVEL9K_VIRTUALENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_VIRTUALENV_VISUAL_IDENTIFIER_EXPANSION=''
 
   #####################[ anaconda: conda environment (https://conda.io/) ]######################
   # Anaconda environment color.
