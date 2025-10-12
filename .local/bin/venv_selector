@@ -1,6 +1,6 @@
 #!/bin/bash
 
-env_dir="$HOME/.venv"
+env_dir="$HOME/.venvs"
 if [ ! -d "$env_dir" ]; then
   echo "Directory $env_dir does not exist."
   exit 1

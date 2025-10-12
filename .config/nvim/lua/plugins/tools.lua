@@ -46,7 +46,7 @@ return {
     opts = {                         -- this can be an empty lua table - just showing below for clarity.
       search = {
         venv = {
-          command = "fd --full-path '^.*/bin/python$' ~/.venv"
+          command = "fd --full-path '^.*/bin/python$' ~/.venvs"
         },
       },           -- if you add your own searches, they go here.
       options = {} -- if you add plugin options, they go here.
