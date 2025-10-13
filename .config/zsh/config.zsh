@@ -1,5 +1,5 @@
 
-source .zshenv
+source ~/.config/zsh/.zshenv
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt INC_APPEND_HISTORY

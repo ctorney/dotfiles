@@ -254,46 +254,23 @@ return {
     "ctorney/terminal-image.nvim",
     opts = {},
   },
-  {
-    "nvzone/floaterm",
-    lazy = true,
-    dependencies = "nvzone/volt",
-    opts = {
-      border = true,
-      size = { h = 60, w = 70 },
-
-      -- to use, make this func(buf)
-      mappings = { sidebar = nil, term = nil },
-
-      -- Default sets of terminals you'd like to open
-      terminals = {
-        { name = "Local" },
-        -- cmd can be function too
-        { name = "euclid35", cmd = "ssh euclid35" },
-        -- More terminals
-      },
-    },
-    -- config = function(_, opts)
-    -- 	require("floaterm").setup(opts)
-    -- 	-- Ensure colorscheme is applied after floaterm loads
-    -- 	-- vim.cmd.colorscheme("everforest")
-    -- end,
-    cmd = "FloatermToggle",
-    keys = {
-      {
-        "<c-/>",
-        function()
-          -- vim.cmd.colorscheme("everforest")
-          -- vim.api.nvim_set_hl(0, "added", { fg = "#ff0000", bg = "#000000", bold = true })
-          -- vim.api.nvim_set_hl(0, "removed", { fg = "#ff0000", bg = "#00f000", bold = true })
-
-          require("floaterm").toggle()
-        end,
-        mode = { "n", "x", "o", "t", "i" },
-        desc = "Toggle FTerm",
-      },
-    },
-  },
+{
+		"numtostr/FTerm.nvim",
+		opts = {
+			dimensions = { height = 0.8, width = 0.8 },
+			border = "rounded",
+		},
+		keys = {
+			{
+				"<c-.>",
+				function()
+					require("FTerm").toggle()
+				end,
+				mode = { "n", "x", "o", "t", "i" },
+				desc = "Toggle FTerm",
+			},
+		},
+	},
   -- {
   -- 	"gbprod/yanky.nvim",
   -- 	opts = {},
