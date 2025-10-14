@@ -54,6 +54,7 @@ return {
   },
   {
     'mrjones2014/smart-splits.nvim',
+    version = '2.0.4',
     lazy = false,
     opts = true,
     keys =
