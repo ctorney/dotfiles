@@ -59,6 +59,8 @@ return {
 			},
 			sections = {
 				-- { section = "header", pane = 1, padding = 4, indent = 60 },
+
+        { text = string.format('NVIM %s', vim.version()), align = 'center', padding = 4 },
 				{ section = "keys", gap = 1, padding = 4, pane = 1 },
 				-- { section = "terminal", cmd = "", padding = 4, height = 6, pane = 2 },
 				{ icon = " ", title = "Recent Files" , padding = 1, gap = 1 },

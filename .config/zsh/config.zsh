@@ -9,12 +9,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [ -z "$TMUX" ] && command -v tmux >/dev/null 2>&1; then
-  # Check if session 'TMUX' exists and is attached
-  if ! tmux list-sessions 2>/dev/null | grep '^TMUX:' | grep -q '(attached)'; then
-    exec tmux new-session -A -s TMUX
-  fi
-fi
+# if [ -z "$TMUX" ] && command -v tmux >/dev/null 2>&1; then
+#   # Check if session 'TMUX' exists and is attached
+#   if ! tmux list-sessions 2>/dev/null | grep '^TMUX:' | grep -q '(attached)'; then
+#     exec tmux new-session -A -s TMUX
+#   fi
+# fi
 
 # __conda_setup="$('$CONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 # if [ $? -eq 0 ]; then
