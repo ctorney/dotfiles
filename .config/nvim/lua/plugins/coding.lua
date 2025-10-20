@@ -134,17 +134,18 @@ return {
         nmap <C-CR> <Plug>SlimeCellsSendAndGoToNext
         xmap <S-CR> <Plug>SlimeRegionSend
         xmap <C-CR> <Plug>SlimeRegionSend
-        imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
-        imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext
+        imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext zz
+        imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext zz
         nmap <leader>cv <Plug>Slimeconfig
         nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
         nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
         nmap <leader>ss <Plug>SlimeCellsSend
-        nmap <S-Down> <Plug>SlimeCellsNext
-        nmap <S-Up> <Plug>SlimeCellsPrev
+        nmap <S-Down> <Plug>SlimeCellsNext zz
+        nmap <S-Up> <Plug>SlimeCellsPrev zz
         ]])
 		end,
 	},
+
 	-- {
 	--     "OXY2DEV/markview.nvim",
 	--     lazy = false,
