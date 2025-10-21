@@ -130,12 +130,12 @@ return {
 			vim.g.slime_cell_delimiter = "^\\s*##"
 
 			vim.cmd([[
-        nmap <S-CR> <Plug>SlimeCellsSendAndGoToNext
-        nmap <C-CR> <Plug>SlimeCellsSendAndGoToNext
+        nmap <S-CR> <Plug>SlimeCellsSendAndGoToNext zz
+        nmap <C-CR> <Plug>SlimeCellsSendAndGoToNext zz
         xmap <S-CR> <Plug>SlimeRegionSend
         xmap <C-CR> <Plug>SlimeRegionSend
-        imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext zz
-        imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext zz
+        imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext<C-o>zz
+        imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext<C-o>zz
         nmap <leader>cv <Plug>Slimeconfig
         nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
         nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
