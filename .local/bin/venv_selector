@@ -6,7 +6,7 @@ if [ ! -d "$env_dir" ]; then
   exit 1
 fi
 
-env_name=$(ls -1 "$env_dir" | fzf --height=10 --layout=reverse --border --prompt="Select Python venv: ")
+env_name=$(ls -1 "$env_dir" | fzf --tmux --layout=reverse --border --prompt="Select Python venv: ")
 
 if [ -z "$env_name" ]; then
   echo "No environment selected."
