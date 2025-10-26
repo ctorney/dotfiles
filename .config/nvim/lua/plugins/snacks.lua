@@ -74,6 +74,7 @@ return {
 		bufdelete = { enabled = true },
 		notifier = { enabled = true },
 		scroll = { enabled = true },
+    scratch = { enabled = true, ft = 'markdown' },
 		quickfile = { enabled = true },
 		image = { enabled = true, force = true, doc = { enabled = false, inline = true, float = false } },
 		statuscolumn = { enabled = true },
@@ -358,6 +359,8 @@ return {
 			end,
 			desc = "Goto T[y]pe Definition",
 		},
+    { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>fd",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 		{
 			"<leader>fs",
 			function()
