@@ -39,11 +39,11 @@ return {
 
   {
     "linux-cultist/venv-selector.nvim",
-    ft = "python",                   -- Load when opening Python files
+    ft = "python",                             -- Load when opening Python files
     keys = {
       { "<leader>fv", "<cmd>VenvSelect<cr>" }, -- Open picker on keymap
     },
-    opts = {                         -- this can be an empty lua table - just showing below for clarity.
+    opts = {                                   -- this can be an empty lua table - just showing below for clarity.
       search = {
         venv = {
           command = "fd --full-path '^.*/bin/python$' ~/.venvs"
@@ -54,133 +54,133 @@ return {
   },
   {
     'mrjones2014/smart-splits.nvim',
-    version = '2.0.4',
+    version = '*',
     lazy = false,
     opts = true,
     keys =
     {
-        { '<C-h>', function() require('smart-splits').move_cursor_left() end,  mode = { "n", "i" }, desc = "Go to Left Window" },
-        { '<C-j>', function() require('smart-splits').move_cursor_down() end,  mode = { "n", "i" }, desc = "Go to Lower Window" },
-        { '<C-k>', function() require('smart-splits').move_cursor_up() end,    mode = { "n", "i" }, desc = "Go to Upper Window" },
-        { '<C-l>', function() require('smart-splits').move_cursor_right() end, mode = { "n", "i" }, desc = "Go to Right Window" },
+      { '<C-h>', function() require('smart-splits').move_cursor_left() end,  mode = { "n", "i" }, desc = "Go to Left Window" },
+      { '<C-j>', function() require('smart-splits').move_cursor_down() end,  mode = { "n", "i" }, desc = "Go to Lower Window" },
+      { '<C-k>', function() require('smart-splits').move_cursor_up() end,    mode = { "n", "i" }, desc = "Go to Upper Window" },
+      { '<C-l>', function() require('smart-splits').move_cursor_right() end, mode = { "n", "i" }, desc = "Go to Right Window" },
     }
 
   },
-  {
-    "stevearc/oil.nvim",
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {
-      columns = {
-        "icon",
-        "mtime",
-      },
-      view_options = {
-        show_hidden = false,
-        sort = {
-          -- sort order can be "asc" or "desc"
-          -- see :help oil-columns to see which columns are sortable
-          { "mtime", "desc" },
-        },
-      },
-      lsp_file_methods = {
-        -- Enable or disable LSP file operations
-        enabled = true,
-        -- Time to wait for LSP file operations to complete before skipping
-        timeout_ms = 1000,
-        -- Set to true to autosave buffers that are updated with LSP willRenameFiles
-        -- Set to "unmodified" to only save unmodified buffers
-        autosave_changes = false,
-      },
-      skip_confirm_for_simple_edits = true,
-      float = {
-        -- Padding around the floating window
-        padding = 2,
-        -- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-        max_width = 0.8,
-        max_height = 0.8,
-        border = "rounded",
-        win_options = {
-          winblend = 0,
-        },
-        -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
-        get_win_title = nil,
-        -- preview_split: Split direction: "auto", "left", "right", "above", "below".
-        preview_split = "auto",
-        -- This is the config that will be passed to nvim_open_win.
-        -- Change values here to customize the layout
-        override = function(conf)
-          return conf
-        end,
-      },
-      preview_win = {
-        -- preview_method = "load",
-        -- disable_preview = function(filename)
-        --   -- return false for py, txt, md, lua files
-        --   if
-        --       filename:match("%.py$")
-        --       or filename:match("%.txt$")
-        --       or filename:match("%.md$")
-        --       or filename:match("%.lua$")
-        --   then
-        --     return false
-        --   end
-        --   return true
-        -- end,
-      },
-      keymaps = {
-        ["g?"] = { "actions.show_help", mode = "n" },
-        ["<CR>"] = "actions.select",
-        ["<Right>"] = "actions.select",
-        ["<C-s>"] = { "actions.select", opts = { vertical = true } },
-        ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
-        ["<C-t>"] = { "actions.select", opts = { tab = true } },
-        ["<C-p>"] = "actions.preview",
-        ["q"] = { "actions.close", mode = "n" },
-        ["<Esc>"] = { "actions.close", mode = "n" },
-        ["<C-l>"] = "actions.refresh",
-        ["-"] = { "actions.parent", mode = "n" },
-        ["<Left>"] = { "actions.parent", mode = "n" },
-        ["_"] = { "actions.open_cwd", mode = "n" },
-        ["`"] = { "actions.cd", mode = "n" },
-        ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
-        ["gs"] = { "actions.change_sort", mode = "n" },
-        ["gx"] = "actions.open_external",
-        ["g."] = { "actions.toggle_hidden", mode = "n" },
-        ["g\\"] = { "actions.toggle_trash", mode = "n" },
-      },
-      -- Set to false to disable all of the above keymaps
-      use_default_keymaps = false,
-    },
-    -- Optional dependencies
-    dependencies = { { "nvim-mini/mini.icons", opts = {} } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-    lazy = false,
-    keys = {
-      {
-        "-",
-        function()
-          require("oil").open_float(nil, { preview = {} })
-        end,
-        desc = "Open oil at current buffer",
-      },
-      -- {
-      -- 	"<leader>fe",
-      -- 	function()
-      -- 		require("oil").open_float(nil) --, { preview = {} })
-      -- 	end,
-      -- 	desc = "Open oil at current buffer",
-      -- },
-      {
-        "<leader>fe",
-        function()
-          require("oil").open_float(nil, { preview = {} })
-        end,
-        desc = "Open oil in home directory",
-      },
-    },
-  },
+  -- {
+  --   "stevearc/oil.nvim",
+  --   ---@module 'oil'
+  --   ---@type oil.SetupOpts
+  --   opts = {
+  --     columns = {
+  --       "icon",
+  --       "mtime",
+  --     },
+  --     view_options = {
+  --       show_hidden = false,
+  --       sort = {
+  --         -- sort order can be "asc" or "desc"
+  --         -- see :help oil-columns to see which columns are sortable
+  --         { "mtime", "desc" },
+  --       },
+  --     },
+  --     lsp_file_methods = {
+  --       -- Enable or disable LSP file operations
+  --       enabled = true,
+  --       -- Time to wait for LSP file operations to complete before skipping
+  --       timeout_ms = 1000,
+  --       -- Set to true to autosave buffers that are updated with LSP willRenameFiles
+  --       -- Set to "unmodified" to only save unmodified buffers
+  --       autosave_changes = false,
+  --     },
+  --     skip_confirm_for_simple_edits = true,
+  --     float = {
+  --       -- Padding around the floating window
+  --       padding = 2,
+  --       -- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+  --       max_width = 0.8,
+  --       max_height = 0.8,
+  --       border = "rounded",
+  --       win_options = {
+  --         winblend = 0,
+  --       },
+  --       -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
+  --       get_win_title = nil,
+  --       -- preview_split: Split direction: "auto", "left", "right", "above", "below".
+  --       preview_split = "auto",
+  --       -- This is the config that will be passed to nvim_open_win.
+  --       -- Change values here to customize the layout
+  --       override = function(conf)
+  --         return conf
+  --       end,
+  --     },
+  --     preview_win = {
+  --       -- preview_method = "load",
+  --       -- disable_preview = function(filename)
+  --       --   -- return false for py, txt, md, lua files
+  --       --   if
+  --       --       filename:match("%.py$")
+  --       --       or filename:match("%.txt$")
+  --       --       or filename:match("%.md$")
+  --       --       or filename:match("%.lua$")
+  --       --   then
+  --       --     return false
+  --       --   end
+  --       --   return true
+  --       -- end,
+  --     },
+  --     keymaps = {
+  --       ["g?"] = { "actions.show_help", mode = "n" },
+  --       ["<CR>"] = "actions.select",
+  --       ["<Right>"] = "actions.select",
+  --       ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+  --       ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+  --       ["<C-t>"] = { "actions.select", opts = { tab = true } },
+  --       ["<C-p>"] = "actions.preview",
+  --       ["q"] = { "actions.close", mode = "n" },
+  --       ["<Esc>"] = { "actions.close", mode = "n" },
+  --       ["<C-l>"] = "actions.refresh",
+  --       ["-"] = { "actions.parent", mode = "n" },
+  --       ["<Left>"] = { "actions.parent", mode = "n" },
+  --       ["_"] = { "actions.open_cwd", mode = "n" },
+  --       ["`"] = { "actions.cd", mode = "n" },
+  --       ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+  --       ["gs"] = { "actions.change_sort", mode = "n" },
+  --       ["gx"] = "actions.open_external",
+  --       ["g."] = { "actions.toggle_hidden", mode = "n" },
+  --       ["g\\"] = { "actions.toggle_trash", mode = "n" },
+  --     },
+  --     -- Set to false to disable all of the above keymaps
+  --     use_default_keymaps = false,
+  --   },
+  --   -- Optional dependencies
+  --   dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+  --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+  --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+  --   lazy = false,
+  --   keys = {
+  --     {
+  --       "-",
+  --       function()
+  --         require("oil").open_float(nil, { preview = {} })
+  --       end,
+  --       desc = "Open oil at current buffer",
+  --     },
+  --     -- {
+  --     -- 	"<leader>fe",
+  --     -- 	function()
+  --     -- 		require("oil").open_float(nil) --, { preview = {} })
+  --     -- 	end,
+  --     -- 	desc = "Open oil at current buffer",
+  --     -- },
+  --     {
+  --       "<leader>fe",
+  --       function()
+  --         require("oil").open_float(nil, { preview = {} })
+  --       end,
+  --       desc = "Open oil in home directory",
+  --     },
+  --   },
+  -- },
   -- {
   -- 	"obsidian-nvim/obsidian.nvim",
   -- 	-- version = "*", -- recommended, use latest release instead of latest commit
@@ -238,6 +238,7 @@ return {
   -- },
   {
     "stevearc/stickybuf.nvim",
+    version = "*",
     opts = {
       -- This function is run on BufEnter to determine pinning should be activated
       get_auto_pin = function(bufnr)
@@ -251,33 +252,35 @@ return {
       end,
     },
   },
+  -- {
+  --   "ctorney/terminal-image.nvim",
+  --   opts = {},
+  -- },
   {
-    "ctorney/terminal-image.nvim",
-    opts = {},
+    "numtostr/FTerm.nvim",
+    version = "*",
+    opts = {
+      dimensions = { height = 0.8, width = 0.8 },
+      border = "rounded",
+    },
+    keys = {
+      {
+        "<c-.>",
+        function()
+          require("FTerm").toggle()
+        end,
+        mode = { "n", "x", "o", "t", "i" },
+        desc = "Toggle FTerm",
+      },
+    },
   },
-{
-		"numtostr/FTerm.nvim",
-		opts = {
-			dimensions = { height = 0.8, width = 0.8 },
-			border = "rounded",
-		},
-		keys = {
-			{
-				"<c-.>",
-				function()
-					require("FTerm").toggle()
-				end,
-				mode = { "n", "x", "o", "t", "i" },
-				desc = "Toggle FTerm",
-			},
-		},
-	},
   -- {
   -- 	"gbprod/yanky.nvim",
   -- 	opts = {},
   -- },
   {
     "gbprod/substitute.nvim",
+    version = "*",
     config = true,
     -- opts = {
     -- 	on_substitute = function()
@@ -303,8 +306,16 @@ return {
       },
     },
   },
+  -- lua with lazy.nvim
+  {
+    "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
   {
     "stevearc/conform.nvim",
+    version = "*",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
@@ -331,6 +342,7 @@ return {
   },
   {
     "folke/flash.nvim",
+    version = "*",
     ---@type Flash.Config
     opts = { jump = { autojump = false } },
     keys = {
@@ -378,6 +390,7 @@ return {
   },
   {
     "quarto-dev/quarto-nvim",
+    version = "*",
     dependencies = {
       "jmbuhr/otter.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -458,62 +471,5 @@ return {
       }
     end,
   },
-{
-  'yujinyuz/gitpad.nvim',
-  config = function()
-    require('gitpad').setup({
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    })
-  end,
-  keys = {
-    {
-      '<leader>pp',
-      function()
-        require('gitpad').toggle_gitpad() -- or require('gitpad').toggle_gitpad({ title = 'Project notes' })
-      end,
-      desc = 'gitpad project',
-    },
-    {
-      '<leader>pb',
-      function()
-        require('gitpad').toggle_gitpad_branch() -- or require('gitpad').toggle_gitpad_branch({ title = 'Branch notes' })
-      end,
-      desc = 'gitpad branch',
-    },
-    {
-      '<leader>pvs',
-      function()
-        require('gitpad').toggle_gitpad_branch({ window_type = 'split', split_win_opts = { split = 'right' } })
-      end,
-      desc = 'gitpad branch vertical split',
-    },
-
-    -- Daily notes
-    {
-      '<leader>pd',
-      function()
-        local date_filename = 'daily-' .. os.date('%Y-%m-%d.md')
-        require('gitpad').toggle_gitpad({ filename = date_filename }) -- or require('gitpad').toggle_gitpad({ filename = date_filename, title = 'Daily notes' })
-      end,
-      desc = 'gitpad daily notes',
-    },
-    -- Per file notes
-    {
-      '<leader>pf',
-      function()
-        local filename = vim.fn.expand('%:p') -- or just use vim.fn.bufname()
-        if filename == '' then
-          vim.notify('empty bufname')
-          return
-        end
-        filename = vim.fn.pathshorten(filename, 2) .. '.md'
-        require('gitpad').toggle_gitpad({ filename = filename }) -- or require('gitpad').toggle_gitpad({ filename = filename, title = 'Current file notes' })
-      end,
-      desc = 'gitpad per file notes',
-    },
-  },
-}
 
 }

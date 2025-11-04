@@ -1,9 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		-- dependencies = {
-		-- 	"copilotlsp-nvim/copilot-lsp",
-		-- },
+    version = "*",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 
@@ -124,6 +122,7 @@ return {
 	},
 	{
 		"klafyvel/vim-slime-cells",
+    version = "*",
 		requires = { { "jpalardy/vim-slime", opt = true } },
 		ft = { "python", "ipython", "lua", "sh", "zsh", "bash", "markdown" },
 		config = function()
@@ -162,6 +161,7 @@ return {
 	-- },
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
+    version = "*",
 		opts = {
 			heading = {
 				enabled = true,
@@ -172,6 +172,7 @@ return {
 	},
 	{
 		"nvim-mini/mini.diff",
+    version = "*",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			source = {
@@ -209,6 +210,7 @@ return {
 
 	{
 		"olimorris/codecompanion.nvim",
+    version = "*",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",

@@ -59,9 +59,9 @@ end, { desc = "Toggle virtual text" })
 
 vim.keymap.set("x", "<leader>w", "<cmd>echo wordcount().visual_words<CR>", { desc = "Visual word count" })
 
--- vim.keymap.set("n", "<leader>fe", require("config.functions").ExplorerOpenCurrentDir, { desc = "File explorer" })
+vim.keymap.set("n", "<leader>fe", require("config.functions").ExplorerOpenCurrentDir, { desc = "File explorer" })
 
-vim.keymap.set("n", "<leader>fh", require("config.hosts").hosts_picker, { desc = "SSH to host" })
+-- vim.keymap.set("n", "<leader>fh", require("config.hosts").hosts_picker, { desc = "SSH to host" })
 
 vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
 vim.keymap.set("t", "jj", [[<C-\><C-n>]])

@@ -3,7 +3,7 @@ local hosts = require("config.hosts")
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
-	-- commit = "004050c",
+	version = "*",
 	lazy = false,
 	---@type snacks.Config
 	opts = {
@@ -21,8 +21,9 @@ return {
 				keys = {
 					-- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
 					-- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-					{ icon = " ", key = "e", desc = "Explorer", action = ":lua require('oil').open_float(nil, {preview = {}})" },
-					{ icon = " ", key = "h", desc = "Hosts", action = "<leader>fh" },
+
+					{ icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.explorer()" },
+					-- { icon = " ", key = "h", desc = "Hosts", action = "<leader>fh" },
 					-- {
 					-- 	icon = " ",
 					-- 	key = "g",
@@ -45,7 +46,8 @@ return {
 						icon = " ",
 						key = "o",
 						desc = "Obsidian",
-				    action = ":lua require('oil').open_float('~/Obsidian/Notes/', { preview = {} })",
+						action = ":lua Snacks.explorer({cwd = '~/Obsidian/Notes/', exclude = {}})",
+				    -- action = ":lua require('oil').open_float('~/Obsidian/Notes/', { preview = {} })",
 					},
 					{
 						icon = "󰒲 ",
@@ -187,13 +189,13 @@ return {
 			end,
 			desc = "Buffer lines",
 		},
-		{
-			"<leader>fx",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "File Explorer",
-		},
+		-- {
+		-- 	"<leader>fe",
+		-- 	function()
+		-- 		Snacks.explorer()
+		-- 	end,
+		-- 	desc = "File Explorer",
+		-- },
 		{
 			"<leader><CR>",
 			function()
@@ -218,9 +220,10 @@ return {
 		{
 			"<leader>fo",
 			function()
-				require("oil").open_float("~/Obsidian/Notes/", { preview = {} })
+				-- require("oil").open_float("~/Obsidian/Notes/", { preview = {} })
+        Snacks.explorer({cwd = '~/Obsidian/Notes/', exclude = {}})
 			end,
-			desc = "Find Files",
+			desc = "Find Obsidian Files",
 		},
 		{
 			"<leader>ff",
