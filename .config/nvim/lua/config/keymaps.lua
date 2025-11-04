@@ -2,8 +2,8 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "U", "<cmd>redo<cr>", { desc = "Redo" })
 -- vim.keymap.set("n", "<C-Left>", "<cmd>e #<cr>", { desc = "Previous edited buffer" })
 vim.keymap.set("n", "<bs>", "<cmd>b #<cr>", { desc = "Previous edited buffer" })
-vim.keymap.set("n", "<s-bs>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape" })
+-- vim.keymap.set("n", "<s-bs>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- vim.keymap.set("i", "jj", "<Esc>", { desc = "Escape" })
 vim.keymap.set("n", "gl", "$", { desc = "End of line" })
 vim.keymap.set("n", "gh", "^", { desc = "Start of line" })
 
@@ -23,8 +23,8 @@ vim.keymap.set({ 'n', 'v' }, '<C-Right>', '<cmd>Treewalker Right<cr>', { silent 
 -- vim.keymap.set("n", "<C-Right>", "30l", { desc = "Move right" })
 
 vim.keymap.set({ "i", "n" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save" })
-vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
-vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
+-- vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
+-- vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = true })
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n", "x" }, "<leader>/", "gcc", { desc = "Comment line or visual selection", remap = true })
@@ -44,7 +44,7 @@ vim.keymap.set("n", "<leader>q", "<cmd>wall<cr><cmd>qall<cr>", { desc = "Save an
 -- vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
 -- vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
 
-vim.keymap.set({ "t" }, "<C-t>", "<C-\\><C-n>zt<C-\\><C-n>i", { desc = "Send cursor to top line", remap = true })
+-- vim.keymap.set({ "t" }, "<C-t>", "<C-\\><C-n>zt<C-\\><C-n>i", { desc = "Send cursor to top line", remap = true })
 
 vim.keymap.set("n", "<leader>td", function()
 	local current_config = vim.diagnostic.config()
@@ -63,12 +63,12 @@ vim.keymap.set("n", "<leader>fe", require("config.functions").ExplorerOpenCurren
 
 -- vim.keymap.set("n", "<leader>fh", require("config.hosts").hosts_picker, { desc = "SSH to host" })
 
-vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
-vim.keymap.set("t", "jj", [[<C-\><C-n>]])
-vim.keymap.set("t", "<C-h>", "<cmd>wincmd h<cr>")
-vim.keymap.set("t", "<C-j>", "<cmd>wincmd j<cr>")
-vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr>")
-vim.keymap.set("t", "<C-l>", "<cmd>wincmd l<cr>")
+-- vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
+-- vim.keymap.set("t", "jj", [[<C-\><C-n>]])
+-- vim.keymap.set("t", "<C-h>", "<cmd>wincmd h<cr>")
+-- vim.keymap.set("t", "<C-j>", "<cmd>wincmd j<cr>")
+-- vim.keymap.set("t", "<C-k>", "<cmd>wincmd k<cr>")
+-- vim.keymap.set("t", "<C-l>", "<cmd>wincmd l<cr>")
 
 -- vim.keymap.set({ "n", "v", "i", "x", "t" }, "<c-a>d", function()
 -- 	vim.cmd("!shpool detach")

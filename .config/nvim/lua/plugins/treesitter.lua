@@ -1,12 +1,11 @@
 return {
 	{
 		"aaronik/treewalker.nvim",
-
-		-- optional (see below for detailed options)
 		opts = {},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+    version = "*",
 		depends = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",

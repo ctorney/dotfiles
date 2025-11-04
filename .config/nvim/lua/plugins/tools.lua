@@ -1,42 +1,4 @@
 return {
-  -- {
-  -- 	dir = "~/workspace/arduino-tools.nvim/",
-  -- 	name = "arduino-tools.nvim",
-  -- 	ft = { "arduino" },
-  -- 	opts = {
-  -- 		cli_config = "~/Library/Arduino15/",
-  -- 	},
-  -- },
-  -- {
-  --     "inhesrom/remote-ssh.nvim",
-  --     branch = "master",
-  --     dependencies = {
-  --         "inhesrom/telescope-remote-buffer", --See https://github.com/inhesrom/telescope-remote-buffer for features
-  --         "nvim-telescope/telescope.nvim",
-  --         "nvim-lua/plenary.nvim",
-  --         "neovim/nvim-lspconfig",
-  --         -- nvim-notify is recommended, but not necessarily required into order to get notifcations during operations - https://github.com/rcarriga/nvim-notify
-  --         "rcarriga/nvim-notify",
-  --     },
-  --     config = function ()
-  --         require('telescope-remote-buffer').setup(
-  --             -- Default keymaps to open telescope and search open buffers including "remote" open buffers
-  --             --fzf = "<leader>fz",
-  --             --match = "<leader>gb",
-  --             --oldfiles = "<leader>rb"
-  --         )
-  --
-  --         -- setup lsp_config here or import from part of neovim config that sets up LSP
-  --         -- local lsp_config = require("lsp.config")
-  --
-  --         require('remote-ssh').setup({
-  --             on_attach = lsp_config.on_attach,
-  --             capabilities = lsp_config.capabilities,
-  --             filetype_to_server = lsp_config.filetype_to_server
-  --         })
-  --     end
-  -- }
-
   {
     "linux-cultist/venv-selector.nvim",
     ft = "python",                             -- Load when opening Python files
@@ -66,121 +28,6 @@ return {
     }
 
   },
-  -- {
-  --   "stevearc/oil.nvim",
-  --   ---@module 'oil'
-  --   ---@type oil.SetupOpts
-  --   opts = {
-  --     columns = {
-  --       "icon",
-  --       "mtime",
-  --     },
-  --     view_options = {
-  --       show_hidden = false,
-  --       sort = {
-  --         -- sort order can be "asc" or "desc"
-  --         -- see :help oil-columns to see which columns are sortable
-  --         { "mtime", "desc" },
-  --       },
-  --     },
-  --     lsp_file_methods = {
-  --       -- Enable or disable LSP file operations
-  --       enabled = true,
-  --       -- Time to wait for LSP file operations to complete before skipping
-  --       timeout_ms = 1000,
-  --       -- Set to true to autosave buffers that are updated with LSP willRenameFiles
-  --       -- Set to "unmodified" to only save unmodified buffers
-  --       autosave_changes = false,
-  --     },
-  --     skip_confirm_for_simple_edits = true,
-  --     float = {
-  --       -- Padding around the floating window
-  --       padding = 2,
-  --       -- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-  --       max_width = 0.8,
-  --       max_height = 0.8,
-  --       border = "rounded",
-  --       win_options = {
-  --         winblend = 0,
-  --       },
-  --       -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
-  --       get_win_title = nil,
-  --       -- preview_split: Split direction: "auto", "left", "right", "above", "below".
-  --       preview_split = "auto",
-  --       -- This is the config that will be passed to nvim_open_win.
-  --       -- Change values here to customize the layout
-  --       override = function(conf)
-  --         return conf
-  --       end,
-  --     },
-  --     preview_win = {
-  --       -- preview_method = "load",
-  --       -- disable_preview = function(filename)
-  --       --   -- return false for py, txt, md, lua files
-  --       --   if
-  --       --       filename:match("%.py$")
-  --       --       or filename:match("%.txt$")
-  --       --       or filename:match("%.md$")
-  --       --       or filename:match("%.lua$")
-  --       --   then
-  --       --     return false
-  --       --   end
-  --       --   return true
-  --       -- end,
-  --     },
-  --     keymaps = {
-  --       ["g?"] = { "actions.show_help", mode = "n" },
-  --       ["<CR>"] = "actions.select",
-  --       ["<Right>"] = "actions.select",
-  --       ["<C-s>"] = { "actions.select", opts = { vertical = true } },
-  --       ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
-  --       ["<C-t>"] = { "actions.select", opts = { tab = true } },
-  --       ["<C-p>"] = "actions.preview",
-  --       ["q"] = { "actions.close", mode = "n" },
-  --       ["<Esc>"] = { "actions.close", mode = "n" },
-  --       ["<C-l>"] = "actions.refresh",
-  --       ["-"] = { "actions.parent", mode = "n" },
-  --       ["<Left>"] = { "actions.parent", mode = "n" },
-  --       ["_"] = { "actions.open_cwd", mode = "n" },
-  --       ["`"] = { "actions.cd", mode = "n" },
-  --       ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
-  --       ["gs"] = { "actions.change_sort", mode = "n" },
-  --       ["gx"] = "actions.open_external",
-  --       ["g."] = { "actions.toggle_hidden", mode = "n" },
-  --       ["g\\"] = { "actions.toggle_trash", mode = "n" },
-  --     },
-  --     -- Set to false to disable all of the above keymaps
-  --     use_default_keymaps = false,
-  --   },
-  --   -- Optional dependencies
-  --   dependencies = { { "nvim-mini/mini.icons", opts = {} } },
-  --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-  --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-  --   lazy = false,
-  --   keys = {
-  --     {
-  --       "-",
-  --       function()
-  --         require("oil").open_float(nil, { preview = {} })
-  --       end,
-  --       desc = "Open oil at current buffer",
-  --     },
-  --     -- {
-  --     -- 	"<leader>fe",
-  --     -- 	function()
-  --     -- 		require("oil").open_float(nil) --, { preview = {} })
-  --     -- 	end,
-  --     -- 	desc = "Open oil at current buffer",
-  --     -- },
-  --     {
-  --       "<leader>fe",
-  --       function()
-  --         require("oil").open_float(nil, { preview = {} })
-  --       end,
-  --       desc = "Open oil in home directory",
-  --     },
-  --   },
-  -- },
   -- {
   -- 	"obsidian-nvim/obsidian.nvim",
   -- 	-- version = "*", -- recommended, use latest release instead of latest commit
@@ -252,15 +99,11 @@ return {
       end,
     },
   },
-  -- {
-  --   "ctorney/terminal-image.nvim",
-  --   opts = {},
-  -- },
   {
     "numtostr/FTerm.nvim",
     version = "*",
     opts = {
-      dimensions = { height = 0.8, width = 0.8 },
+      dimensions = { height = 0.6, width = 0.6 },
       border = "rounded",
     },
     keys = {
@@ -274,10 +117,6 @@ return {
       },
     },
   },
-  -- {
-  -- 	"gbprod/yanky.nvim",
-  -- 	opts = {},
-  -- },
   {
     "gbprod/substitute.nvim",
     version = "*",
@@ -306,7 +145,6 @@ return {
       },
     },
   },
-  -- lua with lazy.nvim
   {
     "max397574/better-escape.nvim",
     config = function()
@@ -397,9 +235,15 @@ return {
     },
     opts = {},
   },
+  {
+		"williamboman/mason.nvim",
+		version = "*",
+		config = true,
+	},
   -- Better text-objects
   {
     "nvim-mini/mini.ai",
+    version = "*",
     event = "VeryLazy",
     opts = function()
       local ai = require("mini.ai")

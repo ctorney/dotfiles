@@ -1,7 +1,7 @@
 return {
 	{
 		"neanias/everforest-nvim",
-		version = false,
+    version = "*",
 		lazy = false,
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
@@ -29,6 +29,7 @@ return {
 	},
 	{
 		"folke/noice.nvim",
+    version = "*",
 		event = "VeryLazy",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		opts = {
