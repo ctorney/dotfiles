@@ -14,4 +14,21 @@ function M.ExplorerOpenCurrentDir()
 	return explorer
 end
 
+function M.SnacksMarksman()
+  local marksman = require("marksman")
+  local marks = marksman.get_marks()
+
+  local results = {}
+  for name, mark in pairs(marks) do
+    table.insert(results, {
+      text = name,
+      file = mark.file,
+      pos = { tonumber(mark.line) or 1, tonumber(mark.col) or 1 },
+      display = string.format("%s %s:%d", name, vim.fn.fnamemodify(mark.file, ":~:."), mark.line),
+    })
+  end
+
+  return results
+end
+
 return M

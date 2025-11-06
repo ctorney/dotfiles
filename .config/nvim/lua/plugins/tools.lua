@@ -1,11 +1,11 @@
 return {
   {
     "linux-cultist/venv-selector.nvim",
-    ft = "python",                             -- Load when opening Python files
+    ft = "python",                                                                    -- Load when opening Python files
     keys = {
-      { "<leader>fv", "<cmd>VenvSelect<cr>" }, -- Open picker on keymap
+      { "<leader>fv", "<cmd>VenvSelect<cr>", desc = 'Virtual Environment Selector' }, -- Open picker on keymap
     },
-    opts = {                                   -- this can be an empty lua table - just showing below for clarity.
+    opts = {                                                                          -- this can be an empty lua table - just showing below for clarity.
       search = {
         venv = {
           command = "fd --full-path '^.*/bin/python$' ~/.venvs"
@@ -97,6 +97,42 @@ return {
         end
         return require("stickybuf").should_auto_pin(bufnr)
       end,
+    },
+  },
+  {
+    "alexekdahl/marksman.nvim",
+    keys = {
+      {
+        "<leader>ma",
+        function() require("marksman").add_mark() end,
+        desc = "Add mark",
+      },
+      {
+        "<leader>m1",
+        function() require("marksman").goto_mark(1) end,
+        desc = "Go to mark 1",
+      },
+      {
+        "<leader>m2",
+        function() require("marksman").goto_mark(2) end,
+        desc = "Go to mark 2",
+      },
+      {
+        "<leader>m3",
+        function() require("marksman").goto_mark(3) end,
+        desc = "Go to mark 3",
+      },
+      {
+        "<leader>m4",
+        function() require("marksman").goto_mark(4) end,
+        desc = "Go to mark 4",
+      },
+    },
+    opts = {
+      max_marks = 100,
+      minimal = true,
+      silent = true,
+      disable_default_keymaps = true,
     },
   },
   {
@@ -236,10 +272,10 @@ return {
     opts = {},
   },
   {
-		"williamboman/mason.nvim",
-		version = "*",
-		config = true,
-	},
+    "williamboman/mason.nvim",
+    version = "*",
+    config = true,
+  },
   -- Better text-objects
   {
     "nvim-mini/mini.ai",
