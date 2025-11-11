@@ -16,7 +16,7 @@ return {
   },
   {
     'mrjones2014/smart-splits.nvim',
-    version = '*',
+    version = '2.0.4',
     lazy = false,
     opts = true,
     keys =
@@ -106,6 +106,16 @@ return {
         "<leader>ma",
         function() require("marksman").add_mark() end,
         desc = "Add mark",
+      },
+      {
+        "<leader>mn",
+        function() require("marksman").goto_next() end,
+        desc = "Go to next mark",
+      },
+      {
+        "<leader>mp",
+        function() require("marksman").goto_previous() end,
+        desc = "Go to previous mark",
       },
       {
         "<leader>m1",

@@ -58,15 +58,15 @@ return {
                 end
               end,
             },
-            {
-              "diagnostics",
-              symbols = {
-                error = icons.diagnostics.Error,
-                warn = icons.diagnostics.Warn,
-                info = icons.diagnostics.Info,
-                hint = icons.diagnostics.Hint,
-              },
-            },
+            -- {
+            --   "diagnostics",
+            --   symbols = {
+            --     error = icons.diagnostics.Error,
+            --     warn = icons.diagnostics.Warn,
+            --     info = icons.diagnostics.Info,
+            --     hint = icons.diagnostics.Hint,
+            --   },
+            -- },
             -- {
             -- 	"buffers",
             -- 	cond = function()
