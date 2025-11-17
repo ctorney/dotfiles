@@ -1,0 +1,85 @@
+profiles:
+- id: 4D3385AD-026F-4936-ADC0-D72405699018
+  name: Default
+  workspaces:
+  - id: C43A6973-0C8E-430E-B410-8C7229B81A82
+    name: MESSAGES
+    display: Built-in Retina Display
+    apps:
+    - name: "\u200EWhatsApp"
+      bundleIdentifier: net.whatsapp.WhatsApp
+      iconPath: /Applications/WhatsApp.app/Contents/Resources/AppIconCatalystRelease.icns
+    - name: Microsoft Teams
+      bundleIdentifier: com.microsoft.teams2
+      iconPath: /Applications/Microsoft Teams.app/Contents/Resources/AppIcon.icns
+    symbolIconName: message
+    openAppsOnActivation: true
+  - id: 628914E9-2F7A-4CEE-8200-FEDFBBCA100D
+    name: BROWSER
+    display: Built-in Retina Display
+    apps:
+    - name: Helium
+      bundleIdentifier: net.imput.helium
+      iconPath: /Applications/Helium.app/Contents/Resources/app.icns
+    symbolIconName: globe
+    openAppsOnActivation: true
+  - id: CB7A1037-506C-4F0B-AAA1-66C229800175
+    name: TERMINAL
+    display: Built-in Retina Display
+    apps:
+    - name: Ghostty
+      bundleIdentifier: com.mitchellh.ghostty
+      iconPath: /Applications/Ghostty.app/Contents/Resources/Ghostty.icns
+    symbolIconName: apple.terminal
+    openAppsOnActivation: true
+  - id: DBA2A4BD-BC06-4775-AAE3-CB7D86225C5D
+    name: SCRATCH
+    display: Built-in Retina Display
+    apps: []
+    symbolIconName: square.fill
+    openAppsOnActivation: false
+  - id: 8489A1C5-447E-4E70-B8AD-BC0DF5497C82
+    name: CALENDAR
+    display: Built-in Retina Display
+    apps:
+    - name: Calendar
+      bundleIdentifier: com.apple.iCal
+      iconPath: /System/Applications/Calendar.app/Contents/Resources/AppIcon.icns
+    symbolIconName: calendar
+    openAppsOnActivation: true
+  - id: 649C84E2-C5DC-4B0F-BF9C-4601B84B6E74
+    name: OFFICE
+    display: Built-in Retina Display
+    apps:
+    - name: Microsoft Excel
+      bundleIdentifier: com.microsoft.Excel
+      iconPath: /Applications/Microsoft Excel.app/Contents/Resources/Excel_macOS.icns
+    - name: Microsoft Word
+      bundleIdentifier: com.microsoft.Word
+      iconPath: /Applications/Microsoft Word.app/Contents/Resources/Word_macOS.icns
+    - name: zoom.us
+      bundleIdentifier: us.zoom.xos
+      iconPath: /Applications/zoom.us.app/Contents/Resources/ZPLogo.icns
+    symbolIconName: briefcase
+    openAppsOnActivation: false
+  - id: 91F5EEB7-964C-44B5-9BF9-37336945F140
+    name: NOTES
+    display: Built-in Retina Display
+    apps:
+    - name: Obsidian
+      bundleIdentifier: md.obsidian
+      iconPath: /Applications/Obsidian.app/Contents/Resources/icon.icns
+    symbolIconName: pencil.line
+    openAppsOnActivation: false
+  - id: 4C6BB609-E46D-4A2E-B20F-46B5DFE90FF1
+    name: PAPERS
+    display: Built-in Retina Display
+    apps:
+    - name: Papers
+      bundleIdentifier: com.ReadCube.Papers
+      iconPath: /Applications/Papers.app/Contents/Resources/icon.icns
+    - name: reMarkable
+      bundleIdentifier: com.remarkable.desktop
+      iconPath: /Applications/reMarkable.app/Contents/Resources/remarkable.icns
+    symbolIconName: book.pages.fill
+    openAppsOnActivation: false
