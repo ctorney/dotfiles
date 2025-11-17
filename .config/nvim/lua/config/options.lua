@@ -13,6 +13,8 @@ end)
 
 vim.opt.breakindent = true
 vim.opt.undofile = true
+vim.opt.swapfile = false
+vim.opt.backup = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
@@ -35,8 +37,25 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.inccommand = "nosplit"
 vim.opt.cursorline = true
-vim.opt.scrolloff = 2
+vim.opt.scrolloff = 20
 vim.opt.laststatus = 3
+
+
+
+vim.api.nvim_create_autocmd(
+  { "InsertLeavePre", "TextChanged", "TextChangedP" },
+  {
+    pattern = "*",
+    callback = function()
+      local buf = vim.api.nvim_get_current_buf()
+      if vim.api.nvim_buf_get_option(buf, "modifiable")
+         and not vim.api.nvim_buf_get_option(buf, "readonly") then
+        -- Save the buffer silently (no messages)
+        vim.cmd('silent! update')
+      end
+    end,
+  }
+)
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = vim.api.nvim_create_augroup("last-location", { clear = true }),

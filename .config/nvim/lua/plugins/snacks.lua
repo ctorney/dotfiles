@@ -244,7 +244,7 @@ return {
         "/",
         -- "<leader>fl",
         function()
-          Snacks.picker.lines({ layout = { preview = "main", preset = "select", } })
+          Snacks.picker.lines({ layout = { preview = true, preset = "default", }, matcher = {fuzzy = false} })
         end,
         desc = "Buffer lines",
       },
