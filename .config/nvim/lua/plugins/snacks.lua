@@ -183,8 +183,14 @@ return {
             },
             focus = "input",
             win = {
+              list = {
+                keys = {
+                  ["<Tab>"] = { "toggle_focus", mode = { "n", "i" } },
+                  },
+              },
               input = {
                 keys = {
+                  ["<Tab>"] = { "toggle_focus", mode = { "n", "i" } },
                   ["<CR>"] = { "smart_enter", mode = { "n", "i" } },
                   ["<S-CR>"] = { "explorer_open", mode = { "n", "i" } },
                   ["<Left>"] = { "up_and_close", mode = { "n", "i" } },
