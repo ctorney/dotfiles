@@ -1,7 +1,7 @@
 return {
 	{
 		"neanias/everforest-nvim",
-    version = "*",
+	   version = "*",
 		lazy = false,
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
@@ -23,13 +23,13 @@ return {
 			})
 			-- Load the colorscheme AFTER setup is complete
 			vim.cmd.colorscheme("everforest")
-      vim.api.nvim_set_hl(0, "added", { fg = "#e67e80", bg = "#000000", bold = true })
-      vim.api.nvim_set_hl(0, "removed", { fg = "#a7c080", bg = "#000000", bold = true })
+	     vim.api.nvim_set_hl(0, "added", { fg = "#e67e80", bg = "#000000", bold = true })
+	     vim.api.nvim_set_hl(0, "removed", { fg = "#a7c080", bg = "#000000", bold = true })
 		end,
 	},
 	{
 		"folke/noice.nvim",
-    version = "*",
+	   version = "*",
 		event = "VeryLazy",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		opts = {
@@ -44,7 +44,7 @@ return {
 				bottom_search = false,
 				command_palette = false,
 				long_message_to_split = true,
-				lsp_doc_border = false,
+				lsp_doc_border = true,
 			},
 		},
 		init = function()

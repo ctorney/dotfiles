@@ -37,7 +37,7 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.inccommand = "nosplit"
 vim.opt.cursorline = true
-vim.opt.scrolloff = 20
+vim.opt.scrolloff = 5
 vim.opt.laststatus = 3
 
 
