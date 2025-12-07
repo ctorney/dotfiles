@@ -1,4 +1,4 @@
-checkForUpdatesAutomatically: false
+checkForUpdatesAutomatically: true
 showFlashSpace: opt+shift+space
 showFloatingNotifications: false
 showMenuBarTitle: false
@@ -31,14 +31,14 @@ skipEmptyWorkspacesOnSwitch: false
 keepUnassignedAppsOnSwitch: false
 restoreHiddenAppsOnSwitch: false
 enableWorkspaceTransitions: false
-workspaceTransitionDuration: 1e-1
+workspaceTransitionDuration: 5e-1
 workspaceTransitionDimming: 5e-2
 loopWorkspaces: true
 loopWorkspacesOnAllDisplays: false
 switchWorkspaceOnCursorScreen: false
 switchToPreviousWorkspace: opt+left
 switchToNextWorkspace: opt+right
-switchToRecentWorkspace: opt+delete
+switchToRecentWorkspace: opt+down
 assignFocusedApp: opt+p
 unassignFocusedApp: opt+d
 alternativeDisplays: ''
@@ -46,6 +46,10 @@ enablePictureInPictureSupport: true
 switchWorkspaceWhenPipCloses: true
 pipApps: []
 pipScreenCornerOffset: 15
+floatingApps:
+- name: Raycast
+  bundleIdentifier: com.raycast.macos
+  iconPath: /Applications/Raycast.app/Contents/Resources/AppIcon-Release.icns
 toggleTheFocusedAppFloating: opt+v
 enableSpaceControl: true
 showSpaceControl: opt+up
@@ -53,7 +57,7 @@ enableSpaceControlAnimations: true
 enableSpaceControlTilesAnimations: true
 spaceControlCurrentDisplayWorkspaces: false
 spaceControlHideEmptyWorkspaces: false
-spaceControlUpdateScreenshotsOnOpen: false
+spaceControlUpdateScreenshotsOnOpen: true
 spaceControlNumberOfColumns: 4
 enableIntegrations: false
 runScriptOnLaunch: ''

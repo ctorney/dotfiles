@@ -12,7 +12,7 @@ xelatex -output-directory=$(pwd) -jobname="${pdf_file%.pdf}" current_week.tex >/
 
 /Users/colin.torney/.local/bin/rmapi put "${pdf_file}" "2. AREAS/Time Management"
 # Remove the temporary LaTeX file
-rm current_week.tex
-rm weekly_planner_*
+# rm current_week.tex
+# rm weekly_planner_*
 
 echo "Weekly planner PDF created: $pdf_file"

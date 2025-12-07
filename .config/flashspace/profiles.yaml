@@ -18,9 +18,9 @@ profiles:
     name: BROWSER
     display: Built-in Retina Display
     apps:
-    - name: Helium
-      bundleIdentifier: net.imput.helium
-      iconPath: /Applications/Helium.app/Contents/Resources/app.icns
+    - name: Brave Browser
+      bundleIdentifier: com.brave.Browser
+      iconPath: /Applications/Brave Browser.app/Contents/Resources/app.icns
     symbolIconName: globe
     openAppsOnActivation: true
   - id: CB7A1037-506C-4F0B-AAA1-66C229800175

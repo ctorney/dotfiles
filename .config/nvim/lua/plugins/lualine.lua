@@ -15,6 +15,7 @@ return {
   {
 
     "nvim-lualine/lualine.nvim",
+    enabled = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     init = function()
@@ -45,6 +46,7 @@ return {
             { "filename", path = 3,         file_status = false },
           },
           lualine_x = { 
+            {"pairup"},
             {"copilot",
               on_click = function()
                 local copilot_command = require("copilot.command")
