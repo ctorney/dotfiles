@@ -204,7 +204,7 @@ return {
     cmd = { "ConformInfo" },
     keys = {
       {
-        "<leader>c",
+        "<leader>cf",
         function()
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
@@ -228,7 +228,13 @@ return {
     "folke/flash.nvim",
     version = "*",
     ---@type Flash.Config
-    opts = { jump = { autojump = false } },
+    opts = {
+      jump = { autojump = false },
+      highlight = {
+        -- show a backdrop with hl FlashBackdrop
+        backdrop = false,
+      }
+    },
     keys = {
       {
         "s",
@@ -287,19 +293,19 @@ return {
     event = "VeryLazy",
     config = true,
   },
-{
-	"chrisgrieser/nvim-rip-substitute",
-	cmd = "RipSubstitute",
-	opts = {},
-	keys = {
-		{
-			"<leader>r",
-			function() require("rip-substitute").sub() end,
-			mode = { "n", "x" },
-			desc = " rip substitute",
-		},
-	},
-},
+  {
+    "chrisgrieser/nvim-rip-substitute",
+    cmd = "RipSubstitute",
+    opts = {},
+    keys = {
+      {
+        "<leader>r",
+        function() require("rip-substitute").sub() end,
+        mode = { "n", "x" },
+        desc = " rip substitute",
+      },
+    },
+  },
 
   -- Better text-objects
   {

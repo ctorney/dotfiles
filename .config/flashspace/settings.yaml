@@ -14,7 +14,7 @@ focusDown: opt+j
 focusFrontmostWindow: false
 enableSwipeGestures: true
 swipeThreshold: 2e-1
-restartAppOnWakeUp: false
+restartAppOnWakeUp: true
 swipeLeft3FingerAction: nextWorkspace
 swipeRight3FingerAction: previousWorkspace
 swipeUp3FingerAction: mostRecentWorkspace

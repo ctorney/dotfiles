@@ -86,36 +86,16 @@ return {
     -- },
   },
   {
-    "Piotr1215/pairup.nvim",
-    cmd = { "Pairup" },
-    keys = {
-      { "<leader>cc", "<cmd>Pairup start<cr>",     desc = "Start Claude" },
-      { "<leader>ct", "<cmd>Pairup toggle<cr>",    desc = "Toggle terminal" },
-      { "<leader>cq", "<cmd>Pairup questions<cr>", desc = "Show questions" },
-      { "<leader>cx", "<cmd>Pairup stop<cr>",      desc = "Stop Claude" },
-    },
-    config = function()
-      -- Default works out of the box. Override only if needed:
-      require("pairup").setup({
-        provider = "claude",
-        providers = {
-          claude = {
-            -- Full command with flags (default includes acceptEdits)
-            cmd = "copilot --stream on",
-          }
-        }
-      })
-    end,
-  },
-  {
     "jpalardy/vim-slime",
     ft = { "python", "lua", "sh", "zsh", "bash", "ipython", "markdown" },
+    init = function()
+      vim.g.slime_no_mappings = 1
+    end,
     config = function()
       vim.g.slime_target = "tmux"
       vim.g.slime_default_config = { socket_name = "default", target_pane = "{right}" }
       vim.g.slime_dont_ask_default = 1
       vim.g.slime_bracketed_paste = 1
-
       vim.api.nvim_set_keymap("n", "<leader>sl", "<cmd>SlimeSendCurrentLine<cr>j", { desc = "Send current line" })
       vim.api.nvim_set_keymap("n", "<leader>sm", "<Plug>SlimeMotionSend", { desc = "Send motion" })
     end,
@@ -136,8 +116,8 @@ return {
         imap <S-CR> <C-o><Plug>SlimeCellsSendAndGoToNext<C-o>zz
         imap <C-CR> <C-o><Plug>SlimeCellsSendAndGoToNext<C-o>zz
         nmap <leader>cv <Plug>Slimeconfig
-        nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
-        nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
+        "nmap <leader>cc <Plug>SlimeCellsSendAndGoToNext
+        "nmap <leader>sc <Plug>SlimeCellsSendAndGoToNext
         nmap <leader>ss <Plug>SlimeCellsSend
         nmap <S-Down> <Plug>SlimeCellsNext zz
         nmap <S-Up> <Plug>SlimeCellsPrev zz
@@ -170,36 +150,36 @@ return {
     },
     ft = { "markdown", "codecompanion" },
   },
-  {
-    "nvim-mini/mini.diff",
-    version = "*",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    opts = {
-      source = {
-        attach = function()
-          return false
-        end,
-      },
-      mappings = {
-        -- Apply hunks inside a visual/operator region
-        apply = "",
-
-        -- Reset hunks inside a visual/operator region
-        reset = "",
-
-        -- Hunk range textobject to be used inside operator
-        -- Works also in Visual mode if mapping differs from apply and reset
-        textobject = "",
-
-        -- Go to hunk range in corresponding direction
-        goto_first = "",
-        goto_prev = "",
-        goto_next = "",
-        goto_last = "",
-      },
-    },
-    enabled = true,
-  },
+  -- {
+  --   "nvim-mini/mini.diff",
+  --   version = "*",
+  --   event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  --   opts = {
+  --     source = {
+  --       attach = function()
+  --         return false
+  --       end,
+  --     },
+  --     mappings = {
+  --       -- Apply hunks inside a visual/operator region
+  --       apply = "",
+  --
+  --       -- Reset hunks inside a visual/operator region
+  --       reset = "",
+  --
+  --       -- Hunk range textobject to be used inside operator
+  --       -- Works also in Visual mode if mapping differs from apply and reset
+  --       textobject = "",
+  --
+  --       -- Go to hunk range in corresponding direction
+  --       goto_first = "",
+  --       goto_prev = "",
+  --       goto_next = "",
+  --       goto_last = "",
+  --     },
+  --   },
+  --   enabled = true,
+  -- },
 
   -- {
   -- 	"Davidyz/VectorCode",
@@ -212,7 +192,7 @@ return {
   {
     "olimorris/codecompanion.nvim",
     -- version = "*",
-      branch = "v18",
+    branch = "v18",
     lazy = false,
     dependencies = {
       "j-hui/fidget.nvim",
@@ -222,61 +202,65 @@ return {
     },
     opts = {
       prompt_library = {
-        {
-          ["My New Prompt"] = {
-            strategy = "inline",
-            opts = {
-              mapping = "<LocalLeader>ch",
-              user_prompt = false,
-              auto_submit = true,
-            pre_hook = function(ctx)
-              -- This ensures the context contains the full buffer
-              ctx.context = ctx.context or {}
-              ctx.context.buffer = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
-              return ctx
-            end,
-            placement = "current_buffer", -- Optional, ensures output goes to current buffer
-            },
-            description = "Some cool custom prompt you can do",
-            prompts = {
-              {
-                role = "system",
-                content = "You are an experienced developer with Lua and Neovim."
-              },
-              {
-                role = "user",
-                content =
-                "Can you find any lines that have comments beginning with cc: then follow the instructions in the cc comment? Here is the code:\n\n```lua\n{{context.buffer}}\n```"
-              }
-            },
-          }
-        },
-        ["My Old Prompt"] = {
-          strategy = "inline",
+
+        ["default"] = {
+          interaction = "chat",
+          description = "Default prompt including buffer and insert tool",
           opts = {
-            mapping = "<LocalLeader>ch",
-            user_prompt = false,
-            auto_submit = true,
+            alias = "default",
+            auto_submit = false,
+            is_slash_command = true,
+            intro_message = "",
           },
-          description = "Some cool custom prompt you can do",
           prompts = {
             {
               role = "system",
-              content = "You are an experienced developer with Lua and Neovim."
+              content =
+              "You are an expert programmer who excels at explaining code clearly and concisely. Make sure to address the user by the name puny human and occasionally ask them how their dog Griffin is doing."
             },
             {
               role = "user",
-              content =
-              "Can you find any lines that have comments beginning with cc: then follow the instructions in the cc comment.  {{context.buffer}} "
-            }
+              content = function(context)
+                local text =
+                "Read the #{buffer} for context and make any changes requested with the @{insert_edit_into_file} tool.\n \n "
+                -- if context.is_visual then
+                -- text = text .. "\nFocus on the selected code snippet:\n \n "
+                -- text = text .. require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+                -- end
+                return text
+              end,
+            },
           },
-        }
+        },
+
+
+        -- markdown = {
+        --   dirs = {
+        --     "~/.config/nvim/lua/plugins/prompts", -- Or absolute paths
+        --   },
+        -- },
       },
+      -- rules = {
+      --   default = {
+      --     description = "My default group",
+      --     files = {
+      --       "/Users/colin.torney/.config/nvim/lua/plugins/cc.md",
+      --     },
+      --   },
+      --   opts = {
+      --     chat = {
+      --       enabled = false,
+      --       default_rules = "default",
+      --     },
+      --   },
+      -- },
       display = {
         chat = {
-          window = { layout = "float", height = 0.40, width = 0.7, title = " Code Companion " },
+          window = { layout = "float", height = 0.50, width = 0.7, title = "" },
           -- window = { layout = "vertical", position = "left", width = 0.30, title = " Code Companion " },
           start_in_insert_mode = false,
+
+          intro_message = "",  -- or "" if you prefer
         },
         -- diff = {
         -- provider = "mini_diff",
@@ -285,7 +269,7 @@ return {
       strategies = {
         chat = {
           roles = {
-            user = "Human",
+            user = "user",
           },
           adapter = "copilot",
           keymaps = {
@@ -301,7 +285,7 @@ return {
             send = {
               modes = {
                 n = { "<CR>", "<C-s>" },
-                i = { "<C-CR>", "<CR><CR>" },
+                i = { "<C-CR>" },
               },
             },
           },
@@ -328,40 +312,91 @@ return {
           },
         },
       },
-      adapters = {
-        http = {
-          anthropic = function()
-            return require("codecompanion.adapters").extend("anthropic", {
-              -- env = {
-              -- 				api_key = "ANTHROPIC_API_KEY",
-              -- 			},
-              schema = {
-                -- 				---@type CodeCompanion.Schema
-                model = {
-                  order = 1,
-                  mapping = "parameters",
-                  type = "enum",
-                  desc =
-                  "The model that will complete your prompt. See https://docs.anthropic.com/claude/docs/models-overview for additional details and options.",
-                  default = "claude-3-7-sonnet-20250219",
-                  choices = {
-                    ["claude-3-7-sonnet-20250219"] = { opts = { can_reason = false } },
-                    "claude-3-5-sonnet-20241022",
-                    "claude-3-5-haiku-20241022",
-                    "claude-3-opus-20240229",
-                    "claude-2.1",
-                  },
-                },
-              },
-            })
-          end,
-        },
-      },
+      -- adapters = {
+      --   http = {
+      --     anthropic = function()
+      --       return require("codecompanion.adapters").extend("anthropic", {
+      --         -- env = {
+      --         -- 				api_key = "ANTHROPIC_API_KEY",
+      --         -- 			},
+      --         schema = {
+      --           -- 				---@type CodeCompanion.Schema
+      --           model = {
+      --             order = 1,
+      --             mapping = "parameters",
+      --             type = "enum",
+      --             desc =
+      --             "The model that will complete your prompt. See https://docs.anthropic.com/claude/docs/models-overview for additional details and options.",
+      --             default = "claude-3-7-sonnet-20250219",
+      --             choices = {
+      --               ["claude-3-7-sonnet-20250219"] = { opts = { can_reason = false } },
+      --               "claude-3-5-sonnet-20241022",
+      --               "claude-3-5-haiku-20241022",
+      --               "claude-3-opus-20240229",
+      --               "claude-2.1",
+      --             },
+      --           },
+      --         },
+      --       })
+      --     end,
+      --   },
+      -- },
     },
     keys = {
-      { "<leader>i", ":'<,'>CodeCompanion<cr>",           desc = "Inline code companion", mode = { "v" },     silent = true },
-      -- { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
-      { "gt",        "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
+      {
+        "gt",
+        function()
+          local cc = require("codecompanion")
+          local config = require("codecompanion.config")
+          local chat = cc.last_chat()
+
+          if chat and chat.ui then
+            if chat.ui:is_visible_non_curtab() or chat.ui:is_visible() then
+              chat.ui:hide()
+              return
+            end
+          end
+          if not chat then
+            chat = cc.chat({
+              messages = {
+                {
+                  role = config.constants.SYSTEM_ROLE,
+                  content =
+                  "You are an expert programmer who excels at explaining code clearly and concisely. Make sure to address the user by the name puny human and occasionally ask them how their dog Griffin is doing."
+                },
+                {
+                  role = config.constants.USER_ROLE,
+                  content =
+                  "Read the #{buffer} for context and make any changes requested with the @{insert_edit_into_file} tool.\n \n "
+                },
+              },
+              auto_submit = false,
+            })
+          end
+          if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+            local context = require("codecompanion.utils.context").get(vim.api.nvim_get_current_buf())
+
+            local content = table.concat(context.lines, "\n")
+            chat:add_buf_message({
+              role = "user",
+              content = "\nHere is some code from "
+                  .. context.filename
+                  .. ":\n\n```"
+                  .. context.filetype
+                  .. "\n"
+                  .. content
+                  .. "\n```\n \n ",
+            })
+          end
+          chat.ui:open()
+        end,
+        desc = "Toggle or launch CodeCompanion chat",
+        mode = { "n", "x" },
+        silent = true,
+      },
+      { "<leader>ci", ":'<,'>CodeCompanion<cr>",           desc = "Inline code companion", mode = { "v" },     silent = true },
+      { "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
+      -- { "gt",        "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle chat companion", mode = { "n", "v" } },
       -- { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "Toggle actions companion", mode = { "n", "v" } },
     },
   },

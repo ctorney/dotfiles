@@ -35,7 +35,10 @@ profiles:
   - id: DBA2A4BD-BC06-4775-AAE3-CB7D86225C5D
     name: SCRATCH
     display: Built-in Retina Display
-    apps: []
+    apps:
+    - name: Spotify
+      bundleIdentifier: com.spotify.client
+      iconPath: /Applications/Spotify.app/Contents/Resources/AppIcon.icns
     symbolIconName: square.fill
     openAppsOnActivation: false
   - id: 8489A1C5-447E-4E70-B8AD-BC0DF5497C82

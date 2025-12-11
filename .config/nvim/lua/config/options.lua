@@ -99,6 +99,15 @@ vim.api.nvim_create_autocmd("WinEnter", {
 	end,
 })
 
+-- vim.api.nvim_create_autocmd("User", {
+--   pattern = "CodeCompanionDiffAccepted",
+--   callback = function()
+--     vim.defer_fn(function()
+--       require("codecompanion.strategies.chat").close_last_chat()
+--     end, 100) -- 100ms delay to ensure the buffer is visible before closing
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
