@@ -13,7 +13,7 @@ profiles:
       bundleIdentifier: com.microsoft.teams2
       iconPath: /Applications/Microsoft Teams.app/Contents/Resources/AppIcon.icns
     symbolIconName: message
-    openAppsOnActivation: true
+    openAppsOnActivation: false
   - id: 628914E9-2F7A-4CEE-8200-FEDFBBCA100D
     name: BROWSER
     display: Built-in Retina Display
@@ -21,8 +21,12 @@ profiles:
     - name: Brave Browser
       bundleIdentifier: com.brave.Browser
       iconPath: /Applications/Brave Browser.app/Contents/Resources/app.icns
+    appToFocus:
+      name: Brave Browser
+      bundleIdentifier: com.brave.Browser
+      iconPath: /Applications/Brave Browser.app/Contents/Resources/app.icns
     symbolIconName: globe
-    openAppsOnActivation: true
+    openAppsOnActivation: false
   - id: CB7A1037-506C-4F0B-AAA1-66C229800175
     name: TERMINAL
     display: Built-in Retina Display
@@ -31,7 +35,7 @@ profiles:
       bundleIdentifier: com.mitchellh.ghostty
       iconPath: /Applications/Ghostty.app/Contents/Resources/Ghostty.icns
     symbolIconName: apple.terminal
-    openAppsOnActivation: true
+    openAppsOnActivation: false
   - id: DBA2A4BD-BC06-4775-AAE3-CB7D86225C5D
     name: SCRATCH
     display: Built-in Retina Display

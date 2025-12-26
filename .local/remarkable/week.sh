@@ -10,6 +10,7 @@ pdf_file="weekly_planner_$(date +%Y%m%d).pdf"
 
 xelatex -output-directory=$(pwd) -jobname="${pdf_file%.pdf}" current_week.tex >/dev/null
 
+export RMAPI_FORCE_SCHEMA_VERSION=4
 /Users/colin.torney/.local/bin/rmapi put "${pdf_file}" "2. AREAS/Time Management"
 # Remove the temporary LaTeX file
 # rm current_week.tex

@@ -1,6 +1,7 @@
 return {
 	{
 		"lervag/vimtex",
+  lazy = false,
 		ft = { "tex" },
 		config = function()
 			vim.g.vimtex_view_general_viewer = "open"
