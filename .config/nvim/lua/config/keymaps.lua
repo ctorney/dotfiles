@@ -20,7 +20,9 @@ vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = tr
 vim.keymap.set({ "n", "x" }, "<leader>/", "gcc", { desc = "Comment line or visual selection", remap = true })
 vim.keymap.set("n", "<leader>q", "<cmd>wall<cr><cmd>qall<cr>", { desc = "Save and quit" })
 
--- vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, { desc = "LSP Hover" })
+vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, { desc = "LSP Hover" })
+vim.keymap.set("i", "<c-w>", function()  vim.lsp.buf.signature_help({ border = "rounded" }) end, { desc = "LSP signature help" })
+-- vim.keymap.set("i", "<c-w>", function()  vim.lsp.buf.hover({ border = "rounded" }) end, { desc = "LSP signature help" })
 
 
 vim.keymap.set("n", "<leader>td", function()
@@ -46,6 +48,7 @@ vim.keymap.set("o", "m", "%")
 vim.api.nvim_set_keymap('i', '<CR>', 'pumvisible() ? "<C-y>" : "<CR>"', { expr = true, noremap = true })
 -- vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true, noremap = true })
+-- vim.api.nvim_set_keymap('i', '<BS>', 'pumvisible() ? "<BS><C-x><C-o>" : "<BS>"', { expr = true, noremap = true })
 
 -- vim.keymap.set('i', '<Tab>', function()
 --   local col = vim.fn.col('.')

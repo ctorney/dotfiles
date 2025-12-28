@@ -40,8 +40,8 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 vim.opt.laststatus = 3
 
-vim.opt.cmdheight = 0
 
+vim.opt.cmdheight = 0
 vim.g.health = { style = 'float' }
 
 vim.api.nvim_create_autocmd({ "InsertLeavePre", "TextChanged", "TextChangedP" }, {
@@ -152,18 +152,19 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
         vim.fn.wildtrigger()
     end
 })
--- Built-in autocompletion
-local lsp_au_group = vim.api.nvim_create_augroup('lsp_au_group', {clear = true})
-vim.api.nvim_create_autocmd({'LspAttach'}, {
-    callback = function()
-        local clients = vim.lsp.get_clients()
-        for _, client in ipairs(clients) do
-            local id = client.id
-            vim.lsp.completion.enable(true, id, 0, {autotrigger = false})
-        end
-    end,
-    group = lsp_au_group,
-})
+
+-- -- Built-in autocompletion
+-- local lsp_au_group = vim.api.nvim_create_augroup('lsp_au_group', {clear = true})
+-- vim.api.nvim_create_autocmd({'LspAttach'}, {
+--     callback = function()
+--         local clients = vim.lsp.get_clients()
+--         for _, client in ipairs(clients) do
+--             local id = client.id
+--             vim.lsp.completion.enable(true, id, 0, {autotrigger = false})
+--         end
+--     end,
+--     group = lsp_au_group,
+-- })
 
 
 -- vim.keymap.set('i', '<c-w>', file_complete_again, { desc = 'File Complete Again' })

@@ -1,6 +1,5 @@
-
 -- ------------------------------------------------------------------------------------------------
---                          COLOURSCHEME AND SEPARATE PLUGIN FILES 
+--                          COLOURSCHEME AND SEPARATE PLUGIN FILES
 -- ------------------------------------------------------------------------------------------------
 vim.pack.add({
 	"https://github.com/neanias/everforest-nvim",
@@ -10,25 +9,19 @@ require("everforest").setup({
 	background = "hard",
 	transparent_background_level = 2,
 	float_style = "dim",
-  -- colours_override = function (palette)
-  --   palette.blue = "#b86466"
-  -- end,
 
 	on_highlights = function(hl, palette)
 		hl.NormalFloat = { bg = palette.none }
-		hl.FloatBorder = { bg = palette.none, fg = palette.fg }
+		hl.FloatBorder = { bg = palette.none, fg = palette.bg1 }
 		hl.FloatTitle = { bg = palette.none }
-		hl.Pmenu = { bg = palette.bg_dim }
-    hl.PmenuBorder = { fg = palette.bg1, bg = palette.none }
-    hl.NoiceCmdlinePopupBorder = { fg = palette.bg1, bg = palette.none }
-    hl.NoiceCmdline = { fg = palette.fg, bg = palette.none }
-    -- hl.NoicePopupmenuBorder = { fg = palette.bg1, bg = palette.none }
-    -- hl.NoicePopupBorder = { fg = palette.bg1, bg = palette.none }
+		hl.Pmenu = { bg = palette.none, fg = palette.fg }
+		hl.PmenuBorder = { fg = palette.bg1, bg = palette.none }
+		hl.NoiceCmdlinePopupBorder = { fg = palette.bg1, bg = palette.none }
+		hl.NoiceCmdline = { fg = palette.fg, bg = palette.none }
 	end,
 })
 
 vim.cmd.colorscheme("everforest")
-
 
 require("plugins.snacks")
 require("plugins.treesitter")
@@ -40,10 +33,9 @@ require("plugins.treesitter")
 vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
-	"https://github.com/neanias/everforest-nvim",
 	"https://github.com/folke/which-key.nvim",
 	"https://github.com/MunifTanjim/nui.nvim",
-	"https://github.com/folke/noice.nvim",
+	{ src = "https://github.com/ctorney/noice.nvim", version = "feature/south-popup-anchor" },
 })
 
 require("lualine").setup({
@@ -53,7 +45,6 @@ require("lualine").setup({
 		disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
 	},
 	sections = {
-		-- lualine_a = { { "hostname" } },
 		lualine_a = { { "mode" } },
 		lualine_b = { { "" } },
 
@@ -72,245 +63,60 @@ require("lualine").setup({
 })
 
 require("noice").setup({
+  messages = { enabled = false },
 	cmdline = {
-		enabled = true, -- enables the Noice cmdline UI
-		-- view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
-		-- opts = {}, -- global options for the cmdline. See section on views
-		---@type table<string, CmdlineFormat>
+		view = "cmdline_popup",
+		enabled = true,
 		format = {
-			-- conceal: (default=true) This will hide the text in the cmdline that matches the pattern.
-			-- view: (default is cmdline view)
-			-- opts: any options passed to the view
-			-- icon_hl_group: optional hl_group for the icon
-			-- title: set to anything or empty string to hide
 			cmdline = { title = "", pattern = "^:", icon = "", lang = "vim" },
-			-- search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-			-- search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
-			-- filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
-			-- lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-			-- help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-			-- input = { view = "cmdline_input", icon = "󰥻 " }, -- Used by input()
-			-- lua = false, -- to disable a format, set to `false`
 		},
 	},
-	-- messages = {
-	-- 	-- NOTE: If you enable messages, then the cmdline is enabled automatically.
-	-- 	-- This is a current Neovim limitation.
-	-- 	enabled = true, -- enables the Noice messages UI
-	-- 	view = "notify", -- default view for messages
-	-- 	view_error = "notify", -- view for errors
-	-- 	view_warn = "notify", -- view for warnings
-	-- 	view_history = "messages", -- view for :messages
-	-- 	view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-	-- },
-	-- popupmenu = {
-	-- 	enabled = true, -- enables the Noice popupmenu UI
-	-- 	---@type 'nui'|'cmp'
-	-- 	backend = "nui", -- backend to use to show regular cmdline completions
-	-- 	---@type NoicePopupmenuItemKind|false
-	-- 	-- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
-	-- 	kind_icons = {}, -- set to `false` to disable icons
-	-- },
-	-- default options for require('noice').redirect
-	-- see the section on Command Redirection
-	---@type NoiceRouteConfig
-	-- redirect = {
-	-- 	view = "popup",
-	-- 	filter = { event = "msg_show" },
-	-- },
-	-- You can add any custom commands below that will be available with `:Noice command`
-	---@type table<string, NoiceCommand>
-	-- commands = {
-	-- 	history = {
-	-- 		-- options for the message history that you get with `:Noice`
-	-- 		view = "split",
-	-- 		opts = { enter = true, format = "details" },
-	-- 		filter = {
-	-- 			any = {
-	-- 				{ event = "notify" },
-	-- 				{ error = true },
-	-- 				{ warning = true },
-	-- 				{ event = "msg_show", kind = { "" } },
-	-- 				{ event = "lsp", kind = "message" },
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	-- :Noice last
-	-- 	-- last = {
-	-- 	-- 	view = "popup",
-	-- 	-- 	opts = { enter = true, format = "details" },
-	-- 	-- 	filter = {
-	-- 	-- 		any = {
-	-- 	-- 			{ event = "notify" },
-	-- 	-- 			{ error = true },
-	-- 	-- 			{ warning = true },
-	-- 	-- 			{ event = "msg_show", kind = { "" } },
-	-- 	-- 			{ event = "lsp", kind = "message" },
-	-- 	-- 		},
-	-- 	-- 	},
-	-- 	-- 	filter_opts = { count = 1 },
-	-- 	-- },
-	-- 	-- :Noice errors
-	-- 	-- errors = {
-	-- 	-- 	-- options for the message history that you get with `:Noice`
-	-- 	-- 	view = "popup",
-	-- 	-- 	opts = { enter = true, format = "details" },
-	-- 	-- 	filter = { error = true },
-	-- 	-- 	filter_opts = { reverse = true },
-	-- 	-- },
-	-- 	-- all = {
-	-- 	-- 	-- options for the message history that you get with `:Noice`
-	-- 	-- 	view = "split",
-	-- 	-- 	opts = { enter = true, format = "details" },
-	-- 	-- 	filter = {},
-	-- 	-- },
-	-- },
+	popupmenu = {
+		enabled = true,
+		kind_icons = false, 
+	},
 	notify = {
-		-- Noice can be used as `vim.notify` so you can route any notification like other messages
-		-- Notification messages have their level and other properties set.
-		-- event is always "notify" and kind can be any log level as a string
-		-- The default routes will forward notifications to nvim-notify
-		-- Benefit of using Noice for this is the routing and consistent history view
 		enabled = false,
-		view = "notify",
 	},
 	lsp = {
 		progress = {
 			enabled = false,
-			-- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
-			-- See the section on formatting for more details on how to customize.
-			--- @type NoiceFormat|string
-			format = "lsp_progress",
-			--- @type NoiceFormat|string
-			format_done = "lsp_progress_done",
-			throttle = 1000 / 30, -- frequency to update lsp progress message
-			view = "mini",
-		},
-		override = {
-			-- override the default lsp markdown formatter with Noice
-			["vim.lsp.util.convert_input_to_markdown_lines"] = false,
-			-- override the lsp markdown formatter with Noice
-			["vim.lsp.util.stylize_markdown"] = false,
-			-- override cmp documentation with Noice (needs the other options to work)
-			["cmp.entry.get_documentation"] = false,
-		},
-		hover = {
-			enabled = true,
-			silent = false, -- set to true to not show a message if hover is not available
-			view = nil, -- when nil, use defaults from documentation
-			---@type NoiceViewOptions
-			opts = {}, -- merged with defaults from documentation
-		},
-		signature = {
-			enabled = true,
-			auto_open = {
-				enabled = true,
-				trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
-				luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
-				throttle = 50, -- Debounce lsp signature help request by 50ms
-			},
-			view = nil, -- when nil, use defaults from documentation
-			---@type NoiceViewOptions
-			opts = {}, -- merged with defaults from documentation
 		},
 		message = {
-			-- Messages shown by lsp servers
 			enabled = false,
-			view = "notify",
-			opts = {},
 		},
-
-		-- defaults for hover and signature help
-	-- 	documentation = {
-	-- 		view = "hover",
-	-- 		---@type NoiceViewOptions
-	-- 		opts = {
-	-- 			lang = "markdown",
-	-- 			replace = true,
-	-- 			render = "plain",
-	-- 			format = { "{message}" },
-	-- 			win_options = { concealcursor = "n", conceallevel = 3 },
-	-- 		},
-	-- 	},
-	-- },
-	-- markdown = {
-	-- 	hover = {
-	-- 		["|(%S-)|"] = vim.cmd.help, -- vim help links
-	-- 		["%[.-%]%((%S-)%)"] = require("noice.util").open, -- markdown links
-	-- 	},
-	-- 	highlights = {
-	-- 		["|%S-|"] = "@text.reference",
-	-- 		["@%S+"] = "@parameter",
-	-- 		["^%s*(Parameters:)"] = "@text.title",
-	-- 		["^%s*(Return:)"] = "@text.title",
-	-- 		["^%s*(See also:)"] = "@text.title",
-	-- 		["{%S-}"] = "@parameter",
-	-- 	},
 	},
-	health = {
-		checker = true, -- Disable if you don't want health checks to run
-	},
-	---@type NoicePresets
 	presets = {
-	-- 	-- you can enable a preset by setting it to true, or a table that will override the preset config
-	-- 	-- you can also add custom presets that you can enable/disable with enabled=true
-	-- 	bottom_search = false, -- use a classic bottom cmdline for search
-		-- command_palette = true, -- position the cmdline and popupmenu together
-    command_palette = {
-    views = {
-      cmdline_popup = {
-        position = {
-          row = 18,
-        },
-      },
-      cmdline_popupmenu = {
-        position = {
-          row = 21,
-        },scrollbar = false,
-			size = {
-				-- width = 60,
-				height = 10,--"auto",
+		command_palette = {
+			views = {
+				cmdline_popup = {
+					position = {
+						row = 18,
+					},
+				},
+				cmdline_popupmenu = {
+					position = {
+						row = 21,
+					},
+					scrollbar = false,
+					size = {
+						-- width = 60,
+						height = 10, --"auto",
+					},
+				},
 			},
-      },
-    },
-  },
-	-- 	long_message_to_split = false, -- long messages will be sent to a split
-	-- 	inc_rename = false, -- enables an input dialog for inc-rename.nvim
+		},
 		lsp_doc_border = true, -- add a border to hover docs and signature help
 	},
-	-- throttle = 1000 / 30, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
 	views = {
-	-- 	cmdline_popup = {
-	-- 		border = {
-	-- 			style = "rounded",
-	-- 			padding = { 0, 1 },
-	-- 		},
-	-- 		filter_options = {},
-	-- 		win_options = {
-	-- 			winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-	-- 		},
-	-- 		-- position = {
-	-- 		-- 	row = "40%",
-	-- 		-- 	col = "50%",
-	-- 		-- },
-	-- 		-- size = {
-	-- 		-- 	-- width = 60,
-	-- 		-- 	height = "auto",
-	-- 		-- },
-	-- 	},
-		popupmenu = {scrollbar = false,
-			-- relative = "editor",
-			-- position = {
-			-- 	row = "52%",
-			-- 	col = "50%",
-			-- },
+		popupmenu = {
+			scrollbar = false,
 			size = {
 				width = "auto",
-				-- height = 10,
+				height = "auto",
 			},
 			border = {
 				style = "rounded",
-				padding = { 0, 1 },
 			},
 			win_options = {
 				winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
@@ -318,22 +124,23 @@ require("noice").setup({
 		},
 	},
 })
+
 vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
-  if not require("noice.lsp").scroll(4) then
-    return "<c-f>"
-  end
+	if not require("noice.lsp").scroll(4) then
+		return "<c-f>"
+	end
 end, { silent = true, expr = true })
 
 vim.keymap.set({ "n", "i", "s" }, "<c-b>", function()
-  if not require("noice.lsp").scroll(-4) then
-    return "<c-b>"
-  end
+	if not require("noice.lsp").scroll(-4) then
+		return "<c-b>"
+	end
 end, { silent = true, expr = true })
 
 require("which-key").setup({
-	triggers = {
-		{ "<leader>", mode = { "n", "v" } },
-	},
+	-- triggers = {
+	-- 	{ "<leader>", mode = { "n", "v" } },
+	-- },
 	preset = "modern",
 	win = {
 		no_overlap = false,
@@ -361,6 +168,33 @@ vim.pack.add({
 
 require("better_escape").setup()
 
+require("substitute").setup({
+	on_substitute = nil,
+	yank_substituted_text = false,
+	preserve_cursor_position = false,
+	modifiers = nil,
+	highlight_substituted_text = {
+		enabled = true,
+		timer = 500,
+	},
+	range = {
+		prefix = "s",
+		prompt_current_text = false,
+		confirm = false,
+		complete_word = false,
+		subject = nil,
+		range = nil,
+		suffix = "",
+		auto_apply = false,
+		cursor_position = "end",
+	},
+	exchange = {
+		motion = false,
+		use_esc_to_cancel = true,
+		preserve_cursor_position = false,
+	},
+})
+
 require("conform").setup({
 	notify_on_error = true,
 	format_on_save = false,
@@ -380,6 +214,12 @@ require("conform").setup({
 
 require("flash").setup({
 	jump = { autojump = false },
+	modes = {
+		char = {
+			enabled = true,
+			autohide = true,
+		},
+	},
 	highlight = {
 		-- show a backdrop with hl FlashBackdrop
 		backdrop = false,
@@ -419,14 +259,14 @@ local keymaps = {
 		end,
 		desc = "Flash",
 	},
-	-- {
-	-- 	"S",
-	-- 	mode = { "n", "x", "o" },
-	-- 	function()
-	-- 		require("flash").treesitter()
-	-- 	end,
-	-- 	desc = "Flash Treesitter",
-	-- },
+	{
+		"S",
+		mode = { "n", "x", "o" },
+		function()
+			require("flash").treesitter()
+		end,
+		desc = "Flash Treesitter",
+	},
 	-- {
 	-- 	"r",
 	-- 	mode = "o",
