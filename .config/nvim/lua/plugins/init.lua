@@ -25,6 +25,11 @@ vim.cmd.colorscheme("everforest")
 
 require("plugins.snacks")
 require("plugins.treesitter")
+require("plugins.vimtex")
+
+-- vim.pack.add({
+-- 	"https://github.com/lervag/vimtex",
+-- })
 
 -- ------------------------------------------------------------------------------------------------
 --                          UI ELEMENTS - LUALINE, NOICE, WHICHKEY
