@@ -27,10 +27,13 @@ displayMode: dynamic
 centerCursorOnWorkspaceChange: true
 changeWorkspaceOnAppAssign: false
 activeWorkspaceOnFocusChange: true
+autoAssignAppsToWorkspaces: false
+autoAssignAlreadyAssignedApps: false
 skipEmptyWorkspacesOnSwitch: false
 keepUnassignedAppsOnSwitch: false
 restoreHiddenAppsOnSwitch: false
 enableWorkspaceTransitions: false
+showRecentWorkspaceWhenActivatedTwice: false
 workspaceTransitionDuration: 5e-1
 workspaceTransitionDimming: 5e-2
 loopWorkspaces: true
@@ -46,6 +49,7 @@ enablePictureInPictureSupport: true
 switchWorkspaceWhenPipCloses: true
 pipApps: []
 pipScreenCornerOffset: 15
+cornerHiddenApps: []
 floatingApps:
 - name: Raycast
   bundleIdentifier: com.raycast.macos
@@ -59,6 +63,12 @@ spaceControlCurrentDisplayWorkspaces: false
 spaceControlHideEmptyWorkspaces: false
 spaceControlUpdateScreenshotsOnOpen: true
 spaceControlNumberOfColumns: 4
+enableWorkspaceSwitcher: true
+showWorkspaceSwitcher: opt+tab
+workspaceSwitcherShowScreenshots: true
+workspaceSwitcherVisibleWorkspaces: 8
+workspaceSwitcherSortByLastActivation: true
+workspaceSwitcherCurrentDisplayWorkspaces: true
 enableIntegrations: false
 runScriptOnLaunch: ''
 runScriptOnWorkspaceChange: ''
