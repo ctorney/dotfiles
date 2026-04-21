@@ -54,6 +54,9 @@ floatingApps:
 - name: Raycast
   bundleIdentifier: com.raycast.macos
   iconPath: /Applications/Raycast.app/Contents/Resources/AppIcon-Release.icns
+- name: Finder
+  bundleIdentifier: com.apple.finder
+  iconPath: /System/Library/CoreServices/Finder.app/Contents/Resources/Finder.icns
 toggleTheFocusedAppFloating: opt+v
 enableSpaceControl: true
 showSpaceControl: opt+up
