@@ -1,13 +1,32 @@
-#!/bin/bash
 
-if [ -n "$TMUX" ]; then
-  open -na Ghostty --args -e /usr/bin/ssh "$@"
-  # cmm='/usr/bin/ssh -o ConnectTimeout=5 '"$@"' ; sleep 2; tmux attach'
-  # tmux detach -E "${cmm}"
-  # tmux detach
-  # open --env TMUX="" --env SSH="$@" -a /Applications/Ghostty.app -n --args --initial-command='zsh' # ./start.command #--args -e /Users/colin.torney/.local/bin/start.sh
-  # /usr/bin/ssh "$@"
-  #|| open -a /Applications/Ghostty.app   ;
+#!/usr/bin/env bash
+
+if [ -n "${TMUX:-}" ]; then
+    osascript - "$@" <<'APPLESCRIPT'
+on run argv
+    set sshCommand to "/usr/bin/ssh"
+    repeat with a in argv
+        set sshCommand to sshCommand & space & quoted form of (contents of a)
+    end repeat
+
+    tell application "Ghostty"
+        activate
+
+        if (count of windows) is 0 then
+            new window
+        end if
+
+        set newTab to new tab in front window
+    end tell
+
+    delay 0.1
+
+    tell application "System Events"
+        keystroke sshCommand
+        key code 36
+    end tell
+end run
+APPLESCRIPT
 else
-  /usr/bin/ssh "$@"
+    exec /usr/bin/ssh "$@"
 fi

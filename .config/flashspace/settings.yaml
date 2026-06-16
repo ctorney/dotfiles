@@ -3,6 +3,8 @@ showFlashSpace: opt+shift+space
 showFloatingNotifications: false
 showMenuBarTitle: false
 showMenuBarIcon: true
+menuBarTitleScriptPath: ''
+menuBarTitleUseScript: false
 menuBarTitleTemplate: $WORKSPACE_NUMBER
 menuBarDisplayAliases: ''
 enableFocusManagement: true
