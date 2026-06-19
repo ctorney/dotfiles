@@ -51,6 +51,7 @@ profiles:
     - name: Calendar
       bundleIdentifier: com.apple.iCal
       iconPath: /System/Applications/Calendar.app/Contents/Resources/AppIcon.icns
+      autoOpen: true
     symbolIconName: calendar
     openAppsOnActivation: true
   - id: 649C84E2-C5DC-4B0F-BF9C-4601B84B6E74

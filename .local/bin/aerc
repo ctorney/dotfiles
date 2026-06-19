@@ -1,0 +1,29 @@
+
+#!/usr/bin/env bash
+
+if [ -n "${TMUX:-}" ]; then
+    osascript - "$@" <<'APPLESCRIPT'
+on run argv
+    set aercCommand to "/opt/homebrew/bin/aerc"
+
+    tell application "Ghostty"
+        activate
+
+        if (count of windows) is 0 then
+            new window
+        end if
+
+        set newTab to new tab in front window
+    end tell
+
+    delay 0.1
+
+    tell application "System Events"
+        keystroke aercCommand
+        key code 36
+    end tell
+end run
+APPLESCRIPT
+else
+    exec /opt/homebrew/bin/aerc
+fi
