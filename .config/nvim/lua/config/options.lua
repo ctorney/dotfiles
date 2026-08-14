@@ -41,21 +41,19 @@ vim.opt.scrolloff = 5
 vim.opt.laststatus = 3
 
 
+vim.opt.cmdheight = 0
+vim.g.health = { style = 'float' }
 
-vim.api.nvim_create_autocmd(
-  { "InsertLeavePre", "TextChanged", "TextChangedP" },
-  {
-    pattern = "*",
-    callback = function()
-      local buf = vim.api.nvim_get_current_buf()
-      if vim.api.nvim_buf_get_option(buf, "modifiable")
-         and not vim.api.nvim_buf_get_option(buf, "readonly") then
-        -- Save the buffer silently (no messages)
-        vim.cmd('silent! update')
-      end
-    end,
-  }
-)
+vim.api.nvim_create_autocmd({ "InsertLeavePre", "TextChanged", "TextChangedP" }, {
+	pattern = "*",
+	callback = function()
+		local buf = vim.api.nvim_get_current_buf()
+		if vim.api.nvim_buf_get_option(buf, "modifiable") and not vim.api.nvim_buf_get_option(buf, "readonly") then
+			-- Save the buffer silently (no messages)
+			vim.cmd("silent! update")
+		end
+	end,
+})
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = vim.api.nvim_create_augroup("last-location", { clear = true }),
@@ -81,6 +79,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*.FCMacro",
 	command = "set filetype=python",
@@ -91,23 +90,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	command = "set filetype=c",
 })
 
-vim.api.nvim_create_autocmd("WinEnter", {
-	callback = function()
-		if vim.bo.filetype == "REPL" then
-			vim.cmd("startinsert")
-		end
-	end,
-})
-
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "CodeCompanionDiffAccepted",
---   callback = function()
---     vim.defer_fn(function()
---       require("codecompanion.strategies.chat").close_last_chat()
---     end, 100) -- 100ms delay to ensure the buffer is visible before closing
---   end,
--- })
-
 vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
@@ -116,12 +98,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	desc = "Disable New Line Comment",
 })
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-	pattern = "*",
-	callback = function()
-		vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
-	end,
-})
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+-- 	end,
+-- })
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "mail",
@@ -132,26 +114,18 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-			if vim.g.have_nerd_font then
-				local signs = { ERROR = "", WARN = "", INFO = "", HINT = "" }
-				local diagnostic_signs = {}
-				for type, icon in pairs(signs) do
-					diagnostic_signs[vim.diagnostic.severity[type]] = icon
-				end
-				vim.diagnostic.config({
-					signs = { text = diagnostic_signs },
-					virtual_text = false,
-					underline = false,
-				})
-			end
-local lsp_configs = {}
-
-for _, f in pairs(vim.api.nvim_get_runtime_file('lsp/*.lua', true)) do
-  local server_name = vim.fn.fnamemodify(f, ':t:r')
-  table.insert(lsp_configs, server_name)
+if vim.g.have_nerd_font then
+	local signs = { ERROR = "", WARN = "", INFO = "", HINT = "" }
+	local diagnostic_signs = {}
+	for type, icon in pairs(signs) do
+		diagnostic_signs[vim.diagnostic.severity[type]] = icon
+	end
+	vim.diagnostic.config({
+		signs = { text = diagnostic_signs },
+		virtual_text = false,
+		underline = false,
+	})
 end
-
-vim.lsp.enable(lsp_configs)
 
 -- vim.api.nvim_create_autocmd("BufLeave", {
 -- 	group = vim.api.nvim_create_augroup("codecompanion_unlist", { clear = true }),
@@ -165,3 +139,42 @@ vim.lsp.enable(lsp_configs)
 -- 		end
 -- 	end,
 -- })
+
+vim.opt.completeopt = { "menuone", "noselect", "popup" , "noinsert"}
+
+vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
+    pattern = { '*' },
+    group = vim.api.nvim_create_augroup('CmdlineAutocompletion', { clear = true }),
+    callback = function(ev)
+        vim.opt.wildmenu = true
+        -- vim.opt.wildoptions+=pum
+        vim.opt.wildmode = 'noselect:lastused,full'
+        vim.fn.wildtrigger()
+    end
+})
+
+-- -- Built-in autocompletion
+-- local lsp_au_group = vim.api.nvim_create_augroup('lsp_au_group', {clear = true})
+-- vim.api.nvim_create_autocmd({'LspAttach'}, {
+--     callback = function()
+--         local clients = vim.lsp.get_clients()
+--         for _, client in ipairs(clients) do
+--             local id = client.id
+--             vim.lsp.completion.enable(true, id, 0, {autotrigger = false})
+--         end
+--     end,
+--     group = lsp_au_group,
+-- })
+
+
+-- vim.keymap.set('i', '<c-w>', file_complete_again, { desc = 'File Complete Again' })
+-- Put this in your init.lua or a sourced Lua file
+
+local lsp_configs = {}
+
+for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+	local server_name = vim.fn.fnamemodify(f, ":t:r")
+	table.insert(lsp_configs, server_name)
+end
+
+vim.lsp.enable(lsp_configs)

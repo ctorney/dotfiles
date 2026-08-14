@@ -1,0 +1,39 @@
+
+#!/usr/bin/env bash
+
+# aerc is either in /opt/homebrew/bin or /usr/local/bin
+if [ -x "/opt/homebrew/bin/aerc" ]; then
+    AERC_PATH="/opt/homebrew/bin/aerc"
+elif [ -x "/usr/local/bin/aerc" ]; then
+    AERC_PATH="/usr/local/bin/aerc"
+else
+    echo "aerc not found in /opt/homebrew/bin or /usr/local/bin"
+    exit 1
+fi
+
+if [ -n "${TMUX:-}" ]; then
+    osascript - "$@" <<APPLESCRIPT
+on run argv
+    set aercCommand to "${AERC_PATH}"
+
+    tell application "Ghostty"
+        activate
+
+        if (count of windows) is 0 then
+            new window
+        end if
+
+        set newTab to new tab in front window
+    end tell
+
+    delay 0.1
+
+    tell application "System Events"
+        keystroke aercCommand
+        key code 36
+    end tell
+end run
+APPLESCRIPT
+else
+    exec "$AERC_PATH"
+fi

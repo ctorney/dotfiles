@@ -18,6 +18,9 @@ done
 
 if [ "$PRINT_ONLY" -eq 1 ]; then
   MULTISELECT="--multi"
+  NO_TTY_CLEANUP=1
+else
+  NO_TTY_CLEANUP=0
 fi
 
 if [ -n "$DIR" ]; then
@@ -91,13 +94,18 @@ preview_command="
       cd "$selection"
       continue
     fi
-
-      if [ "$PRINT_ONLY" -eq 1 ]; then
-        # add quotes around each item
-        selection=$(echo "$selection" | sed "s|^|$(pwd)/|; s/.*/'&'/")
-        echo "$selection" 
+    if [ "$PRINT_ONLY" -eq 1 ]; then
+        while IFS= read -r item; do
+          [ -n "$item" ] && printf '%s/%s\n' "$(pwd)" "$item"
+        done <<< "$selection"
         break
       fi
+      # if [ "$PRINT_ONLY" -eq 1 ]; then
+      #   # add quotes around each item
+      #   selection=$(echo "$selection" | sed "s|^|$(pwd)/|; s/.*/'&'/")
+      #   echo "$selection" 
+      #   break
+      # fi
     # If file, open in $EDITOR and exit
     if [[ -f "$selection" ]]; then
 
@@ -109,4 +117,7 @@ preview_command="
       open "$selection"
     fi
   done
-tput rmcup
+
+if [ "${NO_TTY_CLEANUP:-0}" -eq 0 ]; then
+  tput rmcup > /dev/tty 2>/dev/null || true
+fi
