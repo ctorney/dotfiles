@@ -25,8 +25,12 @@ require("everforest").setup({
 	end,
 })
 
-vim.cmd.colorscheme("luna")
 
+require("luna").setup({
+  transparent = true
+})
+
+vim.cmd.colorscheme("luna")
 require("lualine").setup({
 	options = {
 		theme = "auto",
