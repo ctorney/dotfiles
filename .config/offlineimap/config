@@ -27,4 +27,4 @@ sslcacertfile = /opt/homebrew/etc/openssl@3/cert.pem
 realdelete = no
 sync_deletes = yes
 # only backup the folders listed here
-folderfilter = lambda folder: folder in ['INBOX', 'Drafts', 'Archive', 'Sent Items', 'FOI']
+folderfilter = lambda folder: folder in ['INBOX', 'Drafts', 'Archive', 'Sent Items']

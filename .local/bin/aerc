@@ -1,10 +1,20 @@
 
 #!/usr/bin/env bash
 
+# aerc is either in /opt/homebrew/bin or /usr/local/bin
+if [ -x "/opt/homebrew/bin/aerc" ]; then
+    AERC_PATH="/opt/homebrew/bin/aerc"
+elif [ -x "/usr/local/bin/aerc" ]; then
+    AERC_PATH="/usr/local/bin/aerc"
+else
+    echo "aerc not found in /opt/homebrew/bin or /usr/local/bin"
+    exit 1
+fi
+
 if [ -n "${TMUX:-}" ]; then
-    osascript - "$@" <<'APPLESCRIPT'
+    osascript - "$@" <<APPLESCRIPT
 on run argv
-    set aercCommand to "/opt/homebrew/bin/aerc"
+    set aercCommand to "${AERC_PATH}"
 
     tell application "Ghostty"
         activate
@@ -25,5 +35,5 @@ on run argv
 end run
 APPLESCRIPT
 else
-    exec /opt/homebrew/bin/aerc
+    exec "$AERC_PATH"
 fi
