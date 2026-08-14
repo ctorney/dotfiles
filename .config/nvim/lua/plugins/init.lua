@@ -1,0 +1,7 @@
+require("plugins.ui")
+require("plugins.treesitter")
+require("plugins.snacks")
+require("plugins.tools")
+require("plugins.coding")
+require("plugins.ai")
+require("plugins.vimtex")

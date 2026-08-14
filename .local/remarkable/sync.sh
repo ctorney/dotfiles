@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+export RMAPI_FORCE_SCHEMA_VERSION=4
 for f in "$@"
 do
   # strip the filename from the full path

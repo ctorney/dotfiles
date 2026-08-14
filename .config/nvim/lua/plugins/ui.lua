@@ -27,7 +27,7 @@ require("everforest").setup({
 
 
 require("luna").setup({
-  transparent = true,
+  transparent = true
 })
 
 vim.cmd.colorscheme("luna")

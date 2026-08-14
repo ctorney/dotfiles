@@ -22,5 +22,21 @@ fi
 # Actually delete the emails tagged as deleted
 # notmuch search --format=text0 --output=files tag:deleted | xargs -0 --no-run-if-empty rm -v
 
+# Get current db revision before sync
+LASTMOD=$(notmuch count --lastmod | awk '{print $3}')
+
 offlineimap
 notmuch new
+
+# Remove duplicate files where same Message-ID exists in both Inbox and Sent
+echo "Deduplicating sent/inbox copies..."
+notmuch search --output=messages tag:inbox lastmod:${LASTMOD}.. | while read id; do
+  files=$(notmuch search --output=files "$id")
+  count=$(echo "$files" | wc -l)
+  if [ "$count" -gt 1 ]; then
+    echo "$files" | grep -i "Sent" | while read sentfile; do
+      echo "Removing duplicate Sent copy: $sentfile"
+      rm "$sentfile"
+    done
+  fi
+done
