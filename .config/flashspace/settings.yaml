@@ -53,12 +53,12 @@ pipApps: []
 pipScreenCornerOffset: 15
 cornerHiddenApps: []
 floatingApps:
-- name: Raycast
-  bundleIdentifier: com.raycast.macos
-  iconPath: /Applications/Raycast.app/Contents/Resources/AppIcon-Release.icns
 - name: Finder
   bundleIdentifier: com.apple.finder
   iconPath: /System/Library/CoreServices/Finder.app/Contents/Resources/Finder.icns
+- name: Raycast Beta
+  bundleIdentifier: com.raycast-x.macos
+  iconPath: /Applications/Raycast Beta.app/Contents/Resources/production-appicon.icns
 toggleTheFocusedAppFloating: opt+v
 enableSpaceControl: true
 showSpaceControl: opt+up

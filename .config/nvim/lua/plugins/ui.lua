@@ -4,6 +4,7 @@
 -- ------------------------------------------------------------------------------------------------
 vim.pack.add({
 	"https://github.com/neanias/everforest-nvim",
+  "https://github.com/wtfox/luna.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
 })
@@ -24,7 +25,7 @@ require("everforest").setup({
 	end,
 })
 
-vim.cmd.colorscheme("everforest")
+vim.cmd.colorscheme("luna")
 
 require("lualine").setup({
 	options = {

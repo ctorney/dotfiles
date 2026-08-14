@@ -17,3 +17,4 @@ keybind = ctrl+enter=unbind
 keybind = shift+enter=unbind
 shell-integration-features = no-cursor, ssh-env, ssh-terminfo
 quick-terminal-position = center
+keybind = global:ctrl+grave_accent=toggle_quick_terminal

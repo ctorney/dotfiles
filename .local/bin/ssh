@@ -4,7 +4,7 @@
 if [ -n "${TMUX:-}" ]; then
     osascript - "$@" <<'APPLESCRIPT'
 on run argv
-    set sshCommand to "/usr/bin/ssh"
+    set sshCommand to "/usr/bin/ssh -L localhost:6666:localhost:6666"
     repeat with a in argv
         set sshCommand to sshCommand & space & quoted form of (contents of a)
     end repeat

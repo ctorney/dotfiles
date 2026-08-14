@@ -1,66 +1,44 @@
-
 -- ------------------------------------------------------------------------------------------------
 --                            COPILOT - LOADED ON INSERTENTER
 -- ------------------------------------------------------------------------------------------------
 
-vim.pack.add({
-	"https://github.com/zbirenbaum/copilot.lua",
-}, {
-	load = function(plugin)
-		vim.keymap.set("n", "<leader>tc", function()
-			vim.keymap.del("n", "<leader>tc")
-			vim.cmd.packadd("copilot.lua")
-			require("copilot").setup({
-				suggestion = {
-					enabled = true,
-					auto_trigger = true,
-					keymap = {
-						accept = "<S-Right>",
-						accept_word = "<S-Down>",
-						accept_line = false,
-						next = "<S-Up>",
-						prev = "<C-S-Up>",
-						dismiss = "<C-c>",
-					},
-				},
-				panel = {
-					enabled = false,
-				},
-			})
-			vim.keymap.set("n", "<leader>tc", function()
-				require("copilot.suggestion").toggle_auto_trigger()
-			end, { desc = "Toggle copilot autosuggest" })
-		end, { desc = "Toggle copilot autosuggest" })
-
-		-- vim.api.nvim_create_autocmd("BufReadPost", {
-		-- 	group = vim.api.nvim_create_augroup("copilot", { clear = true }),
-		-- 	once = true,
-		-- 	callback = function()
-		-- 		vim.cmd.packadd("copilot.lua")
-		-- 		require("copilot").setup({
-		-- 			suggestion = {
-		-- 				enabled = true,
-		-- 				auto_trigger = true,
-		-- 				keymap = {
-		-- 					accept = "<S-Right>",
-		-- 					accept_word = "<S-Down>",
-		-- 					accept_line = false,
-		-- 					next = "<S-Up>",
-		-- 					prev = "<C-S-Up>",
-		-- 					dismiss = "<C-c>",
-		-- 				},
-		-- 			},
-		-- 			panel = {
-		-- 				enabled = false,
-		-- 			},
-		-- 		})
-		-- 		vim.keymap.set("n", "<leader>tc", function()
-		-- 			require("copilot.suggestion").toggle_auto_trigger()
-		-- 		end, { desc = "Toggle copilot autosuggest" })
-		-- 	end,
-		-- })
-	end,
+vim.pack.add({{
+	src = "https://github.com/zbirenbaum/copilot.lua",
+  version = "v2.0.0"}
 })
+
+require("copilot").setup({
+	suggestion = {
+		enabled = true,
+		auto_trigger = true,
+		keymap = {
+			accept = "<S-Right>",
+			accept_word = "<S-Down>",
+			accept_line = false,
+			next = "<S-Up>",
+			prev = "<C-S-Up>",
+			dismiss = "<C-c>",
+		},
+	},
+	panel = {
+		enabled = false,
+	},
+})
+
+vim.keymap.set("n", "<leader>tc", function() require("copilot.suggestion").toggle_auto_trigger() end, { desc = "Toggle Copilot auto trigger" })
+
+
+-- vim.pack.add({
+--   "https://github.com/linw1995/nvim-mcp",
+-- })
+--
+-- require("nvim-mcp").setup({
+-- })
+
+-- --  Start the Neovim server for external communication in home directory, allowing other applications to connect to Neovim via the specified socket.
+-- vim.fn.mkdir(vim.fn.expand("~/tmp"), "p")  -- Create the directory if it doesn't exist
+vim.fn.serverstop(vim.fn.expand("~/tmp/nvim.sock"))  -- Stop any existing server on the same socket
+vim.fn.serverstart(vim.fn.expand("~/tmp/nvim.sock"))  -- Start the server on the specified socket
 
 -- ------------------------------------------------------------------------------------------------
 --                            SLIME - LOADED FOR PYTHON FILES
