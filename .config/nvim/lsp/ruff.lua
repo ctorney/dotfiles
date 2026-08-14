@@ -25,9 +25,13 @@ return {
       -- https://docs.astral.sh/ruff/editors/settings/
       configurationPreference = "filesystemFirst",
       lineLength = 88,
+      lint = {
+        ignore = { "F722" },
+      },
     },
   },
   settings = {
-    ruff = {},
+    ruff = {
+    },
   },
 }
