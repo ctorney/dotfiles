@@ -56,6 +56,20 @@ require("codecompanion").setup({
       },
     },
   },
+  adapters = {
+    openai = function()
+      return require("codecompanion.adapters").extend("openai", {
+        schema = {
+          model = {
+            default = "gpt-5.6-luna", -- your non-reasoning model
+          },
+        },
+        opts = {
+          reasoning_effort = "none", -- disable reasoning effort
+        },
+      })
+    end,
+  },
   display = {
     chat = {
       window = { layout = "float", height = 0.50, width = 0.7, title = "" },
@@ -68,7 +82,8 @@ require("codecompanion").setup({
       roles = {
         user = "user",
       },
-      adapter = "copilot",
+      adapter =  "openai",
+      
       keymaps = {
         hide = {
           modes = {
@@ -88,7 +103,10 @@ require("codecompanion").setup({
       },
     },
     inline = {
-      adapter = "copilot",
+      adapter = {
+        name = "openai",
+        model = "gpt-5.6-luna",
+      },
       keymaps = {
         accept_change = {
           modes = {
